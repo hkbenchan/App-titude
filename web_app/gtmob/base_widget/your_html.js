@@ -1,6 +1,6 @@
 function simpleIndex(){
 	$.ajax({
-		url: "../../api/base_widget/simple",
+		url: "api/simple",
 		context: document.body,
 		success: function(data){
 			$('#IndexResult').html(data);
@@ -9,7 +9,7 @@ function simpleIndex(){
 }
 function simpleGet(){
 	$.ajax({
-		url: "../../api/base_widget/simple/testItemValue",
+		url: "api/simple/testItemValue",
 		context: document.body,
 		success: function(data){
 			$('#GetResult').html(data);
@@ -18,7 +18,7 @@ function simpleGet(){
 }
 function simplePost(){
 	$.ajax({
-		url: "../../api/base_widget/simple",
+		url: "api/simple",
 		data: {'itemValue': 'testItemValue'},
 		context: document.body,
 		type: 'POST',
@@ -29,7 +29,7 @@ function simplePost(){
 }
 function simplePut(){
 	$.ajax({
-		url: "../../api/base_widget/simple/testItemValue",
+		url: "api/simple/testItemValue",
 		context: document.body,
 		data: {'itemValue': 'testItemNewValue'},
 		headers: {'X-HTTP-Method-Override': 'PUT'},
@@ -41,7 +41,7 @@ function simplePut(){
 }
 function simpleDelete(){
 	$.ajax({
-		url: "../../api/base_widget/simple/testItem",
+		url: "api/simple/testItem",
 		context: document.body,
 		type: 'DELETE',
 		success: function(data){
