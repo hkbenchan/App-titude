@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <api>
 	<description>
-		<![CDATA[This is an API to interact with all the simple items]]>
+		<![CDATA[This is an API to interact with all the event items]]>
 	</description>
 	
 	<command id='simple' security='public'>
@@ -26,5 +26,34 @@
 			<description><![CDATA[This is how you can delete a simple item]]></description>
 			<action file='simple.php'><![CDATA[deleteItem($_REST['simple']);]]></action>
 		</delete>
+	</command>
+
+	<command id='event' security='protected'>
+		<description><![CDATA[This event API lets you do something related to events]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all events (filter all past events)]]></description>
+			<action file='event.php'><![CDATA[listEvents();]]></action>
+		</index>
+
+		<get>
+			<description><![CDATA[This is how you can get a specific event]]></description>
+			<action file='event.php'><![CDATA[getEvent($_REST['event']);]]></action>
+		</get>
+
+		<post>
+			<description><![CDATA[This is how you can post an event]]></description>
+			<action file='event.php'><![CDATA[postEvent($_POST['event']);]]></action>
+		</post>
+
+		<put>
+			<description><![CDATA[This is how you can update an event]]></description>
+			<action file='event.php'><![CDATA[updateEvent($_REST['event'],$_POST['event']);]]></action>
+		</put>
+
+		<delete>
+			<description><![CDATA[This is how you can delete an event]]></description>
+			<action file='event.php'><![CDATA[deleteEvent($_REST['event']);]]></action>
+		</delete>
+
 	</command>
 </api>
