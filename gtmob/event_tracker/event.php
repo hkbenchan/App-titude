@@ -46,12 +46,12 @@ function updateEvent($id,$event) {
 }
  
 function deleteEvent($id) {
-        /*$dbQuery = sprintf("DELETE FROM comments WHERE id = '%s'",
+	if (!is_numeric($id)) { $id = 0; }
+        $dbQuery = sprintf("DELETE FROM Event WHERE id = '%s'",
                 mysql_real_escape_string($id));                                                                                         
         $result = getDBResultAffected($dbQuery);
-        
         header("Content-type: application/json");
-        echo json_encode($result);*/
+        echo json_encode($result);
 }
 
 ?>
