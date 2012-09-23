@@ -10,6 +10,15 @@ function listEvents() {
 }
  
 function getEvent($id) {
+	$dbQuery = sprintf("SELECT `Event`.*, `Creator`.*, `Location`.*, `EventType`.* FROM `Event`
+JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
+JOIN `Location`ON `Event`.LocationID = `Location`.ID
+JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
+WHERE `Event`.ID = '%s'", mysql_real_escape_string($id));
+
+	$result=getDBResultRecord($dbQuery);
+	echo '<pre>'.print_r($result).'</pre>';
+
         /*$dbQuery = sprintf("SELECT id,comment FROM comments WHERE id = '%s'",
                 mysql_real_escape_string($id));
         $result=getDBResultRecord($dbQuery);
