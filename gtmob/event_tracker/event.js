@@ -1,6 +1,6 @@
 function simpleIndex(){
 	$.ajax({
-		url: "api/simple",
+		url: "api/event",
 		context: document.body,
 		success: function(data){
 			$('#IndexResult').html(data);
