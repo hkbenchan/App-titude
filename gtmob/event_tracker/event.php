@@ -34,11 +34,11 @@ function listEvents($limit = null, $offset = null) {
         $dbQuery = sprintf("SELECT ID,Title, StartTime FROM Event
         WHERE StartTime >= CURRENT_TIMESTAMP
         ORDER BY StartTime ASC");
-        
+        /*
         if (is_numeric($limit) && is_numeric($offset)) {
         	$dbQuery += sprintf("LIMIT '%s', '%s'",mysql_real_escape_string($offset),
         	mysql_real_escape_string($limit));
-        }
+        }*/
         
         $tmp = getDBResultsArray($dbQuery);
         $result = groupByStartDate($tmp);
