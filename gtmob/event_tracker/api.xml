@@ -34,7 +34,7 @@
 			<description><![CDATA[This part is just for pagination of events]]></description>
 			<get>
 				<description><![CDATA[This is how you can get the list of events with paging limit]]></description>
-				<action file='event.php'><![CDATA[listEvents($_GET['limit'],$_REST['event/page'])]]></action>
+				<action file='event.php'><![CDATA[listEvents($_REST['event/page'],$_REST['event'])]]></action>
 			</get>
 		</command>
 		<index>

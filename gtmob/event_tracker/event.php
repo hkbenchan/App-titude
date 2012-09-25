@@ -15,7 +15,6 @@ function groupByStartDate($input_array = null) {
         foreach ($input_array as $val) {
         	$current_date = new DateTime($val['StartTime']);
         	$current_date->setTime(0,0,0);
-        	echo date_format($previous_date, 'Y-m-d').' '.date_format($current_date, 'Y-m-d').'\n';
         	if ($current_date == $previous_date) {
         		$result[date_format($previous_date, 'Y-m-d')][] = $val;
         	} else {
@@ -43,8 +42,6 @@ function listEvents($limit = null, $offset = null) {
         
         $tmp = getDBResultsArray($dbQuery);
         $result = groupByStartDate($tmp);
-        echo '<pre>'.print_r($tmp,true).'</pre>';
-        echo '<pre>'.print_r($result,true).'</pre>';die();
         
         header("Content-type: application/json");
         echo json_encode($result);
