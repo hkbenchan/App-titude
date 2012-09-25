@@ -41,7 +41,7 @@ function listEvents($limit = null, $offset = null) {
 			WHERE StartTime >= CURRENT_TIMESTAMP
 			ORDER BY StartTime ASC");			
         }
-        
+        echo $dbQuery;
         $tmp = getDBResultsArray($dbQuery);
         $result = groupByStartDate($tmp);
         
