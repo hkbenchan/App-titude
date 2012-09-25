@@ -8,10 +8,13 @@ function groupByStartDate($input_array = null) {
 		$result = array();
         /* group by date */
         $previous_date = new DateTime();
-        $previous_date->format('Y-m-d');
+        $previous_date = $previous_date->format('Y-m-d');
+        echo $previous_date.'\n';
         foreach ($input_array as $val) {
         	$current_date = new DateTime($val['StartTime']);
-        	$current_date->format('Y-m-d');
+        	$current_date = $current_date->format('Y-m-d');
+        	echo $current_date.'\n';
+        	echo Bool($current_date==$previous_date).'\n';
         	if ($current_date == $previous_date) {
         		$result[$previous_date][] = $val;
         	} else {
