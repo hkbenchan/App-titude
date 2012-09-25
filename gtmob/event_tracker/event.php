@@ -15,7 +15,7 @@ function groupByStartDate($input_array = null) {
         foreach ($input_array as $val) {
         	$current_date = new DateTime($val['StartTime']);
         	$current_date->setTime(0,0,0);
-        	echo $previous_date.' '.$current_date.'\n';
+        	echo date_format($previous_date, 'Y-m-d').' '.date_format($current_date, 'Y-m-d').'\n';
         	if ($current_date == $previous_date) {
         		$result[$previous_date][] = $val;
         	} else {
