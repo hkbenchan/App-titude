@@ -18,7 +18,7 @@ private function groupByStartDate($input_array = null) {
         	}
         }
         /* end of group by date */
-	
+		return $result;
 	} else return null;
 	
 }
@@ -35,7 +35,9 @@ function listEvents($limit = null, $offset = null) {
         	mysql_real_escape_string($limit));
         }
         
-        $result = getDBResultsArray($dbQuery);
+        $tmp = getDBResultsArray($dbQuery);
+        //echo '<pre>'.print_r($result,true).'</pre>';
+        $result = groupByStartDate($tmp);
         
         header("Content-type: application/json");
         echo json_encode($result);
