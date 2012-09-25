@@ -36,8 +36,10 @@ function listEvents($limit = null, $offset = null) {
         ORDER BY StartTime ASC");
         
         if (is_numeric($limit) && is_numeric($offset)) {
+        	echo $dbQuery;
         	$dbQuery += sprintf("LIMIT '%s', '%s'",mysql_real_escape_string($offset),
         	mysql_real_escape_string($limit));
+        	echo $dbQuery; die();
         }
         
         $tmp = getDBResultsArray($dbQuery);
