@@ -36,7 +36,7 @@ function listEvents($limit = null, $offset = null) {
         }*/
         
         $tmp = getDBResultsArray($dbQuery);
-        echo '<pre>'.print_r($result,true).'</pre>'; die();
+        echo '<pre>'.print_r($tmp,true).'</pre>'; die();
         $result = groupByStartDate($tmp);
         
         header("Content-type: application/json");
