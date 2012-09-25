@@ -1,10 +1,42 @@
 <?php
 
 include 'db_helper.php';
- 
-function listEvents() {
-        $dbQuery = sprintf("SELECT ID,Title FROM Event");
+
+private function groupByStartDate($input_array = null) {
+
+	if (isset($input_array) && is_array($input_array) && count($input_array)) {
+		$result = array();
+        /* group by date */
+        $previous_date = date('m-d-Y',now);
+        foreach ($input_array as $val) {
+        	$current_date = date('m-d-Y',$val['StartTime']);
+        	if ($current_date == $previous_date) {
+        		$result[$previous_date][] = $val;
+        	} else {
+        		$previous_date = $current_date;
+        		$result[$current_date][] = $val;
+        	}
+        }
+        /* end of group by date */
+	
+	} else return null;
+	
+}
+
+
+function listEvents($limit = null, $offset = null) {
+
+        $dbQuery = sprintf("SELECT ID,Title, StartTime FROM Event
+        WHERE StartTime >= CURRENT_TIMESTAMP
+        ORDER BY StartTime ASC");
+        
+        if (is_numeric($limit) && is_numeric($offset)) {
+        	$dbQuery += sprintf("LIMIT '%s', '%s'",mysql_real_escape_string($offset),
+        	mysql_real_escape_string($limit));
+        }
+        
         $result = getDBResultsArray($dbQuery);
+        
         header("Content-type: application/json");
         echo json_encode($result);
 }
@@ -47,7 +79,7 @@ function updateEvent($id,$event) {
  
 function deleteEvent($id) {
 	if (!is_numeric($id)) { $id = 0; }
-        $dbQuery = sprintf("DELETE FROM Event WHERE id = '%s'",
+        $dbQuery = sprintf("DELETE FROM Event WHERE id = '%s' AND StartTime >= CURRENT_TIMESTAMP",
                 mysql_real_escape_string($id));                                                                                         
         $result = getDBResultAffected($dbQuery);
         header("Content-type: application/json");
