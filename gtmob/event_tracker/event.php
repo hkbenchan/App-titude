@@ -12,9 +12,6 @@ function groupByStartDate($input_array = null) {
 		//We get rid of the time, and just keep the date part.
 		$previous_date->setTime(0, 0, 0);
 		
-		if ($nDate1 == $nDate2) {
-			//It's the same day
-		}
         foreach ($input_array as $val) {
         	$current_date = new DateTime($val['StartTime']);
         	$current_date->setTime(0,0,0);
@@ -44,8 +41,9 @@ function listEvents($limit = null, $offset = null) {
         }
         
         $tmp = getDBResultsArray($dbQuery);
-        //echo '<pre>'.print_r($tmp,true).'</pre>'; die();
         $result = groupByStartDate($tmp);
+        echo '<pre>'.print_r($tmp,true).'</pre>';
+        echo '<pre>'.print_r($result,true).'</pre>';die();
         
         header("Content-type: application/json");
         echo json_encode($result);
