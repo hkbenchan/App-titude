@@ -30,13 +30,13 @@ function listEvents($limit = null, $offset = null) {
         WHERE StartTime >= CURRENT_TIMESTAMP
         ORDER BY StartTime ASC");
         
-        /*if (is_numeric($limit) && is_numeric($offset)) {
+        if (is_numeric($limit) && is_numeric($offset)) {
         	$dbQuery += sprintf("LIMIT '%s', '%s'",mysql_real_escape_string($offset),
         	mysql_real_escape_string($limit));
-        }*/
+        }
         
         $tmp = getDBResultsArray($dbQuery);
-        echo '<pre>'.print_r($tmp,true).'</pre>'; die();
+        //echo '<pre>'.print_r($tmp,true).'</pre>'; die();
         $result = groupByStartDate($tmp);
         
         header("Content-type: application/json");
