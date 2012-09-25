@@ -7,9 +7,11 @@ function groupByStartDate($input_array = null) {
 	if (isset($input_array) && is_array($input_array) && count($input_array)) {
 		$result = array();
         /* group by date */
-        $previous_date = dateTime('m-d-Y',now);
+        $previous_date = new DateTime();
+        $previous_date->format('Y-m-d');
         foreach ($input_array as $val) {
-        	$current_date = dateTime('m-d-Y',$val['StartTime']);
+        	$current_date = new DateTime($val['StartTime']);
+        	$current_date->format('Y-m-d');
         	if ($current_date == $previous_date) {
         		$result[$previous_date][] = $val;
         	} else {
