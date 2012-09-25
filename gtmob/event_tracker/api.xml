@@ -30,6 +30,7 @@
 
 	<command id='event' security='protected'>
 		<description><![CDATA[This event API lets you do something related to events]]></description>
+		
 		<command id='page' security='protected'>
 			<description><![CDATA[This part is just for pagination of events]]></description>
 			<get>
@@ -37,6 +38,7 @@
 				<action file='event.php'><![CDATA[listEvents($_REST['event/page'],$_REST['event']);]]></action>
 			</get>
 		</command>
+		
 		<index>
 			<description><![CDATA[This is how you can get a listing of all events (filter all past events)]]></description>
 			<action file='event.php'><![CDATA[listEvents();]]></action>
