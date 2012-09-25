@@ -17,11 +17,10 @@ function groupByStartDate($input_array = null) {
         	$current_date->setTime(0,0,0);
         	echo date_format($previous_date, 'Y-m-d').' '.date_format($current_date, 'Y-m-d').'\n';
         	if ($current_date == $previous_date) {
-        		$result[$previous_date][] = $val;
-        		echo 'true';
+        		$result[date_format($previous_date, 'Y-m-d')][] = $val;
         	} else {
         		$previous_date = $current_date;
-        		$result[$current_date][] = $val;
+        		$result[date_format($current_date, 'Y-m-d')][] = $val;
         	}
         }
         /* end of group by date */
