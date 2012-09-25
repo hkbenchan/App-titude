@@ -2,7 +2,7 @@
 
 include 'db_helper.php';
 
-private function groupByStartDate($input_array = null) {
+function groupByStartDate($input_array = null) {
 
 	if (isset($input_array) && is_array($input_array) && count($input_array)) {
 		$result = array();
@@ -30,10 +30,10 @@ function listEvents($limit = null, $offset = null) {
         WHERE StartTime >= CURRENT_TIMESTAMP
         ORDER BY StartTime ASC");
         
-        if (is_numeric($limit) && is_numeric($offset)) {
+        /*if (is_numeric($limit) && is_numeric($offset)) {
         	$dbQuery += sprintf("LIMIT '%s', '%s'",mysql_real_escape_string($offset),
         	mysql_real_escape_string($limit));
-        }
+        }*/
         
         $tmp = getDBResultsArray($dbQuery);
         echo '<pre>'.print_r($result,true).'</pre>'; die();
