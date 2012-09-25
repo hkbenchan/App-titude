@@ -35,13 +35,12 @@ function listEvents($limit = null, $offset = null) {
         	$dbQuery = sprintf("SELECT ID,Title, StartTime FROM Event
         	WHERE StartTime >= CURRENT_TIMESTAMP
         	ORDER BY StartTime ASC
-        	LIMIT '%s', '%s'",mysql_real_escape_string($offset),mysql_real_escape_string($limit));
+        	LIMIT %s, %s",mysql_real_escape_string($offset),mysql_real_escape_string($limit));
         } else {
 			$dbQuery = sprintf("SELECT ID,Title, StartTime FROM Event
 			WHERE StartTime >= CURRENT_TIMESTAMP
 			ORDER BY StartTime ASC");			
         }
-        echo $dbQuery;
         $tmp = getDBResultsArray($dbQuery);
         $result = groupByStartDate($tmp);
         
