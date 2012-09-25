@@ -34,24 +34,7 @@
 			<description><![CDATA[This part is just for pagination of events]]></description>
 			<get>
 				<description><![CDATA[This is how you can get the list of events with paging limit]]></description>
-				<action file='event.php'><![CDATA[listEvents($_REST['event/page'],$_REST['event']);
-				
-				global $_REST;
-				print "REST: ";
-				var_dump($_REST);        
-				print "<br>";
-				print "GET: ";
-				var_dump($_GET);
-				print "<br>";        
-				print "POST: ";
-				var_dump($_POST);
-				print "<br>";
-						print "FILES: ";
-				var_dump($_FILES);
-				print "<br>";
-				
-				
-				]]></action>
+				<action file='event.php'><![CDATA[listEvents($_REST['event/page'],$_REST['event']);]]></action>
 			</get>
 		</command>
 		<index>
