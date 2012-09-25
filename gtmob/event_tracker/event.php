@@ -31,15 +31,15 @@ function groupByStartDate($input_array = null) {
 
 function listEvents($limit = null, $offset = null) {
 
-        $dbQuery = sprintf("SELECT ID,Title, StartTime FROM Event
-        WHERE StartTime >= CURRENT_TIMESTAMP
-        ORDER BY StartTime ASC");
-        
-        if (is_numeric($limit) && is_numeric($offset)) {
-        	echo $dbQuery;
-        	$dbQuery += sprintf("LIMIT '%s', '%s'",mysql_real_escape_string($offset),
-        	mysql_real_escape_string($limit));
-        	echo $dbQuery; die();
+		if (is_numeric($limit) && is_numeric($offset)) {
+        	$dbQuery = sprintf("SELECT ID,Title, StartTime FROM Event
+        	WHERE StartTime >= CURRENT_TIMESTAMP
+        	ORDER BY StartTime ASC
+        	LIMIT '%s', '%s'",mysql_real_escape_string($offset),mysql_real_escape_string($limit));
+        } else {
+			$dbQuery = sprintf("SELECT ID,Title, StartTime FROM Event
+			WHERE StartTime >= CURRENT_TIMESTAMP
+			ORDER BY StartTime ASC");			
         }
         
         $tmp = getDBResultsArray($dbQuery);
