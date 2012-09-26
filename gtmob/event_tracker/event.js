@@ -1,21 +1,50 @@
-function simpleIndex(){
+var current_page; // indicator for the page view
+var pageViewLimit = 20;
+
+function formatList(ele_div,data) {
+	/*var l = data.length;
+	for (i=0;i<l;i++){
+		// day -- a button display the day
+		var button = "<input type=\"button\" name=\"event\" value=\""+"day"+"\" onclick=\"return false;\">";
+		ele_div.append(
+		var l2 = data[i].length;
+		for (j=0; j<l2; j++){
+			
+		}
+	}*/
+}
+
+function eventIndex(){
 	$.ajax({
 		url: "api/event",
 		context: document.body,
 		success: function(data){
-			$('#IndexResult').html(data);
+			formatList($('#IndexResult').empty(),eval('('+data+')');
 		}
 	});
 }
-function simpleGet(){
+
+function eventGet(id){
 	$.ajax({
-		url: "api/simple/testItemValue",
+		url: "api/event/"+id,
 		context: document.body,
 		success: function(data){
-			$('#GetResult').html(data);
+			$('#GetResult').empty().html(data);
 		}
 	});
 }
+
+function eventPagination(limit,offset){
+	$.ajax({
+		url: "api/event/"+offset+"/page/"+limit,
+		context: document.body,
+		success: function(data){
+			$('#IndexResult').empty().html(data);
+		}
+	});
+}
+
+/*
 function simplePost(){
 	$.ajax({
 		url: "api/simple",
@@ -49,3 +78,22 @@ function simpleDelete(){
 		}
 	});
 }
+*/
+
+function prevPageView(){
+	if (current_page > 1) {
+		// go back to previous pageViewLimit result
+	}
+}
+
+function nextPageView(){
+	
+}
+
+/* Do it once the page finish loading */
+
+$(document).ready(function(){
+	// start with first pageViewLimit most recent events
+	eventPagination(pageViewLimit,0);
+	current_page = 1;
+});
