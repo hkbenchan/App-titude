@@ -40,7 +40,7 @@ function eventPagination(limit,offset){
 		url: "api/event/"+offset+"/page/"+limit,
 		context: document.body,
 		success: function(data){
-			$('#IndexResult').empty().html(data);
+			formatList($('#IndexResult').empty(),eval('('+data+')'));
 		}
 	});
 }
