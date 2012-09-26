@@ -21,7 +21,6 @@ function eventIndex(){
 		context: document.body,
 		success: function(data){
 			formatList($('#IndexResult').empty(),eval('('+data+')'));
-			$('#IndexResult .eventDate').button();
 		}
 	});
 }
