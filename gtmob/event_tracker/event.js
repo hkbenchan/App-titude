@@ -3,13 +3,15 @@ var pageViewLimit = 20;
 
 function formatList(ele_div,data) {
 	var l = data['date'].length;
+	var button_ui = "<div data-corners=\"true\" data-shadow=\"true\" data-iconshadow=\"true\" data-wrapperels=\"span\" data-icon=\"null\" data-iconpos=\"null\" data-theme=\"c\" data-inline=\"false\" data-mini=\"false\" class=\"ui-btn ui-shadow ui-btn-corner-all ui-fullsize ui-btn-block ui-btn-up-c\" aria-disabled=\"false\"><span class=\"ui-btn-inner ui-btn-corner-all\"><span class=\"ui-btn-text\">";
+	
 	for (i=0;i<l;i++){
 		// day -- a button display the day
-		var button = "<input type=\"button\" name=\"event\" value=\""+data['date'][i]+"\" onclick=\"return false;\">";
+		var button = button_ui + data['date'][i]+"</span></span><input type=\"button\" name=\"event\" value=\""+data['date'][i]+"\" onclick=\"return false;\"></div>";
 		ele_div.append(button);
 		var l2 = data[i].length;
 		for (j=0; j<l2; j++){
-			var link = "<input type=\"button\" name=\"event\" value=\""+data[i][j]['Title']+"    "+data[i][j]['StartTime']+"\" onclick=\"eventGet("+data[i][j]['ID']+");\">";
+			var link = button_ui + data[i][j]['Title']+"</span></span><input type=\"button\" name=\"event\" value=\""+data[i][j]['Title']+"    "+data[i][j]['StartTime']+"\" onclick=\"eventGet("+data[i][j]['ID']+");\"></div>";
 			ele_div.append(link);
 		}
 	}
@@ -21,6 +23,7 @@ function eventIndex(){
 		context: document.body,
 		success: function(data){
 			formatList($('#IndexResult').empty(),eval('('+data+')'));
+			$('#IndexResult input:button').button();
 		}
 	});
 }
@@ -41,6 +44,7 @@ function eventPagination(limit,offset){
 		context: document.body,
 		success: function(data){
 			formatList($('#IndexResult').empty(),eval('('+data+')'));
+			$('#IndexResult input:button').button();
 		}
 	});
 }
