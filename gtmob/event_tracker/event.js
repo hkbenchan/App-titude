@@ -6,9 +6,8 @@ function formatList(ele_div,data) {
 
 	for (i=0;i<l;i++){
 		// day -- a button display the day
-		//var button = "<input type=\"button\" name=\"eventDate\" value=\""+data['date'][i]+"\" onclick=\"return false;\">";
-		//ele_div.append(button);
-		$('#dateHeaderTemplate').tmpl(date['date'][i]).appendTo(ele_div);
+		var js_obj = { date : data['date'][i] };
+		$('#dateHeaderTemplate').tmpl(js_obj).appendTo(ele_div);
 		var l2 = data[i].length;
 		for (j=0; j<l2; j++){
 			$('#menuiconTemplate').tmpl(data[i][j]).appendTo(ele_div);
