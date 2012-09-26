@@ -11,7 +11,7 @@ function formatList(ele_div,data) {
 		var l2 = data[i].length;
 		for (j=0; j<l2; j++){
 			//var link = "<input type=\"button\" name=\"event\" value=\""+data[i][j]['Title']+"    "+data[i][j]['StartTime']+"\" onclick=\"eventGet("+data[i][j]['ID']+");\">";
-			$('#menuiconTemplate').tmpl(data[i]).appendTo(ele_div);
+			$('#menuiconTemplate').tmpl(data[i][j]).appendTo(ele_div);
 			//ele_div.append(link);
 		}
 	}
