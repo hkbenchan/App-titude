@@ -3,6 +3,7 @@
 	<library name="jquery"/>
 	<library name="jquery.tmpl"/>
 	<html file="event.html"/>
+	<html file="event_update.html"/>
 	<css file="event.css"/>
 	<javascript file="event.js"/>
     
