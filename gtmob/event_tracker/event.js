@@ -6,13 +6,11 @@ function formatList(ele_div,data) {
 
 	for (i=0;i<l;i++){
 		// day -- a button display the day
-		var button = "<input type=\"button\" name=\"event\" value=\""+data['date'][i]+"\" onclick=\"return false;\">";
+		var button = "<input type=\"button\" name=\"eventDate\" value=\""+data['date'][i]+"\" onclick=\"return false;\">";
 		ele_div.append(button);
 		var l2 = data[i].length;
 		for (j=0; j<l2; j++){
-			//var link = "<input type=\"button\" name=\"event\" value=\""+data[i][j]['Title']+"    "+data[i][j]['StartTime']+"\" onclick=\"eventGet("+data[i][j]['ID']+");\">";
 			$('#menuiconTemplate').tmpl(data[i][j]).appendTo(ele_div);
-			//ele_div.append(link);
 		}
 	}
 }
@@ -23,7 +21,7 @@ function eventIndex(){
 		context: document.body,
 		success: function(data){
 			formatList($('#IndexResult').empty(),eval('('+data+')'));
-			$('#IndexResult input:button').button();
+			$('#IndexResult .eventDate').button();
 		}
 	});
 }
