@@ -36,6 +36,11 @@
 		<br>
 		<p></p>
 		<form name="go">
+			<input type="button" name="event" value="Click me to display 2 results with 0 offset" onclick="eventPagination(2,0)">
+			<input type="button" name="event" value="Click me to display 3 results with 2 offset" onclick="eventPagination(3,2)">
+			<input type="button" name="event" value="Click me to use default setting" onclick="eventPagination(pageViewLimit,0)">
+			<input type="button" name="event" value="Click me to display all (filter past event)" onclick="eventIndex()">
+			<input type="button" name="event" value="I will display 5th event - which is passed!" onclick="eventGet(5)">
 			<input type="button" name="test" value="Simple Index" onclick="eventIndex()">
 			<input type="button" name="test" value="Simple Get" onclick="eventGet()">
 			<input type="button" name="test" value="Simple Post" onclick="return false;">

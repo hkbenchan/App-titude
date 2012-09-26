@@ -41,7 +41,6 @@ function eventPagination(limit,offset){
 		context: document.body,
 		success: function(data){
 			formatList($('#IndexResult').empty(),eval('('+data+')'));
-			$('#IndexResult input:button').button();
 		}
 	});
 }
