@@ -53,11 +53,13 @@ function listEvents($limit = null, $offset = null) {
 function getEvent($id) {
 	if (!is_numeric($id)) { $id = 0; }
 
-	$dbQuery = sprintf("SELECT `Event`.*, `Creator`.*, `Location`.*, `EventType`.* FROM `Event`
-JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
-JOIN `Location`ON `Event`.LocationID = `Location`.ID
-JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
-WHERE `Event`.ID = '%s'", mysql_real_escape_string($id));
+	$dbQuery = sprintf("SELECT `Event`.ID AS `Event_ID`, `Creator`.ID AS `Creator_ID`,
+	`Location`.ID AS `Location_ID`, `EventType`.ID AS `EventType_ID`,
+	`Event`.*, `Creator`.*, `Location`.*, `EventType`.* FROM `Event`
+	JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
+	JOIN `Location`ON `Event`.LocationID = `Location`.ID
+	JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
+	WHERE `Event`.ID = '%s'", mysql_real_escape_string($id));
 
 	$result=getDBResultRecord($dbQuery);
 	//echo '<pre>'.print_r($result).'</pre>';
