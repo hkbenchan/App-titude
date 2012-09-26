@@ -16,6 +16,16 @@
 				<input type="button" name="event" value="${Title} ${StartTime}" onclick="eventGet(${ID})" class="ui-btn-hidden" aria-disabled="false">
 			</div>
 		</script>
+		<script id="dateHeaderTemplate" type="text/x-jquery-tmpl">
+			<div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" 
+			data-icon="null" data-iconpos="null" data-theme="c" data-inline="false" data-mini="false" 
+			class="ui-btn ui-shadow ui-btn-corner-all ui-fullsize ui-btn-block ui-btn-up-c" aria-disabled="false">
+				<span class="ui-btn-inner ui-btn-corner-all">
+					<span class="ui-btn-text">${date}</span>
+				</span>
+				<input type="button" name="event" value="${date}" onclick="return false;" class="ui-btn-hidden" aria-disabled="false">
+			</div>
+		</script>
 		<form name="go" id="IndexResult">
 		</form>
 		<div id='GetResult'></div>
