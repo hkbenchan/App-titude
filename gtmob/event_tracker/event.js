@@ -2,16 +2,17 @@ var current_page; // indicator for the page view
 var pageViewLimit = 20;
 
 function formatList(ele_div,data) {
-	/*var l = data.length;
+	var l = data['date'].length;
 	for (i=0;i<l;i++){
 		// day -- a button display the day
-		var button = "<input type=\"button\" name=\"event\" value=\""+"day"+"\" onclick=\"return false;\">";
-		ele_div.append(
+		var button = "<input type=\"button\" name=\"event\" value=\""+data['date'][i]+"\" onclick=\"return false;\">";
+		ele_div.append(button);
 		var l2 = data[i].length;
 		for (j=0; j<l2; j++){
-			
+			var link = "<input type=\"button\" name=\"event\" value=\""+data[i][j]['Title']+"    "+data[i][j]['StartTime']+"\" onclick=\"eventGet("+data[i][j]['ID']+");\">";
+			ele_div.append(link);
 		}
-	}*/
+	}
 }
 
 function eventIndex(){
@@ -19,7 +20,7 @@ function eventIndex(){
 		url: "api/event",
 		context: document.body,
 		success: function(data){
-			formatList($('#IndexResult').empty(),eval('('+data+')');
+			formatList($('#IndexResult').empty(),eval('('+data+')'));
 		}
 	});
 }
