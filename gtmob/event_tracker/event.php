@@ -120,7 +120,7 @@ function postEvent($event) {
 		$permission = getDBResultRecord($dbQuery); // the server will terminate if no permission
 		
 		s_echo("You have the permission.");
-		
+		/*
 		// Insert to the Creator Table
 		$dbQuery = sprintf("INSERT INTO Creator (Email_address,Phone_number,Contact) VALUES ('%s','%s','%s')",
 					mysql_real_escape_string($_POST[ 'Email' ]),mysql_real_escape_string($_POST[ 'Phone' ]),
@@ -291,7 +291,7 @@ function postEvent($event) {
         s_echo("Event insert success");
         die();
         header("Content-type: application/json");
-        echo json_encode($result);
+        echo json_encode($result); */
 }
  
 function updateEvent($id,$event) {
