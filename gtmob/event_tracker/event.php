@@ -2,6 +2,9 @@
 
 include 'db_helper.php';
 
+/**
+* A helper function that group the events by date
+*/
 function groupByStartDate($input_array = null) {
 
 	if (isset($input_array) && is_array($input_array) && count($input_array)) {
@@ -30,7 +33,10 @@ function groupByStartDate($input_array = null) {
 	
 }
 
-
+/** 
+* If $limit and $offset are both set, then this is a pagination call;
+* Otherwise, it will list out all join-able events
+*/
 function listEvents($limit = null, $offset = null) {
 
 		if (is_numeric($limit) && is_numeric($offset)) {
@@ -68,6 +74,8 @@ function getEvent($id) {
 }
  
 function postEvent($event) {
+		echo $_POST['StartTime'];
+		echo $_USER;
         /*$dbQuery = sprintf("INSERT INTO comments (comment) VALUES ('%s')",
                 mysql_real_escape_string($comment));
  
