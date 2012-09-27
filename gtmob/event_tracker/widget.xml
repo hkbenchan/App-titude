@@ -2,11 +2,17 @@
 <widget title="Event Tracker">
 	<library name="jquery"/>
 	<library name="jquery.tmpl"/>
+	<!--
 	<html file="event.html"/>
 	<html file="event_update.html"/>
+	-->
+	<html file="event_listupdate.html"/>
 	<css file="event.css"/>
+	<!--
 	<javascript file="event.js"/>
-    
+	-->
+    <javascript file="event_new.js"/>
+
     <library name="jquery.mobile"/> 
     <library name="gtmob"/>
 </widget>
