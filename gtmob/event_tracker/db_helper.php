@@ -8,7 +8,7 @@ $connection = mysql_connect(
 	$db_password
 );
 
-if (!connection){
+if (!$connection){
 	die("Error connecting to the database.<br/><br/>".mysql_error());
 }
 

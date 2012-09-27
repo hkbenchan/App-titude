@@ -2,10 +2,6 @@
 
 include 'db_helper.php';
 
-global $_USER; // in case we need to user acct name => access by $_USER['uid']
-
-$debug = true; // global flag for debugging
-
 function s_echo($str) {
 	if ($debug) echo "<pre>".print_r($str,true)."</pre>";
 }
@@ -84,6 +80,8 @@ function getEvent($id) {
  
 function postEvent($event = null) {
 		
+		$debug = true; // flag for debugging
+		
 		/**
 		* insert split into 5 parts
 		* (1) Creator Table
@@ -107,7 +105,7 @@ function postEvent($event = null) {
 		*/
 		
 		// check the permission
-		
+		global $_USER;
 		$acctName = $_USER['uid'];
 		
 		s_echo("Just started");
