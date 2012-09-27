@@ -111,7 +111,7 @@ function postEvent($event = null) {
 		$acctName = $_USER['uid'];
 		
 		s_echo("Just started");
-		
+		die();
 		$dbQuery = sprintf("SELECT `AuthUser`.*, o.OrganizationName FROM `AuthUser`
 		JOIN `Organization` o ON `AuthUser`.OnBehalf = o.ID
 		WHERE AcctName = '%s' AND o.OrganizationName = '%s'",
