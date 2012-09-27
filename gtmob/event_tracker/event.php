@@ -76,7 +76,7 @@ function getEvent($id) {
 function postEvent($event) {
 		global $_USER;
 		echo $_POST['StartTime'];
-		echo $_USER;
+		echo '<pre>'.print_r($_USER,true).'</pre>;
         /*$dbQuery = sprintf("INSERT INTO comments (comment) VALUES ('%s')",
                 mysql_real_escape_string($comment));
  
