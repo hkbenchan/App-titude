@@ -113,7 +113,7 @@ function postEvent($event) {
 		$dbQuery = sprintf("SELECT `AuthUser`.*, o.OrganizationName FROM `AuthUser`
 		JOIN `Organization` o ON `AuthUser`.OnBehalf = o.ID
 		WHERE AcctName = '%s' AND o.OrganizationName = '%s'",
-		mysql_real_escape_string($acctName), mysql_real_escape_string($_POST['OrganizationName']);
+		mysql_real_escape_string($acctName), mysql_real_escape_string($_POST['OrganizationName']));
 		
 		s_echo("Permission SQL: " . $dbQuery);
 		
@@ -138,7 +138,7 @@ function postEvent($event) {
 		
 		// Insert to the CreatorOwn Table
 		$dbQuery = sprintf("INSERT INTO CreatorOwn (CreatorID,AuthUserID) VALUES ('%s','%s')",
-					mysql_real_escape_string($CreatorID),mysql_real_escape_string($permission['ID']);
+					mysql_real_escape_string($CreatorID),mysql_real_escape_string($permission['ID']));
 		
 		s_echo("CreatorOwn SQL: ".$dbQuery);
 		
@@ -268,7 +268,9 @@ function postEvent($event) {
 			mysql_real_escape_string($LocationID),
 			mysql_real_escape_string($CreatorID),
 			mysql_real_escape_string($EventTypeID));
+
 		} else {
+
 			$dbQuery = sprintf("INSERT INTO Event(Title, Description, StartTime, EndTime, 
 			LocationID, CreatorID, EventTypeID) 
 			VALUES ('%s','%s','%s','%s','%s','%s','%s')",
@@ -279,8 +281,7 @@ function postEvent($event) {
 			mysql_real_escape_string($LocationID),
 			mysql_real_escape_string($CreatorID),
 			mysql_real_escape_string($EventTypeID));
-		
-		
+
 		}
 		
 		s_echo("Finally, Event SQL: ".$dbQuery);
