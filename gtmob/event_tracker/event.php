@@ -3,7 +3,8 @@
 include 'db_helper.php';
 
 function s_echo($str) {
-	echo "<pre>".print_r($str,true)."</pre>";
+	//echo "<pre>".print_r($str,true)."</pre>";
+	print_r($str,true);
 }
 
 
@@ -111,7 +112,7 @@ function postEvent($event = null) {
 		s_echo("Just started");
 		$dbQuery = sprintf("SELECT `AuthUser`.*, o.OrganizationName FROM `AuthUser`
 		JOIN `Organization` o ON `AuthUser`.OnBehalf = o.ID
-		WHERE AcctName = '%s' AND o.OrganizationName = '%s'",
+		WHERE `AuthUser`.AcctName = '%s' AND o.OrganizationName = '%s'",
 		mysql_real_escape_string($acctName), mysql_real_escape_string($_POST['OrganizationName']));
 		
 		s_echo("Permission SQL: " . $dbQuery);
