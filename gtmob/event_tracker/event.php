@@ -2,6 +2,8 @@
 
 include 'db_helper.php';
 
+global $_USER; // in case we need to user acct name => access by $_USER['uid']
+
 /**
 * A helper function that group the events by date
 */
@@ -74,9 +76,41 @@ function getEvent($id) {
 }
  
 function postEvent($event) {
-		global $_USER;
-		echo $_POST['StartTime'];
-		echo '<pre>'.print_r($_USER,true).'</pre>';
+		
+		/**
+		* insert split into 5 parts
+		* (1) Creator Table
+		* (2) CreatorOwn Table
+		* (3) Location Table
+		* (4) EventType Table
+		* (5) Event Table
+		*/
+		
+		/**
+		* Flow:
+		* Check if the user has the right to post event (Query if the username exist on AuthUser)
+		* If true, then proceed; else die()
+		* Get event contact (email, phone, additional contact)
+		* (1) Insert to the Creator table, get back the CreatorID
+		* (2) Use the CreatorID and account name to insert to CreatorOwn Table
+		* (3) Get the LatCoord, LongCoord, Name and insert to Location, get back the LocationID
+		* Get the EventTypeDesc and search if it exists in the table
+		* If true, use that EventTypeID; else (4) insert into EventType Table and get back the EventTypeID
+		* (5) Use all data that needed to insert to Event table, get back the EventID and return
+		*/
+		
+		// check the permission
+		
+		$acctName = $_USER['uid'];
+		$dbQuery = sprintf("SELECT * FROM AuthUser WHERE AcctName = '%s'",mysql_real_escape_string($acctName));
+		$permission = getDBResultArray($dbQuery); // the server will terminate if no permission
+		
+		$dbQuery = sprintf("INSERT INTO Creator (Email_address,Phone_number,Contact) VALUES ('%s','%s','%s')",
+					mysql_real_escape_string($_POST[ 'Email' ]),mysql_real_escape_string($_POST[ 'Phone' ]),
+					mysql_real_escape_string($_POST[ 'Contact' ]));
+		
+		$result = getDBResultInserted($dbQuery,'ID');
+		
         /*$dbQuery = sprintf("INSERT INTO comments (comment) VALUES ('%s')",
                 mysql_real_escape_string($comment));
  
