@@ -51,7 +51,7 @@
 
 		<post>
 			<description><![CDATA[This is how you can post an event]]></description>
-			<action file='event.php'><![CDATA[postEvent($_POST['event']);]]></action>
+			<action file='event.php'><![CDATA[postEvent();]]></action>
 		</post>
 
 		<put>

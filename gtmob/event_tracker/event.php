@@ -7,7 +7,7 @@ global $_USER; // in case we need to user acct name => access by $_USER['uid']
 $debug = true; // global flag for debugging
 
 function s_echo($str) {
-	if ($debug) echo $str.'\n';
+	if ($debug) echo "<pre>".print_r($str,true)."</pre>";
 }
 
 
@@ -82,7 +82,7 @@ function getEvent($id) {
         echo json_encode($result);
 }
  
-function postEvent($event) {
+function postEvent($event = null) {
 		
 		/**
 		* insert split into 5 parts
@@ -118,7 +118,7 @@ function postEvent($event) {
 		mysql_real_escape_string($acctName), mysql_real_escape_string($_POST['OrganizationName']));
 		
 		s_echo("Permission SQL: " . $dbQuery);
-		die();
+		
 		$permission = getDBResultRecord($dbQuery); // the server will terminate if no permission
 		
 		s_echo("You have the permission.");
