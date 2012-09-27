@@ -148,8 +148,8 @@ function postEvent($event = null) {
 		// Search if Location has the same record
 		$LocationCall = 0; // Avoid checking again if we need to insert it later
 		if ((is_float($_POST['LatCoord']) || is_numeric($_POST['LatCoord'])) && 
-		(is_float($_POST['LongCoord']) || is_numeric($_POST['LongCoord']) && 
-		(!is_null($_POST['Location'])) {
+		(is_float($_POST['LongCoord']) || is_numeric($_POST['LongCoord'])) && 
+		(!is_null($_POST['Location']))) {
 			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name = '%s' AND
 			Location.LatCoord = '%s' AND Location.LongCoord = '%s'",
 			mysql_real_escape_string($_POST['Location']),
@@ -157,7 +157,7 @@ function postEvent($event = null) {
 			mysql_real_escape_string($_POST['LongCoord']));
 			$LocationCall = 1;
 		} elseif ((is_float($_POST['LatCoord']) || is_numeric($_POST['LatCoord'])) && 
-		(is_float($_POST['LongCoord']) || is_numeric($_POST['LongCoord'])) {
+		(is_float($_POST['LongCoord']) || is_numeric($_POST['LongCoord']))) {
 			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name is null AND
 			Location.LatCoord = '%s' AND Location.LongCoord = '%s'",
 			mysql_real_escape_string($_POST['LatCoord']),
