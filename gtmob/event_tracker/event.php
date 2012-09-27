@@ -4,6 +4,13 @@ include 'db_helper.php';
 
 global $_USER; // in case we need to user acct name => access by $_USER['uid']
 
+$debug = true; // global flag for debugging
+
+function s_echo($str) {
+	if ($debug) echo $str.'\n';
+}
+
+
 /**
 * A helper function that group the events by date
 */
@@ -102,22 +109,188 @@ function postEvent($event) {
 		// check the permission
 		
 		$acctName = $_USER['uid'];
-		$dbQuery = sprintf("SELECT * FROM AuthUser WHERE AcctName = '%s'",mysql_real_escape_string($acctName));
-		$permission = getDBResultArray($dbQuery); // the server will terminate if no permission
+			
+		$dbQuery = sprintf("SELECT `AuthUser`.*, o.OrganizationName FROM `AuthUser`
+		JOIN `Organization` o ON `AuthUser`.OnBehalf = o.ID
+		WHERE AcctName = '%s' AND o.OrganizationName = '%s'",
+		mysql_real_escape_string($acctName), mysql_real_escape_string($_POST['OrganizationName']);
 		
+		s_echo("Permission SQL: " . $dbQuery);
+		
+		$permission = getDBResultRecord($dbQuery); // the server will terminate if no permission
+		
+		s_echo("You have the permission.");
+		
+		// Insert to the Creator Table
 		$dbQuery = sprintf("INSERT INTO Creator (Email_address,Phone_number,Contact) VALUES ('%s','%s','%s')",
 					mysql_real_escape_string($_POST[ 'Email' ]),mysql_real_escape_string($_POST[ 'Phone' ]),
 					mysql_real_escape_string($_POST[ 'Contact' ]));
 		
-		$result = getDBResultInserted($dbQuery,'ID');
+		s_echo("Creator SQL: ".$dbQuery);
 		
-        /*$dbQuery = sprintf("INSERT INTO comments (comment) VALUES ('%s')",
-                mysql_real_escape_string($comment));
- 
-        $result = getDBResultInserted($dbQuery,'personId');
+		$result = getDBResultInserted($dbQuery,'ID'); // get back the CreatorID
+		
+		s_echo("Creator Table inserted");
+		
+		$CreatorID = $result['ID'];
+		
+		s_echo("CreatorID: ".$CreatorID);
+		
+		// Insert to the CreatorOwn Table
+		$dbQuery = sprintf("INSERT INTO CreatorOwn (CreatorID,AuthUserID) VALUES ('%s','%s')",
+					mysql_real_escape_string($CreatorID),mysql_real_escape_string($permission['ID']);
+		
+		s_echo("CreatorOwn SQL: ".$dbQuery);
+		
+		getDBResultInserted($dbQuery,'dummyID');
+		
+		s_echo("CreatorOwn Table inserted");
+		
+		// Search if Location has the same record
+		$LocationCall = 0; // Avoid checking again if we need to insert it later
+		if ((is_float($_POST['LatCoord']) || is_numeric($_POST['LatCoord'])) && 
+		(is_float($_POST['LongCoord']) || is_numeric($_POST['LongCoord']) && 
+		(!is_null($_POST['Location'])) {
+			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name = '%s' AND
+			Location.LatCoord = '%s' AND Location.LongCoord = '%s'",
+			mysql_real_escape_string($_POST['Location']),
+			mysql_real_escape_string($_POST['LatCoord']),
+			mysql_real_escape_string($_POST['LongCoord']));
+			$LocationCall = 1;
+		} elseif ((is_float($_POST['LatCoord']) || is_numeric($_POST['LatCoord'])) && 
+		(is_float($_POST['LongCoord']) || is_numeric($_POST['LongCoord'])) {
+			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name is null AND
+			Location.LatCoord = '%s' AND Location.LongCoord = '%s'",
+			mysql_real_escape_string($_POST['LatCoord']),
+			mysql_real_escape_string($_POST['LongCoord']));
+			$LocationCall = 2;
+		} elseif (!is_null($_POST['Location'])) {
+			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name = '%s' AND
+			Location.LatCoord is null AND Location.LongCoord is null",
+			mysql_real_escape_string($_POST['Location']));
+			$LocationCall = 3;
+		} else {
+			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name is null AND
+			Location.LatCoord is null AND Location.LongCoord is null");
+			$LocationCall = 4;
+		}
+		
+		s_echo("Location search SQL: ".$dbQuery);
+		
+		$result = getDBResultNoHarm($dbQuery);
+		
+		s_echo("Location result: ".count($result));
+		
+		if (count($result) > 1) {
+			$LocationID = $result[0]['ID'];
+		} elseif (count($result) == 1) {
+			$LocationID = $result['ID'];
+		} else {
+			// need to insert to the Location Table
+			switch ($LocationCall){
+				case 1: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
+				VALUES ('%s','%s','%s')",mysql_real_escape_string($_POST['LatCoord']),
+				mysql_real_escape_string($_POST['LongCoord']),
+				mysql_real_escape_string($_POST['Name'])); break;
+				
+				case 2: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
+				VALUES ('%s','%s',NULL)",mysql_real_escape_string($_POST['LatCoord']),
+				mysql_real_escape_string($_POST['LongCoord'])); break;
+				
+				case 3: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
+				VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['Name'])); break;
+				
+				case 4: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
+				VALUES (NULL,NULL,NULL)"); break;
+			}
+			
+			s_echo("Location insert SQL: ".$dbQuery);
+			
+			$result = getDBResultInserted($dbQuery,'ID');
+			
+			s_echo("Location insert SQL complete");
+			
+			$LocationID = $result['ID'];
+
+		}
+		
+		s_echo("Location ID: ". $LocationID);
+		
+		// EventType
+		
+		// Need to Search if that EventType exists
+		if (is_null($_POST['EventTypeDesc']))
+			$dbQuery = sprintf("SELECT ID FROM EventType 
+			WHERE EventType.EventTypeDesc is null");
+		else $dbQuery = sprintf("SELECT ID FROM EventType
+			WHERE EventType.EventTypeDesc = '%s'",
+			mysql_real_escape_string($_POST['EventTypeDesc']));
+		
+		s_echo("EventType search SQL: ".$dbQuery);
+		
+		$result = getDBResultNoHarm($dbQuery);
+		
+		s_echo("EventType result: ".count($result));
+		
+		if (count($result) > 1) {
+			// something wrong with the DB, but we will just pick up the first entry
+			$EventTypeID = $result[0]['ID'];
+		} elseif (count($result) == 1) {
+			$EventTypeID = $result['ID'];
+		} else {
+			// need to insert to the EventType Table
+			if (is_null($_POST['EventTypeDesc'])) {
+				$dbQuery = sprintf("INSERT INTO EventType(EventTypeDesc) VALUES (null)");
+			} else {
+				$dbQuery = sprintf("INSERT INTO EventType(EventTypeDesc) VALUES ('%s')",
+				mysql_real_escape_string($_POST['EventTypeDesc']));
+			}
+			
+			s_echo("EventType insert SQL: ".$dbQuery);
+			
+			$result = getDBResultInserted($dbQuery,'ID');
+			
+			s_echo("EventType insert success");
+			
+			$EventTypeID = $result['ID'];
+		}
+		
+		s_echo("EventType ID: ".$EventTypeID);
+		
+		// Finally, we can insert to the Event Table
+		// Parameters: Title, Description, StartTime, EndTime, LocationID, CreatorID, EventTypeID
+		if (is_null($_POST['Description'])) {
+			$dbQuery = sprintf("INSERT INTO Event(Title, StartTime, EndTime, LocationID,
+			CreatorID, EventTypeID) VALUES ('%s','%s','%s','%s','%s','%s')",
+			mysql_real_escape_string($_POST['Title']),
+			mysql_real_escape_string($_POST['StartTime']),
+			mysql_real_escape_string($_POST['EndTime']),
+			mysql_real_escape_string($LocationID),
+			mysql_real_escape_string($CreatorID),
+			mysql_real_escape_string($EventTypeID));
+		} else {
+			$dbQuery = sprintf("INSERT INTO Event(Title, Description, StartTime, EndTime, 
+			LocationID, CreatorID, EventTypeID) 
+			VALUES ('%s','%s','%s','%s','%s','%s','%s')",
+			mysql_real_escape_string($_POST['Title']),
+			mysql_real_escape_string($_POST['Description']),
+			mysql_real_escape_string($_POST['StartTime']),
+			mysql_real_escape_string($_POST['EndTime']),
+			mysql_real_escape_string($LocationID),
+			mysql_real_escape_string($CreatorID),
+			mysql_real_escape_string($EventTypeID));
+		
+		
+		}
+		
+		s_echo("Finally, Event SQL: ".$dbQuery);
+		
+        $result = getDBResultInserted($dbQuery,'EventID');
         
+        s_echo("Event insert success");
+        die();
         header("Content-type: application/json");
-        echo json_encode($result);*/
+        echo json_encode($result);
 }
  
 function updateEvent($id,$event) {

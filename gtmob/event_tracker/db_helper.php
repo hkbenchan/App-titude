@@ -72,4 +72,18 @@ function getDBResultInserted($dbQuery,$id){
         }
 }
 
+function getDBResultNoHarm($dbQuery){
+	$dbResults=mysql_query($dbQuery);
+	
+	if (!$dbResults) { return array(); }
+	elseif (mysql_num_rows($dbResults) == 1) { return mysql_fetch_assoc($dbResults); }
+	else { 
+		$resultsArray = array();
+        while($row = mysql_fetch_assoc($dbResults)){
+                        $resultsArray[] = $row;     
+        }
+        return $resultsArray;
+	}
+}
+
 ?>
