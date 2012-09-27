@@ -109,14 +109,16 @@ function postEvent($event) {
 		// check the permission
 		
 		$acctName = $_USER['uid'];
-			
+		
+		s_echo("Just started");
+		
 		$dbQuery = sprintf("SELECT `AuthUser`.*, o.OrganizationName FROM `AuthUser`
 		JOIN `Organization` o ON `AuthUser`.OnBehalf = o.ID
 		WHERE AcctName = '%s' AND o.OrganizationName = '%s'",
 		mysql_real_escape_string($acctName), mysql_real_escape_string($_POST['OrganizationName']));
 		
 		s_echo("Permission SQL: " . $dbQuery);
-		
+		die();
 		$permission = getDBResultRecord($dbQuery); // the server will terminate if no permission
 		
 		s_echo("You have the permission.");
