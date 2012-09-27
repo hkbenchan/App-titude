@@ -74,6 +74,7 @@ function getEvent($id) {
 }
  
 function postEvent($event) {
+		global $_USER;
 		echo $_POST['StartTime'];
 		echo $_USER;
         /*$dbQuery = sprintf("INSERT INTO comments (comment) VALUES ('%s')",
