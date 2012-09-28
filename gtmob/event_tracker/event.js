@@ -19,7 +19,7 @@ $(function() {
 				var i = 0;
 				var output = "";
 				$.each(data.date,function(key,val) {
-					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="c">';
+					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="c" data-inset="false">';
 					output += '<h3>' + val + '</h3>';
 					output += '<ul class="event_list" data-role="listview" data-filter="true" data-theme="c">';
 					$.each(data[i],function(key,val) {
