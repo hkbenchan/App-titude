@@ -44,7 +44,7 @@ $(function() {
 	        error: ajaxError
 		});
 		
-		$('#events_list').listview('refresh');
+		$('#events_list').listview();
 	});
 });
 
