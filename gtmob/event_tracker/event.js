@@ -17,7 +17,7 @@ $(function() {
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
 	        	var output = '<ul data-role="listview" data-filter="true">';
-				$each(data.posts,function(key,val) {
+				$.each(data.posts,function(key,val) {
 					output += '<li>';
 					output += '<h3>' + "test" + '</h3>';
 					output += '</li>';
