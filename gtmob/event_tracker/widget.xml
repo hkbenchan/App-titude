@@ -6,7 +6,7 @@
 	<html file="event.html"/>
 	<html file="event_update.html"/>
 	-->
-	<html file="event_listupdate.html"/>
+	<html file="event.html"/>
 	<css file="event.css"/>
 	<!--
 	<javascript file="event.js"/>
