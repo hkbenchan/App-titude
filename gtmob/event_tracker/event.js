@@ -16,14 +16,21 @@ $(function() {
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
-	        	var output = '<ul data-role="listview" data-filter="true">';
+	        	var output = '<ul id="events_list" data-role="listview" data-filter="true" data-theme="c" data-divider-theme="b">';
 				$.each(data,function(key,val) {
-					output += '<li>';
-					output += '<h3>' + val[0].Title + '</h3>';
-					output += '</li>';
+					if (val[0].Title != undefined) {
+						output += '<li>';
+						output += '<a href="#" data-transition="slide">'
+						output += '<h3>' + val[0].Title + '</h3>';
+						output += '</a>'
+						output += '</li>';
+					}
 				});
 				output += '</ul>';
 				$('#post_all_events').html(output);
+				<a href='#edit_comment_page&comment_id=${id}' data-transition="slide">
+						<h1>${comment}</h1>
+					</a>
 	        },
 	        error: ajaxError
 		});
