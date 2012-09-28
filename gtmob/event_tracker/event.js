@@ -36,11 +36,12 @@ $(function() {
 					i++;
 				});
 				$('#post_all_events').html(output);
-				$('.event_list').listview();
-				$('.event_collapsible').collapsible();
 	        },
 	        error: ajaxError
 		});
+		
+		$('.event_list').listview();
+		$('.event_collapsible').collapsible();
 	});
 });
 
