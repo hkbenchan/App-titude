@@ -32,7 +32,7 @@ $(function() {
 	        error: ajaxError
 		});
 		
-		// $('#comments_list').listview('refresh');
+		$('#events_list').listview();
 	});
 });
 
