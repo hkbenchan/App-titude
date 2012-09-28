@@ -25,7 +25,7 @@ $(function() {
 				output += '</ul>';
 				$('#post_all_events').html(output);
 	        },
-	        //error: ajaxError
+	        error: ajaxError
 		});
 		
 		// $('#comments_list').listview('refresh');
@@ -129,3 +129,16 @@ $(document).ready(function(){
 	eventPagination(pageViewLimit,0);
 	current_page = 1;
 });
+
+/******************************************************************************/
+
+function ajaxError(jqXHR, textStatus, errorThrown){
+	console.log('ajaxError '+textStatus+' '+errorThrown);
+	$('#error_message').remove();
+	$("#error_message_template").tmpl( {errorName: textStatus, errorDescription: errorThrown} ).appendTo( "#error_dialog_content" );
+	$.mobile.changePage($('#error_dialog'), {
+		transition: "pop",
+		reverse: false,
+		changeHash: false
+	});
+}
