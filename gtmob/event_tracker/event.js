@@ -1,6 +1,37 @@
 var current_page; // indicator for the page view
 var pageViewLimit = 20;
 
+$(function() {
+ // Handler for .ready() called.
+	console.log('ready');
+
+	//Bind to the create so the page gets updated with the listing
+	$('#browse_all_events_page').bind('pagebeforeshow',function(event, ui){
+		console.log('pagebeforeshow');
+		
+		//JQuery Fetch The New Ones
+		$.ajax({
+			url: "api/comment",
+			dataType: "json",
+	        async: false,
+	        success: function(data, textStatus, jqXHR) {
+				console.log(data);
+	        	var output = '<ul data-role="listview" data-filter="true">';
+				$each(data.posts,function(key,val) {
+					output += '<li>';
+					output += '<h3>' + val.Title + '</h3>';
+					output += '</li>';
+				});
+				output += '</ul>';
+				$('#post_all_events').html(output);
+	        },
+	        error: ajaxError
+		});
+		
+		// $('#comments_list').listview('refresh');
+	});
+});
+
 function formatList(ele_div,data) {
 	var l = data['date'].length;
 
