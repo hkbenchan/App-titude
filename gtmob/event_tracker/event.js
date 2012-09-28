@@ -17,7 +17,7 @@ $(function() {
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
 				var i = 0;
-				var output = '<div data-role="collapsible-set">';
+				var output = '<div class="event_collapsible_set" data-role="collapsible-set">';
 				$.each(data.date,function(key,val) {
 					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="c">';
 					output += '<h3>' + val + '</h3>';
@@ -41,6 +41,7 @@ $(function() {
 		
 		$('.event_list').listview();
 		$('.event_collapsible').collapsible();
+		$('.event_collapsible_set').collapsibleset();
 	});
 });
 
