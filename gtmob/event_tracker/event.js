@@ -17,13 +17,14 @@ $(function() {
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
 				var i = 0;
-				var output = '<div class="event_collapsible_set" data-role="collapsible-set" data-inset="false">';
+				var output = '';
 				$.each(data.date,function(key,val) {
-					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="c">';
+					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="d">';
 					output += '<h3>' + val + '</h3>';
-					output += '<ul class="event_list" data-role="listview" data-filter="true" data-theme="c">';
+					output += '<div>'
+					output += '<ul class="event_list" data-role="listview" data-filter="true" data-theme="b">';
 					$.each(data[i],function(key,val) {
-						output += '<li>';
+						output += '<li data-corners="false" data-shadow="false">';
 						output += '<a href="#" data-transition="slide">'
 						output += '<h3>' + val.Title + '</h3>';
 						output += '</a>'
@@ -31,9 +32,9 @@ $(function() {
 					});
 					output += '</ul>';
 					output += '</div>';
+					output += '</div>';
 					i++;
 				});
-				output += '</div>';
 				$('#post_all_events').html(output);
 	        },
 	        error: ajaxError
@@ -41,7 +42,6 @@ $(function() {
 		
 		$('.event_list').listview();
 		$('.event_collapsible').collapsible();
-		$('.event_collapsible_set').collapsibleset();
 	});
 });
 
