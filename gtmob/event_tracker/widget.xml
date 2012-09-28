@@ -11,7 +11,7 @@
 	<!--
 	<javascript file="event.js"/>
 	-->
-    <javascript file="event_new.js"/>
+    <javascript file="event.js"/>
 
     <library name="jquery.mobile"/> 
     <library name="gtmob"/>
