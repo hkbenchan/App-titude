@@ -9,9 +9,9 @@ $(function() {
 	$('#browse_all_events_page').bind('pagebeforeshow',function(event, ui){
 		console.log('pagebeforeshow');
 		
-		//JQuery Fetch The New Ones
+		//JQuery Events
 		$.ajax({
-			url: "api/comment",
+			url: "api/event",
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
