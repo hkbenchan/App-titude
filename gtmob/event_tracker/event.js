@@ -16,9 +16,20 @@ $(function() {
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
-	        	var output = '<ul id="events_list" data-role="listview" data-filter="true" data-theme="c" data-divider-theme="b">';
+				var date = data[1][0].StartTime.substring(0, 9);
+				var output = '<div data-role="collapsible" data-theme="b" data-content-theme="c">';
+				output += '<h3>' + date + '</h3>';
+	        	output += '<ul id="events_list" data-role="listview" data-filter="true" data-theme="c">';
 				$.each(data,function(key,val) {
 					if (val[0].Title != undefined) {
+						if (val[0].StartTime.substring(0, 9) != date) {
+							date = val[0].StartTime.substring(0, 9);
+							output += '</ul>'
+							output += '</div>'
+							output += '<div data-role="collapsible" data-theme="b" data-content-theme="c">';
+							output += '<h3>' + date + '</h3>';
+							output += '<ul id="events_list" data-role="listview" data-filter="true" data-theme="c">';
+						}
 						output += '<li>';
 						output += '<a href="#" data-transition="slide">'
 						output += '<h3>' + val[0].Title + '</h3>';
@@ -27,12 +38,13 @@ $(function() {
 					}
 				});
 				output += '</ul>';
+				output += '</div>';
 				$('#post_all_events').html(output);
 	        },
 	        error: ajaxError
 		});
 		
-		$('#events_list').listview();
+		$('#events_list').listview('refresh');
 	});
 });
 
