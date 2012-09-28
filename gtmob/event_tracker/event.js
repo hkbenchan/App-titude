@@ -25,7 +25,7 @@ $(function() {
 				output += '</ul>';
 				$('#post_all_events').html(output);
 	        },
-	        error: ajaxError
+	        //error: ajaxError
 		});
 		
 		// $('#comments_list').listview('refresh');
