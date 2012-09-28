@@ -18,11 +18,11 @@ $(function() {
 				console.log(data);
 				var i = 0;
 				var output = "";
-				$.each(data[0],function(key,val) {
+				$.each(data.date,function(key,val) {
 					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="c">';
 					output += '<h3>' + val + '</h3>';
 					output += '<ul class="event_list" data-role="listview" data-filter="true" data-theme="c">';
-					$.each(data[i+1],function(key,val) {
+					$.each(data[i],function(key,val) {
 						output += '<li>';
 						output += '<a href="#" data-transition="slide">'
 						output += '<h3>' + val.Title + '</h3>';
