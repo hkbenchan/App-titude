@@ -17,9 +17,9 @@ $(function() {
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
 				var i = 0;
-				var output = "";
+				var output = '<div data-role="collapsible-set">';
 				$.each(data.date,function(key,val) {
-					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="c" data-inset="false">';
+					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="c">';
 					output += '<h3>' + val + '</h3>';
 					output += '<ul class="event_list" data-role="listview" data-filter="true" data-theme="c">';
 					$.each(data[i],function(key,val) {
@@ -33,6 +33,7 @@ $(function() {
 					output += '</div>';
 					i++;
 				});
+				output += '</div>';
 				$('#post_all_events').html(output);
 	        },
 	        error: ajaxError
