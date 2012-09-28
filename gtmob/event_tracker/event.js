@@ -38,8 +38,8 @@ $(function() {
 	        error: ajaxError
 		});
 		
-		$('.event_collapsible').collapsible();
 		$('.event_list').listview();
+		$('.event_collapsible').collapsible();
 	});
 });
 
