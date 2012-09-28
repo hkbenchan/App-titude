@@ -19,10 +19,10 @@ $(function() {
 				var i = 0;
 				var output = '';
 				$.each(data.date,function(key,val) {
-					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="d" data-inset="false">';
+					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="d">';
 					output += '<h3>' + val + '</h3>';
 					output += '<div>'
-					output += '<ul class="event_list" data-role="listview" data-theme="d">';
+					output += '<ul class="event_list" data-role="listview" data-theme="d" data-inset="true">';
 					$.each(data[i],function(key,val) {
 						output += '<li>';
 						output += '<a href="#" data-transition="slide">'
@@ -40,8 +40,8 @@ $(function() {
 	        error: ajaxError
 		});
 		
-		$('.event_list').trigger('updatelayout');
-		$('.event_collapsible').trigger('updatelayout');
+		$('.event_list').listview();
+		$('.event_collapsible').collapsible();
 	});
 });
 
