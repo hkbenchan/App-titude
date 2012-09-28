@@ -28,9 +28,6 @@ $(function() {
 				});
 				output += '</ul>';
 				$('#post_all_events').html(output);
-				<a href='#edit_comment_page&comment_id=${id}' data-transition="slide">
-						<h1>${comment}</h1>
-					</a>
 	        },
 	        error: ajaxError
 		});
