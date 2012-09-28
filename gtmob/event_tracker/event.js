@@ -19,7 +19,7 @@ $(function() {
 	        	var output = '<ul data-role="listview" data-filter="true">';
 				$.each(data,function(key,val) {
 					output += '<li>';
-					output += '<h3>' + "test" + '</h3>';
+					output += '<h3>' + data.Title + '</h3>';
 					output += '</li>';
 				});
 				output += '</ul>';
