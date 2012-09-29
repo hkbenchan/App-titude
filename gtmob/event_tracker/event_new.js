@@ -66,8 +66,7 @@ $(function() {
 				var hour = data.StartTime.split(" ")[1];
 				
 				$('#actual_details').remove();
-				$('#actual_event').append('<div id="actual_details"/>');
-				$('#actual_details').append('<div data-role="content" data-theme="b" data-content-theme="c"><p>Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description + '</p></div>');
+				$('#actual_details').append('<div data-role="content" data-theme="b" data-content-theme="c" id="actual_details"><p>Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description + '</p></div>');
 		
 	        },
 	        error: ajaxError
