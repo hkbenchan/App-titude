@@ -43,7 +43,6 @@ $(function() {
 		$('.event_list').listview();
 		$('.event_collapsible').collapsible();
 		$('.event_list').listview('refresh');
-		$('.event_collapsible').collapsible('refresh');
 	});
 });
 
