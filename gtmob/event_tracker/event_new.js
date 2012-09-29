@@ -73,6 +73,21 @@ $(function() {
 		});
 	});
 	
+	//Bind the add page button
+	/*
+	$('#add_button').bind('click', function() {
+		console.log("Add Button");
+		$.ajax({
+			url: "api/comment",
+			dataType: "json",
+	        async: false,
+			data: {'commentText': $('#add_comment_text')[0].value},
+			type: 'POST',
+	        error: ajaxError
+		});
+	});
+	*/
+	
 });
 
 function formatList(ele_div,data) {
