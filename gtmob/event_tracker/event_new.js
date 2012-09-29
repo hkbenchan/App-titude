@@ -28,7 +28,7 @@ $(function() {
 					/*output += '<div id="event_collapse" class="event_collapsible" data-role="collapsible" data-collapsed="false" data-theme="a">';
 					output += '<ul class="event_list" id="event_list" data-role="listview" data-inset="true" data-filter="true" data-theme="c" data-divider-theme="b">';*/
 					$.each(data[i],function(key,val) {
-						$('#event_list' + i).append('<li><a href="#" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						//list.listview('refresh');
 						/*output += '<li class="event_list_row" id="event_' + val.ID + '">';
 						output += '<a href="#" data-transition="slide">'
@@ -40,6 +40,37 @@ $(function() {
 					output += '</div>';
 					output += '</div>';*/
 					i++;
+				});
+	        },
+	        error: ajaxError
+		});
+		$('.event_list').listview();
+		$('.event_collapsible').collapsible();
+	});
+	
+	
+	
+	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
+		console.log("View Event Page");
+		var event_id = $.url().fparam("event_id");
+		
+		//JQuery Events
+		$.ajax({
+			url: "api/event"+event_id,
+			dataType: "json",
+	        async: false,
+	        success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				
+				var hour = data.StartTime.split(" ")[1];
+				
+				$('#actual_event').remove();
+				$('#actual_event').append('<div data-role="content" data-theme="b" data-content-theme="c">Name: ' + data.Title + '</br></br>
+																										  Contact: ' + data.Email_address + '</br></br>
+																										  Location: ' + data.Name + '</br></br>
+																										  Time: ' + hour + '</br></br>
+																										  Description: ' + data.Description + '</div>');
+				
 				});
 	        },
 	        error: ajaxError
