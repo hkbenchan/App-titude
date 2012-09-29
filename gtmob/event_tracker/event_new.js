@@ -29,7 +29,7 @@ $(function() {
 					/*output += '<div id="event_collapse" class="event_collapsible" data-role="collapsible" data-collapsed="false" data-theme="a">';
 					output += '<ul class="event_list" id="event_list" data-role="listview" data-inset="true" data-filter="true" data-theme="c" data-divider-theme="b">';*/
 					$.each(data[i],function(key,val) {
-						$('#event_list' + i).append('<li><a href="#" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.Event_ID+ '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						//list.listview('refresh');
 						/*output += '<li class="event_list_row" id="event_' + val.ID + '">';
 						output += '<a href="#" data-transition="slide">'
@@ -57,11 +57,11 @@ $(function() {
 		
 		//JQuery Events
 		$.ajax({
-			url: "api/event"+event_id,
+			url: "api/event/"+event_id,
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
-				console.log(data);
+				console.log("Event is" + data);
 				
 				var hour = data.StartTime.split(" ")[1];
 				
