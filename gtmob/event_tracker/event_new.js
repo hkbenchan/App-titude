@@ -19,9 +19,9 @@ $(function() {
 				var i = 0;
 				//var list;
 				//var output = '';
+				$('#hold_all_events').remove();
+				$('#post_all_events').append('<div id="hold_all_events"/>');
 				$.each(data.date,function(key,val) {
-					$('#hold_all_events').remove();
-					$('#post_all_events').append('<div id="hold_all_events"/>');
 					$('#hold_all_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
 					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">');
 					//list = $('#event_list' + i);
