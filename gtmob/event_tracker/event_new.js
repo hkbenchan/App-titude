@@ -54,7 +54,7 @@ $(function() {
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		console.log("View Event Page");
 		var event_id = $.url().fparam("event_id");
-		
+		console.log("Event ID:" + event_id);
 		//JQuery Events
 		$.ajax({
 			url: "api/event/"+event_id,
