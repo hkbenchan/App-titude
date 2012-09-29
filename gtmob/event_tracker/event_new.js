@@ -70,9 +70,8 @@ $(function() {
 	        },
 	        error: ajaxError
 		});
-		$('.event_list').listview();
-		$('.event_collapsible').collapsible();
 	});
+	
 });
 
 function formatList(ele_div,data) {
