@@ -51,7 +51,7 @@ $(function() {
 	
 	
 	
-	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
+	$('#view_event_page').on('pagebeforeshow',function(event, ui){
 		console.log("View Event Page");
 		var event_id = $.url().fparam("event_id");
 		console.log("Event ID:" + event_id);
