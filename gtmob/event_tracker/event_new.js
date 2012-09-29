@@ -19,10 +19,10 @@ $(function() {
 				var i = 0;
 				var output = '';
 				$.each(data.date,function(key,val) {
-					output += '<div id="event_collapse" class="event_collapsible" data-role="collapsible" data-collapsed="false" data-theme="a">';
+					output += '<div id="event_collapse" class="event_collapsible" data-role="collapsible" data-theme="a">';
 					output += '<h3>' + val + '</h3>';
 					output += '<div>'
-					output += '<ul class="event_list" id="event_list" data-role="listview" data-inset="true" data-filter="true" data-theme="c" data-divider-theme="b">';
+					output += '<ul class="event_list" id="event_list" data-role="listview" data-inset="true" data-filter="false" data-theme="c" data-divider-theme="b">';
 					$.each(data[i],function(key,val) {
 						output += '<li class="event_list_row" id="event_' + val.ID + '">';
 						output += '<a href="#" data-transition="slide">'
