@@ -66,8 +66,7 @@ $(function() {
 				
 				$('#actual_event').remove();
 				$('#actual_event').append('<div data-role="content" data-theme="b" data-content-theme="c"><p>Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description + '</p></div>');
-				
-				});
+		
 	        },
 	        error: ajaxError
 		});
