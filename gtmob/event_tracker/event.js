@@ -16,24 +16,34 @@ $(function() {
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
-				var days;
 				var i = 0;
-				var j = 0;
-				.each(data.date,function(key,val) {
-					days[i].date = val;
-					.each(data[i],function(key,val) {
-						days[i].events[j] = val;
-						j++;
-					}
+				var output = '';
+				$.each(data.date,function(key,val) {
+					output += '<div class="event_collapsible" data-role="collapsible" data-theme="b" data-content-theme="d">';
+					output += '<h3>' + val + '</h3>';
+					output += '<div>'
+					output += '<ul class="event_list" data-role="listview" data-theme="d" data-inset="true">';
+					$.each(data[i],function(key,val) {
+						output += '<li>';
+						output += '<a href="#" data-transition="slide">'
+						output += '<h3>' + val.Title + '</h3>';
+						output += '</a>'
+						output += '</li>';
+					});
+					output += '</ul>';
+					output += '</div>';
+					output += '</div>';
 					i++;
-				}
-				$( "#all_events_collapsible_template" ).tmpl( days ).appendTo( "#post_all_events" );
+				});
+				$('#post_all_events').html(output);
 	        },
 	        error: ajaxError
 		});
 		
 		$('.event_list').listview();
 		$('.event_collapsible').collapsible();
+		$('.event_list').listview('refresh');
+		$('.event_collapsible').collapsible('refresh');
 	});
 });
 

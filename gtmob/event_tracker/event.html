@@ -20,19 +20,6 @@
    	</div>
 	
 	<div id="post_all_events" data-role="content"> <!-- content -->
-		<script id="all_events_collapsible_template" type="text/x-jquery-tmpl">
-			<div class="event_collapsible" id="all_events_collapsible_${Date}" data-role="collapsible" data-theme='b' data-content-theme='c'>
-				<h3>${date}</h3>
-				<ul class="event_list" id="event_list_${date}" data-role="listview" data-inset="true" data-theme="d">
-					{{each events}}
-						<li>
-						<a href='#view_event_page&event_id=${value.title}' data-transition='slide'>
-						<h3>${value.title}</h3>
-						</li>
-					{{/each}}
-				</ul>
-			</div>
-		</script>
 	</div> <!-- content -->
 	
 </div>
