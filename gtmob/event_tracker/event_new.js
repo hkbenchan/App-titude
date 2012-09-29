@@ -51,13 +51,13 @@ $(function() {
 	
 	
 	
-	$('#view_event_page').on('pagebeforeshow',function(event, ui){
+	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		console.log("View Event Page");
-		var event_id = $.url().fparam("event_id");
-		console.log("Event ID:" + event_id);
+		//var event_id = ;
+		//console.log("Event ID:" + event_id);
 		//JQuery Events
 		$.ajax({
-			url: "api/event/"+event_id,
+			url: "api/event/"+$.url().fparam("event_id"),
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
