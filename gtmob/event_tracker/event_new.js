@@ -20,8 +20,8 @@ $(function() {
 				//var list;
 				//var output = '';
 				$.each(data.date,function(key,val) {
-					$('#post_all_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="a" data-content-theme="c"><h3>' + val + '</h3></div>');
-					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-filter="true" data-theme="c">');
+					$('#post_all_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">');
 					//list = $('#event_list' + i);
 					//list.listview();
 					/*output += '<div id="event_collapse" class="event_collapsible" data-role="collapsible" data-collapsed="false" data-theme="a">';
