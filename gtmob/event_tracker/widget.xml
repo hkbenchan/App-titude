@@ -2,6 +2,7 @@
 <widget title="Event Tracker">
 	<library name="jquery"/>
 	<library name="jquery.tmpl"/>
+	<library name="jquery.url"/>
 	<!--
 	<html file="event.html"/>
 	<html file="event_update.html"/>
