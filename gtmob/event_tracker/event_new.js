@@ -17,14 +17,17 @@ $(function() {
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
 				var i = 0;
+				var list;
 				//var output = '';
 				$.each(data.date,function(key,val) {
 					$('#post_all_events').append('<div data-role="collapsible" id="event_collapsible' + i + '" data-theme="a">' + val + '</div>').collapsible();
 					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-filter="true" data-theme="c">').listview();
+					list = $('#event_list' + i);
 					/*output += '<div id="event_collapse" class="event_collapsible" data-role="collapsible" data-collapsed="false" data-theme="a">';
 					output += '<ul class="event_list" id="event_list" data-role="listview" data-inset="true" data-filter="true" data-theme="c" data-divider-theme="b">';*/
 					$.each(data[i],function(key,val) {
-						$('#event_list' + i).append('<li><a href="#" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						list.append('<li><a href="#" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						list.listview('refresh');
 						/*output += '<li class="event_list_row" id="event_' + val.ID + '">';
 						output += '<a href="#" data-transition="slide">'
 						output += '<h3>' + val.Title + '</h3>';
