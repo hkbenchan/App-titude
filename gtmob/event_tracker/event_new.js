@@ -175,6 +175,11 @@ $(document).ready(function(){
 	// start with first pageViewLimit most recent events
 	eventPagination(pageViewLimit,0);
 	current_page = 1;
+	
+	$.extend(  $.mobile , {
+	      hashListeningEnabled: false
+	});
+	
 });
 
 /******************************************************************************/
