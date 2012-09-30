@@ -123,12 +123,6 @@ function postEvent($event = null) {
 		* EventTypeDesc
 		* Title, Description, StartTime, EndTime
 		*/
-		s_echo("Begin");
-		s_echo($_REST);
-		s_echo($_POST);
-		s_echo($_GET);
-		//die();
-		
 		
 		// check the permission
 		global $_USER;
