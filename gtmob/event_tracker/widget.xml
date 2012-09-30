@@ -8,12 +8,14 @@
 	<html file="event_update.html"/>
 	-->
 	<html file="event.html"/>
+	<html file="event_post"/>
 	<css file="event.css"/>
 	<!--
 	<javascript file="event.js"/>
 	-->
     <javascript file="event_new.js"/>
 
+	
     <library name="jquery.mobile"/> 
     <library name="gtmob"/>
 </widget>
