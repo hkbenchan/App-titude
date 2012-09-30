@@ -197,8 +197,12 @@ $(document).ready(function(){
 	eventPagination(pageViewLimit,0);
 	current_page = 1;
 	
-	$.extend(  $.mobile , {
-	      hashListeningEnabled: false
+	$("a").on("click", function (event) {
+
+	   console.log($(this).attr("href"));//var parm = $(this).attr("data-event-id");
+	   //do something here with parameter on page 2 (or any page in the dom)
+	   //$("#event_text").html(parm);
+
 	});
 	
 });
