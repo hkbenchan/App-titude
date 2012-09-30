@@ -3,7 +3,7 @@
 include 'db_helper.php';
 
 function s_echo($str) {
-	$debug = true;
+	$debug = false;
 	if ($debug) print_r($str,true);
 }
 
@@ -123,12 +123,6 @@ function postEvent($event = null) {
 		* EventTypeDesc
 		* Title, Description, StartTime, EndTime
 		*/
-		s_echo("Begin");
-		s_echo($_REST);
-		s_echo($_POST);
-		s_echo($_GET);
-		//die();
-		
 		
 		// check the permission
 		global $_USER;
@@ -236,14 +230,14 @@ function postEvent($event = null) {
 				case 1: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES ('%s','%s','%s')",mysql_real_escape_string($_POST['LatCoord']),
 				mysql_real_escape_string($_POST['LongCoord']),
-				mysql_real_escape_string($_POST['Name'])); break;
+				mysql_real_escape_string($_POST['Location'])); break;
 				
 				case 2: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES ('%s','%s',NULL)",mysql_real_escape_string($_POST['LatCoord']),
 				mysql_real_escape_string($_POST['LongCoord'])); break;
 				
 				case 3: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
-				VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['Name'])); break;
+				VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['Location'])); break;
 				
 				case 4: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES (NULL,NULL,NULL)"); break;
