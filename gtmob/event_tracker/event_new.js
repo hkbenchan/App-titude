@@ -43,8 +43,8 @@ $(function() {
 					$('#hold_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
 					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
-						$('#event_list' + i).append('<li><a href="#view_event_page" data-event-id="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
-						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						//$('#event_list' + i).append('<li><a href="#view_event_page" data-event-id="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 					});
 					i++;
@@ -61,7 +61,7 @@ $(function() {
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		event.preventDefault();
 		console.log("View Event Page");
-		
+		console.log(ui);
 		
 		var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		console.log("Event ID:" + event_id);
