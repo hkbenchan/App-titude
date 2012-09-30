@@ -3,7 +3,7 @@
 include 'db_helper.php';
 
 function s_echo($str) {
-	$debug = true;
+	$debug = false;
 	if ($debug) print_r($str,true);
 }
 
