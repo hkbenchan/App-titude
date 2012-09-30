@@ -197,14 +197,19 @@ $(document).ready(function(){
 	eventPagination(pageViewLimit,0);
 	current_page = 1;
 	
-	$("a").on("click", function (event) {
-
-	   console.log("click" + $(this).attr("href"));//var parm = $(this).attr("data-event-id");
-	   //do something here with parameter on page 2 (or any page in the dom)
-	   //$("#event_text").html(parm);
-
-	});
+	// $("a").on("click", function (event) {
+	// 
+	//    console.log("click" + $(this).attr("href"));//var parm = $(this).attr("data-event-id");
+	//    //do something here with parameter on page 2 (or any page in the dom)
+	//    //$("#event_text").html(parm);
+	// 
+	// });
 	
+	$('a').live('click', function(e) {
+	    console.log("Target " + $(e.target).jqmData());        
+		//var data = $(e.target).jqmData()
+	    //globalParams = data.params !== null ? data.params : null
+ 	});
 });
 
 /******************************************************************************/
