@@ -127,7 +127,7 @@ function postEvent($event = null) {
 		s_echo($_REST);
 		s_echo($_POST);
 		s_echo($_GET);
-		die();
+		//die();
 		
 		
 		// check the permission
