@@ -1,5 +1,6 @@
 var current_page; // indicator for the page view
 var pageViewLimit = 20;
+var event_ID;
 
 $(function() {
  // Handler for .ready() called.
@@ -103,7 +104,8 @@ $(function() {
 	
 	
 	$("a[href=#view_event_page]").live("click", function(e) {
-	    console.log("Target = " + $(this).data("event"));
+	    event_ID = $(this).data("event");
+		console.log("event_ID = " + event_ID);
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
 	    //$("#list").page();                     
