@@ -3,10 +3,22 @@
 include 'db_helper.php';
 
 function s_echo($str) {
-	$debug = false;
+	$debug = true;
 	if ($debug) print_r($str,true);
 }
 
+/**
+* A helper function that checks the correctness of data
+*/
+function preprocessDataCheck($search_str, $error_msg) {
+	if (!(array_key_exists($search_str,$_POST) && (!is_null($_POST[$search_str])) && ($_POST[$search_str] != "")))
+	{
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 500 Internal Server Error");
+		header("Content-type: application/json");
+        echo json_encode(array('error_msg'=> $error_msg));
+		die();
+	}
+}
 
 /**
 * A helper function that group the events by date
@@ -107,17 +119,25 @@ function postEvent($event = null) {
 		* Data needed:
 		* OrganizationName
 		* Email, Phone, Contact
-		* LatCoord, LongCoord, Name
+		* LatCoord, LongCoord, Location
 		* EventTypeDesc
 		* Title, Description, StartTime, EndTime
 		*/
 		
+		s_echo($_REST);
+		s_echo($_POST);
+		s_echo($_GET);
+		die();
 		
 		
 		// check the permission
 		global $_USER;
 		$acctName = $_USER['uid'];
 		
+		// pre-check OrganizationName before do permission check
+		
+		preprocessDataCheck("OrganizationName","Organization Name cannot be empty");
+				
 		s_echo("Just started");
 		$dbQuery = sprintf("SELECT `AuthUser`.*, o.OrganizationName FROM `AuthUser`
 		JOIN `Organization` o ON `AuthUser`.OnBehalf = o.ID
@@ -129,6 +149,26 @@ function postEvent($event = null) {
 		$permission = getDBResultRecord($dbQuery); // the server will terminate if no permission
 		
 		s_echo("You have the permission.");
+		
+		// do all the necessary checking in here
+		// fields that cannot empty: Location, Title, StartTime, EndTime, EventTypeDesc
+		
+		preprocessDataCheck("Location","Location cannot be empty");
+		preprocessDataCheck("Title","Title cannot be empty");
+		preprocessDataCheck("StartTime","Start Time cannot be empty");
+		preprocessDataCheck("EndTime","End Time cannot be empty");
+		preprocessDataCheck("EventTypeDesc","Event Type Name cannot be empty");
+		
+		// StartTime <= EndTime
+		$date_s = strtotime($_POST['StartTime']);
+		$date_e = strtotime($_POST['EndTime']);
+		if ($date_s > $date_e)
+		{
+			$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 500 Internal Server Error");
+			header("Content-type: application/json");
+	        echo json_encode(array('error_msg'=> "Start Time should be earlier than End Time"));
+			die();
+		}
 		
 		// Insert to the Creator Table
 		$dbQuery = sprintf("INSERT INTO Creator (Email_address,Phone_number,Contact) VALUES ('%s','%s','%s')",
@@ -178,10 +218,6 @@ function postEvent($event = null) {
 			Location.LatCoord is null AND Location.LongCoord is null",
 			mysql_real_escape_string($_POST['Location']));
 			$LocationCall = 3;
-		} else {
-			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name is null AND
-			Location.LatCoord is null AND Location.LongCoord is null");
-			$LocationCall = 4;
 		}
 		
 		s_echo("Location search SQL: ".$dbQuery);
@@ -320,6 +356,29 @@ function deleteEvent($id) {
         $result = getDBResultAffected($dbQuery);
         header("Content-type: application/json");
         echo json_encode($result);
+}
+
+
+/*********************************************
+** event/type
+**********************************************/
+
+function listEventType() {
+	$dbQuery = sprintf("select * from EventType WHERE ID in
+				(select distinct(EventTypeID) from Event)");
+	$result = getDBResultArray($dbQuery);
+	header("Content-type: application/json");
+	echo json_encode($result);
+}
+
+function getEventsByType($EventTypeID) {
+	$dbQuery = sprintf("SELECT `Event`.ID AS `Event_ID`, `Creator`.ID AS `Creator_ID`,
+	`Location`.ID AS `Location_ID`, `EventType`.ID AS `EventType_ID`,
+	`Event`.*, `Creator`.*, `Location`.*, `EventType`.* FROM `Event`
+	JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
+	JOIN `Location`ON `Event`.LocationID = `Location`.ID
+	JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
+	WHERE `EventType`.ID = '%s'", mysql_real_escape_string($EventTypeID));
 }
 
 ?>

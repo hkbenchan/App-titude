@@ -39,6 +39,19 @@
 			</get>
 		</command>
 		
+		<command id='type' security='protected'>
+			<description><![CDATA[This is how you can get the list of category]]><description>
+			<index>
+				<description><![CDATA[This is how you can get a listing of all events type]]></description>
+				<action file='event.php'><![CDATA[listEventType();]]></action>
+			</index>
+			<get>
+				<description><![CDATA[This is how you can get events under a specific event type]]></description>
+				<action file='event.php'><![CDATA[getEventsByType($_REST['event/type'])]]></action>
+			</get>
+			
+		</command>
+		
 		<index>
 			<description><![CDATA[This is how you can get a listing of all events (filter all past events)]]></description>
 			<action file='event.php'><![CDATA[listEvents();]]></action>
@@ -65,4 +78,5 @@
 		</delete>
 
 	</command>
+	
 </api>
