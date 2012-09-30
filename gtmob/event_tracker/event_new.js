@@ -11,7 +11,7 @@ $(function() {
 		$('category_list_row').remove();
 		
 		$.ajax({
-			url: "api/event/0/type/"
+			url: "api/event/0/type/",
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
