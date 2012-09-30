@@ -5,7 +5,7 @@ $('#submitid').bind('click', function()
 	        dataType: "json",
 	        async: false, 
 	        data: { "Title" : $('#enameid').val(), 
-	        	"OrganizationName" : $('#eorganizationid').val()},
+	        	"OrganizationName" : $('#eorganizationid').val(),
 	        	"Email" : $('#eemailid').val(),
 	        	"Phone" : $('#ephoneid').val(),
 	        	"Contact" : $('#econtactid').val(),
@@ -14,8 +14,8 @@ $('#submitid').bind('click', function()
 	        	"LongCoord" : "",
 	        	"EventTypeDesc" : $('#etypeid').val(),
 	        	"Description" : $('#edescriptionid').val(),
-	        	"StartTime" : $('#estartid').val(),
-	        	"EndTime" : $('#eendid').val()},
+	        	"StartTime" : $('#edateid').val() + " " + $('#estartid').val(),
+	        	"EndTime" : $('#edateid').val() + " " + $('#eendid').val()},
 	        type: 'POST',
 	        success: function(data) {
 	        console.log("I am success");
