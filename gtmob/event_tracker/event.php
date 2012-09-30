@@ -379,6 +379,9 @@ function getEventsByType($EventTypeID) {
 	JOIN `Location`ON `Event`.LocationID = `Location`.ID
 	JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
 	WHERE `EventType`.ID = '%s'", mysql_real_escape_string($EventTypeID));
+	$result = getDBResultsArray($dbQuery);
+	header("Content-type: application/json");
+	echo json_encode($result);
 }
 
 ?>
