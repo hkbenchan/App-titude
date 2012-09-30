@@ -55,7 +55,7 @@ $(function() {
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		console.log("View Event Page");
-		var event_id = $.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
+		var event_id = $ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		console.log("Event ID:" + event_id);
 		//JQuery Events
 		$.ajax({
@@ -63,7 +63,7 @@ $(function() {
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
-				console.log("Event is " + data);
+				console.log("Event is " + data.Title);
 				
 				var hour = data.StartTime.split(" ")[1];
 				
