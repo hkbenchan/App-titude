@@ -17,10 +17,10 @@ $(function() {
 			success: function(data, textStatus, jqXHR) {
 				console.log(data);
 				$('#category_list_row_template').tmpl(data).appendTo('#category_list');
+				$('#category_list').listview('refresh');
 			},
 			error: ajaxError
 		});
-		$('#category_list').listview('refresh');
 	});
 				
 
