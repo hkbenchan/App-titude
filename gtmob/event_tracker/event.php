@@ -230,14 +230,14 @@ function postEvent($event = null) {
 				case 1: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES ('%s','%s','%s')",mysql_real_escape_string($_POST['LatCoord']),
 				mysql_real_escape_string($_POST['LongCoord']),
-				mysql_real_escape_string($_POST['Name'])); break;
+				mysql_real_escape_string($_POST['Location'])); break;
 				
 				case 2: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES ('%s','%s',NULL)",mysql_real_escape_string($_POST['LatCoord']),
 				mysql_real_escape_string($_POST['LongCoord'])); break;
 				
 				case 3: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
-				VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['Name'])); break;
+				VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['Location'])); break;
 				
 				case 4: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES (NULL,NULL,NULL)"); break;
