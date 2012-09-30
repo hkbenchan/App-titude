@@ -1,0 +1,70 @@
+<div data-role="page" id="form_page">
+	<form action="event_process.php" method="post">
+		<table>
+			<tr>
+				<td><label for="firstid">First Name </label></td>
+				<td><input type="text" id="firstid" name="first" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="lastid">Last Name </label></td>
+				<td><input type="text" id="lastid" name="last" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="emailid">Email </label></td>
+				<td><input type="text" id="emailid" name="email" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="phoneid">Phone </label></td>
+				<td><input type="text" id="phoneid" name="phone" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="enameid">Event Name </label></td>
+				<td><input type="text" id="enameid" name="ename" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td class="label">Event RSVP </td> 
+				<td>
+					<input type="radio" name="ersvp" value="yes"/>Yes
+					<input type="radio" name="ersvp" value="no"/>No
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Event Type </td> 
+				<td>
+					<select name="etype">
+						<option selected="selected">Select</option>
+						<option value="sport">Sport</option>
+						<option value="social">Social</option>
+						<option value="school">School</option>
+						<option value="organization">Organization</option>
+						<option value="career">Career</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="edateid">Event Date </label></td>
+				<td>
+					<button id="show1up" type="button">Show Calendar</button>
+					<div id="cal2Container"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="elocationid">Event Location </label></td>
+				<td><textarea id="elocationid" name="elocation" rows="2" cols="60"></textarea></td>
+			</tr>
+			<tr>
+				<td><label for="edescriptionid">Event Description </label></td>
+				<td><textarea id="edescriptionid" name="elocation" rows="10" cols="60"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<input type="submit" name="cancel" value="Cancel"/>
+					<input type="reset" name="reset" value="Clear"/>
+					<input type="submit" name="submit" value="Submit"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+
