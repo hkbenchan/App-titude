@@ -8,7 +8,7 @@
 	<html file="event_update.html"/>
 	-->
 	<html file="event.html"/>
-	<html file="event_post"/>
+	<html file="event_post.html"/>
 	<css file="event.css"/>
 	<!--
 	<javascript file="event.js"/>
