@@ -21,7 +21,7 @@ $(function() {
 			error: ajaxError
 		});
 		$('category_list-row').listview('refresh');
-	}
+	});
 				
 
 	//Bind to the create so the page gets updated with the listing
