@@ -29,7 +29,9 @@ $(function() {
 					/*output += '<div id="event_collapse" class="event_collapsible" data-role="collapsible" data-collapsed="false" data-theme="a">';
 					output += '<ul class="event_list" id="event_list" data-role="listview" data-inset="true" data-filter="true" data-theme="c" data-divider-theme="b">';*/
 					$.each(data[i],function(key,val) {
-						$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						$('#event_list' + i).append('<li><a href="#view_event_page" data-event-id="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						console.log(val.ID);
 						//list.listview('refresh');
 						/*output += '<li class="event_list_row" id="event_' + val.ID + '">';
 						output += '<a href="#" data-transition="slide">'
@@ -53,7 +55,7 @@ $(function() {
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		console.log("View Event Page");
-		var event_id = $.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
+		var event_id = $(this).attr("data-event-id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		console.log("Event ID:" + event_id);
 		//JQuery Events
 		$.ajax({
