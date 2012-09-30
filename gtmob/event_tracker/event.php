@@ -169,8 +169,6 @@ function postEvent($event = null) {
 					mysql_real_escape_string($_POST[ 'Email' ]),(int)mysql_real_escape_string($_POST[ 'Phone' ]),
 					mysql_real_escape_string($_POST[ 'Contact' ]));
 		
-		echo((int)mysql_real_escape_string($_POST[ 'Phone' ])); die();
-		
 		s_echo("Creator SQL: ".$dbQuery);
 		
 		$result = getDBResultInserted($dbQuery,'ID'); // get back the CreatorID
