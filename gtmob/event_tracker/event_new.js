@@ -68,7 +68,7 @@ $(function() {
 		//JQuery Events
 		$.ajax({
 			//url: "api/event/"+event_id,
-			url: "api/event/view_event_page/",
+			url: "api/event/1/",
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
