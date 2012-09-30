@@ -4,6 +4,25 @@ var pageViewLimit = 20;
 $(function() {
  // Handler for .ready() called.
 	console.log('ready');
+	
+	$('#browse_categories_page').bind('pagebeforeshow',function(event, ui){
+		console.log('pagebeforeshow');
+		
+		$('category_list_row').remove();
+		
+		$.ajax({
+			url: "api/event/0/type/",
+			dataType: "json",
+			async: false,
+			success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				$('category_list_row_template').tmpl(data).appendTo('#post_categories');
+			},
+			error: ajaxError
+		});
+		$('category_list-row').listview('refresh');
+	});
+				
 
 	//Bind to the create so the page gets updated with the listing
 	$('#browse_events_page').bind('pagebeforeshow',function(event, ui){
@@ -40,7 +59,7 @@ $(function() {
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		event.preventDefault();
 		console.log("View Event Page");
-		console.log($(".ui-page-active").attr("data-url"));
+		
 		
 		var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		console.log("Event ID:" + event_id);
@@ -60,6 +79,8 @@ $(function() {
 	        },
 	        error: ajaxError
 		});
+		
+		console.log($(".ui-page-active").attr("data-url"));
 	});
 	
 	//Bind the add page button
@@ -175,6 +196,15 @@ $(document).ready(function(){
 	// start with first pageViewLimit most recent events
 	eventPagination(pageViewLimit,0);
 	current_page = 1;
+	
+	$("a").on("click", function (event) {
+
+	   console.log($(this).attr("href"));//var parm = $(this).attr("data-event-id");
+	   //do something here with parameter on page 2 (or any page in the dom)
+	   //$("#event_text").html(parm);
+
+	});
+	
 });
 
 /******************************************************************************/
