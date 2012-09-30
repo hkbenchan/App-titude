@@ -17,7 +17,10 @@ $(function() {
 			async: false,
 			success: function(data, textStatus, jqXHR) {
 				console.log(data);
-				$('#category_list_row_template').tmpl(data).appendTo('#category_list');
+				$('.category_list_row').remove();
+				$.each(data,function(key,val) {
+					$('#category_list').append('<li class="category_list_row" id="category_' + val.ID + '"><a href="#browse_events_page&category_id=' + val.ID + '" data-transition="slide"><h3>' + val.EventTypeDesc + '</h3></a></li>');
+				});
 			},
 			error: ajaxError
 		});
@@ -32,7 +35,7 @@ $(function() {
 		
 		//JQuery Events
 		$.ajax({
-			url: "api/event",
+			url: "api/event/0/type/",
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
