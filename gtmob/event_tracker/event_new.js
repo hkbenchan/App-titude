@@ -38,6 +38,7 @@ $(function() {
 	
 	
 	$('#view_event_page').bind('pagebeforechange',function(event, ui){
+		event.preventDefault();
 		console.log("View Event Page");
 		console.log(ui['prevPage']['context']['URL']);
 		
