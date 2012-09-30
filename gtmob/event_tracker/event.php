@@ -3,6 +3,7 @@
 include 'db_helper.php';
 
 function s_echo($str) {
+	$debug = false;
 	if ($debug) print_r($str,true);
 }
 
@@ -79,8 +80,6 @@ function getEvent($id) {
 }
  
 function postEvent($event = null) {
-		
-		global $debug = true; // flag for debugging
 		
 		/**
 		* insert split into 5 parts
