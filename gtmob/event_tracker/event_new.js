@@ -37,11 +37,11 @@ $(function() {
 	
 	
 	
-	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
+	$('#view_event_page').bind('pagebeforechange',function(event, ui){
 		console.log("View Event Page");
 		console.log(ui['prevPage']['context']['URL']);
 		
-		var event_id = $.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
+		var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		console.log("Event ID:" + event_id);
 		//JQuery Events
 		$.ajax({
