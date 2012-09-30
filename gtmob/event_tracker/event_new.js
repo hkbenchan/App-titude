@@ -36,7 +36,7 @@ $(function() {
 		
 		//JQuery Events
 		$.ajax({
-			url: "api/event/",
+			url: "api/event/0/type/" + category_ID,
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
