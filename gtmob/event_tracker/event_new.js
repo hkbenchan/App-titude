@@ -205,7 +205,7 @@ $(document).ready(function(){
 	// 
 	// });
 	
-	$('a').live('click', function(e) {
+	$('li').live('click', function(e) {
 	    console.log("Target " + $(e.target).jqmData());        
 		//var data = $(e.target).jqmData()
 	    //globalParams = data.params !== null ? data.params : null
