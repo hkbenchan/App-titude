@@ -14,8 +14,8 @@ $('#submitid').bind('click', function()
 	        	"LongCoord" : "",
 	        	"EventTypeDesc" : $('#etypeid').val(),
 	        	"Description" : $('#edescriptionid').val(),
-	        	"StartTime" : $('#edateid').val() + " " + $('#estartid').val(),
-	        	"EndTime" : $('#edateid').val() + " " + $('#eendid').val()},
+	        	"StartTime" : $('#esyearid').val() + "-" +  $('#esmonthid').val() + "-" + $('#esdayid').val() + " " +  $('#eshourid').val() + ":" +  $('#esminid').val() + ":" +  $('#essecid').val(),
+	       		"EndTime" : $('#eeyearid').val() + "-" +  $('#eemonthid').val() + "-" + $('#eedayid').val() + " " +  $('#eehourid').val() + ":" +  $('#eeminid').val() + ":" +  $('#eesecid').val(),
 	        type: 'POST',
 	        success: function(data) {
 	        console.log("I am success");
