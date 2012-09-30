@@ -20,7 +20,7 @@ $(function() {
 				console.log(data);
 				$('.category_list_row').remove();
 				$.each(data,function(key,val) {
-					$('#category_list').append('<li class="category_list_row" id="category_' + val.ID + '"><a href="#browse_events_page" data-category="' + val.ID + '" data-transition="slide"><h3>' + val.EventTypeDesc + '</h3></a></li>');
+					$('#category_list').append('<li class="category_list_row" id="category_' + val.ID + '"><a href="#browse_events_page" data-category="0/type/' + val.ID + '/" data-transition="slide"><h3>' + val.EventTypeDesc + '</h3></a></li>');
 				});
 			},
 			error: ajaxError
@@ -36,7 +36,7 @@ $(function() {
 		
 		//JQuery Events
 		$.ajax({
-			url: "api/event/0/type/" + category_ID,
+			url: "api/event/" + category_ID,
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
