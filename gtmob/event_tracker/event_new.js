@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var current_page; // indicator for the page view
 var pageViewLimit = 20;
 
@@ -202,6 +203,7 @@ function ajaxError(jqXHR, textStatus, errorThrown){
 		reverse: false,
 		changeHash: false
 	});
+=======
 var current_page; // indicator for the page view
 var pageViewLimit = 20;
 
@@ -406,4 +408,5 @@ function ajaxError(jqXHR, textStatus, errorThrown){
 		reverse: false,
 		changeHash: false
 	});
+>>>>>>> bug
 }
