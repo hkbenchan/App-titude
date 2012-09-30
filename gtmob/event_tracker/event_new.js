@@ -199,7 +199,7 @@ $(document).ready(function(){
 	
 	$("a").on("click", function (event) {
 
-	   console.log($(this).attr("href"));//var parm = $(this).attr("data-event-id");
+	   console.log("click" + $(this).attr("href"));//var parm = $(this).attr("data-event-id");
 	   //do something here with parameter on page 2 (or any page in the dom)
 	   //$("#event_text").html(parm);
 
