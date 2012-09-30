@@ -13,7 +13,7 @@ function s_echo($str) {
 function preprocessDataCheck($search_str, $error_msg) {
 	if (!(array_key_exists($search_str,$_POST) && (!is_null($_POST[$search_str])) && ($_POST[$search_str] != "")))
 	{
-		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 500 Internal Server Error");
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
 		header("Content-type: application/json");
         echo json_encode(array('error_msg'=> $error_msg));
 		die();

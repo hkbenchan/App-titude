@@ -19,8 +19,8 @@
    	</div>
 	
 	<div data-role='content'>
-		<ul id='post_categories' data-role='listview' data-inset='true' data-filter='true' data-theme='d'>
-			<script id="category_list_row_template" type="text/x-query-tmpl">
+		<ul id='category_list' data-role='listview' data-inset='false' data-filter='true' data-theme='d'>
+			<script id="category_list_row_template" type="text/x-jquery-tmpl">
 				<li class="category_list_row" id="category_${ID}">
 					<a href='#browse_events_page&category_id=${ID}' data-transition="slide">
 						<h3>${EventTypeDesc}</h3>

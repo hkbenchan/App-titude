@@ -8,7 +8,7 @@ $(function() {
 	$('#browse_categories_page').bind('pagebeforeshow',function(event, ui){
 		console.log('pagebeforeshow');
 		
-		$('category_list_row').remove();
+		$('.category_list_row').remove();
 		
 		$.ajax({
 			url: "api/event/0/type/",
@@ -16,11 +16,12 @@ $(function() {
 			async: false,
 			success: function(data, textStatus, jqXHR) {
 				console.log(data);
-				$('category_list_row_template').tmpl(data).appendTo('#post_categories');
+				$('#category_list_row_template').tmpl(data).appendTo('#category_list');
 			},
 			error: ajaxError
 		});
-		$('category_list-row').listview('refresh');
+		
+		$('#category_list').listview('refresh');
 	});
 				
 
@@ -42,6 +43,7 @@ $(function() {
 					$('#hold_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
 					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
+						//$('#event_list' + i).append('<li><a href="#view_event_page" data-event-id="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 					});
@@ -59,7 +61,7 @@ $(function() {
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		event.preventDefault();
 		console.log("View Event Page");
-		
+		console.log(ui);
 		
 		var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		console.log("Event ID:" + event_id);
@@ -97,6 +99,14 @@ $(function() {
 		});
 	});
 	*/
+	
+	
+	$('a').live('click', function(e) {
+		console.log("Target = " + $(e.target).jqmData());
+		
+		//var data = $(e.target).jqmData()
+		//globalParams = data.params !== null ? data.params : null
+	});
 	
 });
 
@@ -197,14 +207,15 @@ $(document).ready(function(){
 	eventPagination(pageViewLimit,0);
 	current_page = 1;
 	
-	$("a").on("click", function (event) {
-
-	   console.log($(this).attr("href"));//var parm = $(this).attr("data-event-id");
-	   //do something here with parameter on page 2 (or any page in the dom)
-	   //$("#event_text").html(parm);
-
-	});
+	// $("a").on("click", function (event) {
+	// 
+	//    console.log("click" + $(this).attr("href"));//var parm = $(this).attr("data-event-id");
+	//    //do something here with parameter on page 2 (or any page in the dom)
+	//    //$("#event_text").html(parm);
+	// 
+	// });
 	
+
 });
 
 /******************************************************************************/
