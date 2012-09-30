@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding = "utf-8" ?>
+<widget title="Event Tracker">
+	<library name="jquery"/>
+	<library name="jquery.tmpl"/>
+	<library name="jquery.url"/>
+	<!--
+	<html file="event.html"/>
+	<html file="event_update.html"/>
+	-->
+	<html file="event.html"/>
+	<html file="event_post"/>
+	<css file="event.css"/>
+	<!--
+	<javascript file="event.js"/>
+	-->
+    <javascript file="event_new.js"/>
+
+	
+    <library name="jquery.mobile"/> 
+    <library name="gtmob"/>
+</widget>
