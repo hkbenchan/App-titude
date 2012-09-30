@@ -1,7 +1,7 @@
 $('#submitid').bind('click', function() 
 { console.log("Add Button");
       	$.ajax({
-	    	url: "api/event",
+	    	url: "api/event/",
 	        dataType: "json",
 	        async: false, 
 	        data: { "Title" : $('#enameid').val(), 
@@ -17,6 +17,9 @@ $('#submitid').bind('click', function()
 	        	"StartTime" : $('#estartid').val(),
 	        	"EndTime" : $('#eendid').val()},
 	        type: 'POST',
+	        success: function(data) {
+	        console.log("I am success");
+	        }
 	        error: ajaxError
        	});
 });
