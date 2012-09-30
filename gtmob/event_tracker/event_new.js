@@ -37,7 +37,7 @@ $(function() {
 	
 	
 	
-	$('#view_event_page').bind('pagebeforechange',function(event, ui){
+	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		event.preventDefault();
 		console.log("View Event Page");
 		console.log($(".ui-page-active").attr("data-url"));
