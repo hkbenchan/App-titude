@@ -53,21 +53,21 @@ $(function() {
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		console.log("View Event Page");
-		var event_id = $.mobile.activePage.data('url').split("=")[1];
+		var event_id = $.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		console.log("Event ID:" + event_id);
 		//JQuery Events
 		$.ajax({
-			url: "api/event/"+$.url().fparam("event_id"),
+			url: "api/event/"+event_id,
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
-				console.log("Event is" + data);
+				console.log("Event is " + data);
 				
 				var hour = data.StartTime.split(" ")[1];
 				
-				$('#actual_details').remove();
-				$('#actual_event').append('<div data-role="content" data-theme="b" data-content-theme="c" id="actual_details"><p>Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description + '</p></div>');
-		
+				//$('#actual_details').remove();
+				//$('#actual_event').append('<div data-role="content" data-theme="b" data-content-theme="c" id="actual_details"><p>Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description + '</p></div>');
+				$('#event_text').html('Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description);
 	        },
 	        error: ajaxError
 		});
