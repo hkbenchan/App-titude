@@ -8,7 +8,7 @@ $(function() {
 	$('#browse_categories_page').bind('pagebeforeshow',function(event, ui){
 		console.log('pagebeforeshow');
 		
-		$('category_list_row').remove();
+		$('.category_list_row').remove();
 		
 		$.ajax({
 			url: "api/event/0/type/",
@@ -16,11 +16,11 @@ $(function() {
 			async: false,
 			success: function(data, textStatus, jqXHR) {
 				console.log(data);
-				$('category_list_row_template').tmpl(data).appendTo('#post_categories');
+				$('#category_list_row_template').tmpl(data).appendTo('#category_list');
 			},
 			error: ajaxError
 		});
-		$('category_list-row').listview('refresh');
+		$('#category_list').listview('refresh');
 	});
 				
 
