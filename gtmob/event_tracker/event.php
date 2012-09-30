@@ -366,7 +366,7 @@ function deleteEvent($id) {
 function listEventType() {
 	$dbQuery = sprintf("select * from EventType WHERE ID in
 				(select distinct(EventTypeID) from Event)");
-	$result = getDBResultArray($dbQuery);
+	$result = getDBResultsArray($dbQuery);
 	header("Content-type: application/json");
 	echo json_encode($result);
 }
