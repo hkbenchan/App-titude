@@ -6,7 +6,7 @@ $(function() {
 	console.log('ready');
 
 	//Bind to the create so the page gets updated with the listing
-	$('#browse_events_page').bind('pagebeforeshow',function(event, ui){
+	$('#browse_all_events_page').bind('pagebeforeshow',function(event, ui){
 		console.log('pagebeforeshow');
 		
 		//JQuery Events
@@ -19,10 +19,10 @@ $(function() {
 				var i = 0;
 				//var list;
 				//var output = '';
-				$('#hold_events').remove();
-				$('#post_events').append('<div id="hold_events"/>');
+				$('#hold_all_events').remove();
+				$('#post_all_events').append('<div id="hold_all_events"/>');
 				$.each(data.date,function(key,val) {
-					$('#hold_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					$('#hold_all_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
 					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">');
 					//list = $('#event_list' + i);
 					//list.listview();
