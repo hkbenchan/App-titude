@@ -3,8 +3,7 @@
 include 'db_helper.php';
 
 function s_echo($str) {
-	//echo "<pre>".print_r($str,true)."</pre>";
-	print_r($str,true);
+	if ($debug) print_r($str,true);
 }
 
 
@@ -81,7 +80,7 @@ function getEvent($id) {
  
 function postEvent($event = null) {
 		
-		$debug = true; // flag for debugging
+		global $debug = true; // flag for debugging
 		
 		/**
 		* insert split into 5 parts
@@ -104,6 +103,17 @@ function postEvent($event = null) {
 		* If true, use that EventTypeID; else (4) insert into EventType Table and get back the EventTypeID
 		* (5) Use all data that needed to insert to Event table, get back the EventID and return
 		*/
+		
+		/*
+		* Data needed:
+		* OrganizationName
+		* Email, Phone, Contact
+		* LatCoord, LongCoord, Name
+		* EventTypeDesc
+		* Title, Description, StartTime, EndTime
+		*/
+		
+		
 		
 		// check the permission
 		global $_USER;
@@ -289,7 +299,6 @@ function postEvent($event = null) {
         $result = getDBResultInserted($dbQuery,'EventID');
         
         s_echo("Event insert success");
-        die();
         header("Content-type: application/json");
         echo json_encode($result);
 }
