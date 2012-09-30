@@ -372,7 +372,9 @@ function getEventsByType($EventTypeID) {
 	JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
 	JOIN `Location`ON `Event`.LocationID = `Location`.ID
 	JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
-	WHERE `EventType`.ID = '%s'", mysql_real_escape_string($EventTypeID));
+	WHERE `EventType`.ID = '%s'
+	AND `Event`.StartTime >= CURRENT_TIMESTAMP
+	ORDER BY `Event`.StartTime ASC", mysql_real_escape_string($EventTypeID));
 	
 	$tmp = getDBResultsArray($dbQuery);
     $result = groupByStartDate($tmp);
