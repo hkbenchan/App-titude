@@ -165,9 +165,11 @@ function postEvent($event = null) {
 		}
 		
 		// Insert to the Creator Table
-		$dbQuery = sprintf("INSERT INTO Creator (Email_address,Phone_number,Contact) VALUES ('%s','%s','%s')",
-					mysql_real_escape_string($_POST[ 'Email' ]),mysql_real_escape_string($_POST[ 'Phone' ]),
+		$dbQuery = sprintf("INSERT INTO Creator (Email_address,Phone_number,Contact) VALUES ('%s',%d,'%s')",
+					mysql_real_escape_string($_POST[ 'Email' ]),(int)mysql_real_escape_string($_POST[ 'Phone' ]),
 					mysql_real_escape_string($_POST[ 'Contact' ]));
+		
+		echo((int)mysql_real_escape_string($_POST[ 'Phone' ])); die();
 		
 		s_echo("Creator SQL: ".$dbQuery);
 		
@@ -373,7 +375,10 @@ function getEventsByType($EventTypeID) {
 	JOIN `Location`ON `Event`.LocationID = `Location`.ID
 	JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
 	WHERE `EventType`.ID = '%s'", mysql_real_escape_string($EventTypeID));
-	$result = getDBResultsArray($dbQuery);
+	
+	$tmp = getDBResultsArray($dbQuery);
+    $result = groupByStartDate($tmp);
+	
 	header("Content-type: application/json");
 	echo json_encode($result);
 }
