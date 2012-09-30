@@ -43,7 +43,8 @@ $(function() {
 					$('#hold_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
 					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
-						$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						$('#event_list' + i).append('<li><a href="#view_event_page" data-event-id="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 					});
 					i++;
@@ -99,11 +100,13 @@ $(function() {
 	});
 	*/
 	
-	$('li').live('click', function(e) {
-	    console.log("Target " + $(e.target).jqmData());        
+	
+	$('a').live('click', function(e) {
+		console.log("Target = " + $(e.target).jqmData());
+		
 		//var data = $(e.target).jqmData()
-	    //globalParams = data.params !== null ? data.params : null
- 	});
+		//globalParams = data.params !== null ? data.params : null
+	});
 	
 });
 
