@@ -1,6 +1,7 @@
 var current_page; // indicator for the page view
 var pageViewLimit = 20;
 var event_ID;
+var category_ID;
 
 $(function() {
  // Handler for .ready() called.
@@ -19,7 +20,7 @@ $(function() {
 				console.log(data);
 				$('.category_list_row').remove();
 				$.each(data,function(key,val) {
-					$('#category_list').append('<li class="category_list_row" id="category_' + val.ID + '"><a href="#browse_events_page&category_id=' + val.ID + '" data-transition="slide"><h3>' + val.EventTypeDesc + '</h3></a></li>');
+					$('#category_list').append('<li class="category_list_row" id="category_' + val.ID + '"><a href="#browse_events_page" data-category="' + val.ID + '" data-transition="slide"><h3>' + val.EventTypeDesc + '</h3></a></li>');
 				});
 			},
 			error: ajaxError
@@ -35,7 +36,7 @@ $(function() {
 		
 		//JQuery Events
 		$.ajax({
-			url: "api/event/0/type/",
+			url: "api/event/0/type/" + category_ID,
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
@@ -109,6 +110,14 @@ $(function() {
 	$("a[href=#view_event_page]").live("click", function(e) {
 	    event_ID = $(this).data("event");
 		console.log("event_ID = " + event_ID);
+		//navIdentity = $(this).data("identity");
+	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
+	    //$("#list").page();                     
+	});
+	
+	$("a[href=#browse_events_page]").live("click", function(e) {
+	    category_ID = $(this).data("category");
+		console.log("category_ID = " + category_ID);
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
 	    //$("#list").page();                     
