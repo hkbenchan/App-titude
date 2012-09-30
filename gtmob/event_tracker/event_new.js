@@ -4,6 +4,25 @@ var pageViewLimit = 20;
 $(function() {
  // Handler for .ready() called.
 	console.log('ready');
+	
+	$('#browse_categories_page').bind('pagebeforeshow',function(event, ui){
+		console.log('pagebeforeshow');
+		
+		$('category_list_row').remove();
+		
+		$.ajax({
+			url: "api/event/0/type/"
+			dataType: "json",
+			async: false,
+			success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				$('category_list_row_template').tmpl(data).appendTo('#post_categories');
+			},
+			error: ajaxError
+		});
+		$('category_list-row').listview('refresh');
+	}
+				
 
 	//Bind to the create so the page gets updated with the listing
 	$('#browse_events_page').bind('pagebeforeshow',function(event, ui){
