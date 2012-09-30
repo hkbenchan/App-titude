@@ -19,7 +19,7 @@ $('#submitid').bind('click', function()
 	        type: 'POST',
 	        success: function(data) {
 	        console.log("I am success");
-	        }
+	        },
 	        error: ajaxError
        	});
 });
