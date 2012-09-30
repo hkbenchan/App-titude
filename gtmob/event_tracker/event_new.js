@@ -30,7 +30,7 @@ $(function() {
 					output += '<ul class="event_list" id="event_list" data-role="listview" data-inset="true" data-filter="true" data-theme="c" data-divider-theme="b">';*/
 					$.each(data[i],function(key,val) {
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
-						$('#event_list' + i).append('<li><a href="#view_event_page" data-event-id="' + val.ID + '" data-transition="slide" id="event_id_"' + val.ID '><h3>' + val.Title + '</h3></a></li>');
+						$('#event_list' + i).append('<li><a href="#view_event_page" data-event-id="' + val.ID + '" data-transition="slide" id="event_id_' + val.ID '"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 						//list.listview('refresh');
 						/*output += '<li class="event_list_row" id="event_' + val.ID + '">';
