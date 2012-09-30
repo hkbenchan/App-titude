@@ -55,7 +55,7 @@ $(function() {
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		console.log("View Event Page");
-		var event_id = $(this).attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
+		var event_id = $('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		console.log("Event ID:" + event_id);
 		//JQuery Events
 		$.ajax({
