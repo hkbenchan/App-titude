@@ -85,7 +85,7 @@ function getEvent($id) {
 		JOIN `Location`ON `Event`.LocationID = `Location`.ID
 		JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
 	    JOIN `RSVP` ON `Event`.ID = `RSVP`.EventID
-		WHERE `Event`.ID = 14'%s'", mysql_real_escape_string($id));
+		WHERE `Event`.ID = '%s'", mysql_real_escape_string($id));
 
 	$result=getDBResultRecord($dbQuery);
 	//echo '<pre>'.print_r($result).'</pre>';
