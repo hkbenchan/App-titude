@@ -78,12 +78,14 @@ function getEvent($id) {
 	if (!is_numeric($id)) { $id = 0; }
 
 	$dbQuery = sprintf("SELECT `Event`.ID AS `Event_ID`, `Creator`.ID AS `Creator_ID`,
-	`Location`.ID AS `Location_ID`, `EventType`.ID AS `EventType_ID`,
-	`Event`.*, `Creator`.*, `Location`.*, `EventType`.* FROM `Event`
-	JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
-	JOIN `Location`ON `Event`.LocationID = `Location`.ID
-	JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
-	WHERE `Event`.ID = '%s'", mysql_real_escape_string($id));
+		`Location`.ID AS `Location_ID`, `EventType`.ID AS `EventType_ID`,
+		`Event`.*, `Creator`.*, `Location`.*, `EventType`.* ,
+		count(distinct(`RSVP`.AcctName)) as `People_Join` FROM `Event`
+		JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
+		JOIN `Location`ON `Event`.LocationID = `Location`.ID
+		JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
+	    JOIN `RSVP` ON `Event`.ID = `RSVP`.EventID
+		WHERE `Event`.ID = 14'%s'", mysql_real_escape_string($id));
 
 	$result=getDBResultRecord($dbQuery);
 	//echo '<pre>'.print_r($result).'</pre>';
@@ -383,4 +385,74 @@ function getEventsByType($EventTypeID) {
 	echo json_encode($result);
 }
 
+/*********************************************
+** event/rsvp
+**********************************************/
+function listEventRSVP($event_id = 0) {
+	if (!is_numeric($event_id)) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		
+		die();
+	}
+	
+	global $_USER;
+	$acctName = $_USER['uid'];
+	
+	// only Creator can get this, so check permission
+	
+	$dbQuery = sprintf("SELECT `AuthUser`.*, e.ID as `Event_ID` FROM `AuthUser`
+	JOIN `Organization` o ON `AuthUser`.OnBehalf = o.ID
+	JOIN `CreatorOwn` c ON `AuthUser`.ID = c.AuthUserID
+	JOIN `Event` e on c.CreatorID = e.CreatorID
+	WHERE `AuthUser`.AcctName = '%s' AND e.ID = '%s'",
+	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
+	
+	$permission = getDBResultRecord($dbQuery); // the server will terminate if no permission
+	
+	// it passes the permission test
+	
+	$dbQuery = sprintf("SELECT * FROM `RSVP`
+	WHERE EventID = '%s' ORDER BY AcctName ASC", mysql_real_escape_string($event_id));
+	
+	$result = getDBResultsArray($dbQuery);
+	header("Content-type: application/json");
+	echo json_encode($result);
+	
+}
+
+
+function postEventRSVP() {
+	
+	global $_USER;
+	$acctName = $_USER['uid'];
+	
+	if (!is_numeric($_REST['event'])) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		
+		die();
+	}
+	
+	$event_id = (int)$_REST['event'];
+	
+	$dbQuery = sprintf("INSERT INTO RSVP(AcctName, EventID) VALUES ('%s','%s'),",
+	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
+	
+	$result = getDBResultInserted($dbQuery);
+	header("Content-type: application/json");
+	echo json_encode($result);
+	
+}
+
+function deleteEventRSVP($event_id){
+	
+	global $_USER;
+	$acctName = $_USER['uid'];
+	
+	$dbQuery = sprintf("DELETE FROM `RSVP` WHERE AcctName = '%s' AND EventID = '%s'",
+	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
+	
+	$result = getDBResultAffected($dbQuery);
+	header("Content-type: application/json");
+	echo json_encode($result);
+}
 ?>
