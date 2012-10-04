@@ -61,7 +61,7 @@
 
 		<put>
 			<description><![CDATA[This is how you can update an event]]></description>
-			<action file='event.php'><![CDATA[updateEvent($_REST['event'],$_POST['event']);]]></action>
+			<action file='event.php'><![CDATA[updateEvent($_REST['event']);]]></action>
 		</put>
 
 		<delete>
