@@ -120,4 +120,68 @@
 	</div>
 </div>
 <!--******************************************************************************************************************************-->
-<script src="
+<div data-role="page" id="form_page" data-theme='a'>
+	<form id="formid" data-theme='d'>
+		<table>
+			<tr>
+				<td><label for="eorganizationid">Organization Name </label></td>
+				<td><input type="text" id="eorganizationid" name="eorganization" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="enameid">Event Name </label></td>
+				<td><input type="text" id="enameid" name="ename" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="eemailid">Email </label></td>
+				<td><input type="text" id="eemailid" name="eemail" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="ephoneid">Phone </label></td>
+				<td><input type="text" id="ephoneid" name="ephone" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="econtactid">Contact </label></td>
+				<td><input type="text" id="econtactid" name="econtact" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td><label for="etypeid">Event Type </label></td>
+				<td><input type="text" id="etypeid" name="etype" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td>Event Start Time </td>
+				<td>
+					<input type="text" id="eshourid" name="eshour" maxlength="20" size="2"/>:
+					<input type="text" id="esminid" name="esmin" maxlength="20" size="2"/>:
+					<input type="text" id="essecid" name="essec" maxlength="20" size="2"/>
+					<input type="text" id="esmonthid" name="esmonth" maxlength="20" size="2"/>/
+					<input type="text" id="esdayid" name="esday" maxlength="20" size="2"/>/
+					<input type="text" id="esyearid" name="esyear" maxlength="20" size="4"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Event End Time </td>
+				<td>
+					<input type="text" id="eehourid" name="eehour" maxlength="20" size="2"/>:
+					<input type="text" id="eeminid" name="eemin" maxlength="20" size="2"/>:
+					<input type="text" id="eesecid" name="eesec" maxlength="20" size="2"/>
+					<input type="text" id="eemonthid" name="eemonth" maxlength="20" size="2"/>/
+					<input type="text" id="eedayid" name="eeday" maxlength="20" size="2"/>/
+					<input type="text" id="eeyearid" name="eeyear" maxlength="20" size="4"/>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="elocationid">Event Location </label></td>
+				<td><textarea id="elocationid" name="elocation" rows="2" cols="60"></textarea></td>
+			</tr>
+			<tr>
+				<td><label for="edescriptionid">Event Description </label></td>
+				<td><textarea id="edescriptionid" name="edescription" rows="10" cols="60"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<input type="button" name="submit" id="submitid" value="Submit"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
