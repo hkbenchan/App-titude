@@ -183,7 +183,13 @@ $(function() {
 	
 	$("#RSVPbutton").click(function(event) {
 		//event.preventDefault();
-        $(this).text($(this).text() == 'RSVP' ? 'Un-RSVP' : 'RSVP');
+        if($(this).text() == 'RSVP'){
+			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme='a' data-transition="pop" id="RSVPbutton"><h3>Un-RSVP</h3></a>');
+		}
+		else{
+			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme='a' data-transition="pop" id="RSVPbutton"><h3>RSVP</h3></a>');
+		}
+		
 		//$(this).button("refresh");
     });
 	
