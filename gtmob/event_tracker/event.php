@@ -684,9 +684,10 @@ function listUserRSVP() {
 	
 	$dbQuery = sprintf("SELECT ID, Title, StartTime from `Event`
 	JOIN `RSVP` ON `Event`.ID = `RSVP`.EventID
-	WHERE `RSVP`.AcctName = '%s'", mysql_real_escape_string($acctName));
+	WHERE `RSVP`.AcctName = '%s' ORDER BY StartTime ASC", mysql_real_escape_string($acctName));
 			
-	$result = getDBResultsArray($dbQuery);
+	$tmp = getDBResultsArray($dbQuery);
+    $result = groupByStartDate($tmp);
 	
 	header("Content-type: application/json");
 	echo json_encode($result);
