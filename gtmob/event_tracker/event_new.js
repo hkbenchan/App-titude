@@ -7,9 +7,12 @@ $(function() {
  // Handler for .ready() called.
 	console.log('ready');
 	
-	$.get('/user', function(user) {
+	$.ajax({
+		url: '/user',
+		dataType: "json",
+		async: false,
 		success: function (data, text) {
-			console.log("current user is "+user);
+			console.log("current user is "+data);
 		},
 		error: function (request, status, error) {
 			$.mobile.changePage('#not_logged_in_dialog', 'pop', true, true);
