@@ -7,6 +7,15 @@ $(function() {
  // Handler for .ready() called.
 	console.log('ready');
 	
+	$.get('/user', function(user) {
+		success: function (data, text) {
+			console.log("current user is "+user);
+		},
+		error: function (request, status, error) {
+			$.mobile.changePage('#not_logged_in_dialog', 'pop', true, true);
+		}
+	});
+	
 	$('#browse_categories_page').bind('pagebeforeshow',function(event, ui){
 		console.log('pagebeforeshow');
 		
