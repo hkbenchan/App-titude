@@ -184,11 +184,11 @@ $(function() {
 	    //$("#list").page();                     
 	});
 	
-	
+	/*
 	$("#RSVPbutton").click(function(event) {
 		//event.preventDefault();
         if($(this).text() == 'RSVP'){
-			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="RSVPbutton"><h3>Un-RSVP</h3></a>');
+			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="UnRSVPbutton"><h3>Un-RSVP</h3></a>');
 		}
 		else{
 			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="RSVPbutton"><h3>RSVP</h3></a>');
@@ -196,7 +196,14 @@ $(function() {
 		
 		//$(this).button("refresh");
     });
-	
+	*/
+	$("#RSVPbutton").click(function(event) {
+		$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="UnRSVPbutton"><h3>Un-RSVP</h3></a>');
+    });
+
+	$("#UnRSVPbutton").click(function(event) {
+		$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="RSVPbutton"><h3>RSVP</h3></a>');
+    });
 	
 	
 	
