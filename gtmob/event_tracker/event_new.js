@@ -146,6 +146,11 @@ $(function() {
 	});
 	
 	
+	$("#RSVPbutton").click(function () {
+        $(this).text($(this).text() == 'RSVP' ? 'Un-RSVP' : 'RSVP');
+    });
+	
+	
 	
 	
 	
