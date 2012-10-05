@@ -49,6 +49,10 @@
 		
 		<command id='admin' security='protected'>
 			<description><![CDATA[This is how creator can manage with their own events]]></description>
+			<index>
+				<description><![CDATA[This is how you can check if you are admin]]></description>
+				<action file='event.php'><![CDATA[isAdmin();]]></action>
+			</index>
 			<get>
 				<description><![CDATA[This is how you can get events rsvp record for a specific event -- 
 					only creator can see this]]></description>
