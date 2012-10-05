@@ -80,6 +80,11 @@ function groupByStartDate($input_array = null) {
 	
 }
 
+
+/*********************************************
+** event/
+**********************************************/
+
 /** 
 * If $limit and $offset are both set, then this is a pagination call;
 * Otherwise, it will list out all join-able events
@@ -672,44 +677,21 @@ function getEventsByType($EventTypeID) {
 /*********************************************
 ** event/rsvp
 **********************************************/
-function listEventRSVP($event_id = 0) {
-	if (!is_numeric($event_id)) {
-		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
-		
-		die();
-	}
-	
+
+function listUserRSVP() {
 	global $_USER;
 	$acctName = $_USER['uid'];
 	
-	// only that organization can get this, so check permission
-	
-	if (!eventPermissionRight($event_id)) {
-		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
-		header("Content-type: application/json");
-        echo json_encode(array('error_msg'=> 'You do not have the permission.'));
-		die();
-	}
-	
-	// $dbQuery = sprintf("SELECT `AuthUser`.*, e.ID as `Event_ID` FROM `AuthUser`
-	// JOIN `Organization` o ON `AuthUser`.OnBehalf = o.ID
-	// JOIN `CreatorOwn` c ON `AuthUser`.ID = c.AuthUserID
-	// JOIN `Event` e on c.CreatorID = e.CreatorID
-	// WHERE `AuthUser`.AcctName = '%s' AND e.ID = '%s'",
-	// mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
-	// 
-	// $permission = getDBResultRecord($dbQuery); // the server will terminate if no permission
-	
-	// it passes the permission test
-	
-	$dbQuery = sprintf("SELECT * FROM `RSVP`
-	WHERE EventID = '%s' ORDER BY AcctName ASC", mysql_real_escape_string($event_id));
-	
+	$dbQuery = sprintf("SELECT ID, Title, StartTime from `Event`
+	JOIN `RSVP` ON `Event`.ID = `RSVP`.EventID
+	WHERE `RSVP`.AcctName = '%s'", mysql_real_escape_string($acctName));
+			
 	$result = getDBResultsArray($dbQuery);
+	
 	header("Content-type: application/json");
 	echo json_encode($result);
-	
 }
+
 
 
 function postEventRSVP() {
@@ -746,4 +728,42 @@ function deleteEventRSVP($event_id){
 	header("Content-type: application/json");
 	echo json_encode($result);
 }
+
+
+/*********************************************
+** event/admin
+**********************************************/
+
+
+function listEventRSVP($event_id = 0) {
+	if (!is_numeric($event_id)) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		
+		die();
+	}
+	
+	global $_USER;
+	$acctName = $_USER['uid'];
+	
+	// only that organization can get this, so check permission
+	
+	if (!eventPermissionRight($event_id)) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		header("Content-type: application/json");
+        echo json_encode(array('error_msg'=> 'You do not have the permission.'));
+		die();
+	}
+
+	// it passes the permission test
+	
+	$dbQuery = sprintf("SELECT * FROM `RSVP`
+	WHERE EventID = '%s' ORDER BY AcctName ASC", mysql_real_escape_string($event_id));
+	
+	$result = getDBResultsArray($dbQuery);
+	header("Content-type: application/json");
+	echo json_encode($result);
+	
+}
+
+
 ?>
