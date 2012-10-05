@@ -78,6 +78,34 @@ $(function() {
 	});
 	
 	
+	$('#view_rsvps_page').bind('pagebeforeshow',function(event, ui){
+		console.log('pagebeforeshow');
+		
+		//JQuery Events
+		$.ajax({
+			url: "api/rsvp",
+			dataType: "json",
+	        async: false,
+	        success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				var i = 0;
+				$('.rsvp_collapsible').remove();
+				$.each(data.date,function(key,val) {
+					$('#rsvps').append('<div data-role="collapsible" class="rsvp_collapsible" id="rsvp_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					$('#rsvp_collapsible' + i).append('<ul data-role="listview" class="rsvp_list" id="rsvp_list' + i + '" data-inset="true" data-theme="d">');
+					$.each(data[i],function(key,val) {
+						$('#rsvp_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						console.log(val.ID);
+					});
+					i++;
+				});
+	        },
+	        error: ajaxError
+		});
+		$('.rsvp_list').listview();
+		$('.rsvp_collapsible').collapsible();
+	});
+
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		event.preventDefault();
