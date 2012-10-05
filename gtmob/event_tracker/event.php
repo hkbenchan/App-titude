@@ -722,10 +722,8 @@ function listUserRSVPEvent($event_id) {
 	
 	$result = getDBResultNoHarm($dbQuery);
 	if (count($result) == 0) {
-		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
 		header("Content-type: application/json");
-		echo json_encode(array('error_msg' => 'No RSVP record'));
-		die();
+		echo json_encode(array('RSVP' => 'No'));
 	} else {
 		header("Content-type: application/json");
 		echo json_encode(array('RSVP' => 'Yes'));
@@ -761,9 +759,16 @@ function postEventRSVP() {
 	$dbQuery = sprintf("INSERT INTO RSVP(AcctName, EventID) VALUES ('%s','%s'),",
 	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
 	
-	$result = getDBResultInserted($dbQuery);
-	header("Content-type: application/json");
-	echo json_encode($result);
+	$result = getDBResultInserted($dbQuery,'ID');
+	if (count($result) >0) {
+		header("Content-type: application/json");
+		echo json_encode(array('RSVP' => 'Yes'));
+	} else {
+		header("Content-type: application/json");
+		echo json_encode(array('RSVP' => 'No'));
+	}
+	
+	
 	
 }
 
@@ -772,12 +777,37 @@ function deleteEventRSVP($event_id){
 	global $_USER;
 	$acctName = $_USER['uid'];
 	
+	if (!is_numeric($event_id)) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		
+		die();
+	}
+	
+	$event_id = (int)$event_id;
+	
+	// check if that event exists
+	
+	$dbQuery = sprintf("SELECT ID FROM `Event` WHERE ID = '%s'", mysql_real_escape_string($event_id));
+	$result = getDBResultNoHarm($dbQuery);
+	
+	if (count($result) == 0) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		header("Content-type: application/json");
+		echo json_encode(array('error_msg' => 'Event not found'));
+		die();
+	}
+	
 	$dbQuery = sprintf("DELETE FROM `RSVP` WHERE AcctName = '%s' AND EventID = '%s'",
 	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
 	
 	$result = getDBResultAffected($dbQuery);
-	header("Content-type: application/json");
-	echo json_encode($result);
+	if (count($result) >0) {
+		header("Content-type: application/json");
+		echo json_encode(array('RSVP' => 'No'));
+	} else {
+		header("Content-type: application/json");
+		echo json_encode(array('RSVP' => 'Yes'));
+	}
 }
 
 
