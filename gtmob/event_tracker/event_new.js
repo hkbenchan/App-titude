@@ -19,7 +19,7 @@ $(function() {
 				$.mobile.changePage('#not_logged_in_dialog', 'pop', true, true);
 			}
 		});
-	}
+	});
 	
 	$('#browse_categories_page').bind('pagebeforeshow',function(event, ui){
 		console.log('pagebeforeshow');
