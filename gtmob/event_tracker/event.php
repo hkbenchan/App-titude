@@ -755,8 +755,19 @@ function postEventRSVP() {
 		die();
 	}
 	
+	// check if the user already RSVP the event
 	
-	$dbQuery = sprintf("INSERT INTO RSVP(AcctName, EventID) VALUES ('%s','%s'),",
+	$dbQuery = sprintf("SELECT ID FROM `Event` WHERE ID = '%s'", mysql_real_escape_string($event_id));
+	$result = getDBResultNoHarm($dbQuery);
+	
+	if (count($result) == 1) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		header("Content-type: application/json");
+		echo json_encode(array('error_msg' => 'You have already RSVP this event'));
+		die();
+	}
+	
+	$dbQuery = sprintf("INSERT INTO RSVP(AcctName, EventID) VALUES ('%s','%s')",
 	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
 	
 	$result = getDBResultInserted($dbQuery,'ID');
