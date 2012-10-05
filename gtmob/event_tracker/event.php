@@ -654,15 +654,11 @@ function listEventType() {
 }
 
 function getEventsByType($EventTypeID) {
-	$dbQuery = sprintf("SELECT `Event`.ID AS `Event_ID`, `Creator`.ID AS `Creator_ID`,
-	`Location`.ID AS `Location_ID`, `EventType`.ID AS `EventType_ID`,
-	`Event`.*, `Creator`.*, `Location`.*, `EventType`.* FROM `Event`
-	JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
-	JOIN `Location`ON `Event`.LocationID = `Location`.ID
-	JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
-	WHERE `EventType`.ID = '%s'
-	AND `Event`.StartTime >= CURRENT_TIMESTAMP
-	ORDER BY `Event`.StartTime ASC", mysql_real_escape_string($EventTypeID));
+	
+	$dbQuery = sprintf("SELECT ID, Title, StartTime FROM Event
+	WHERE StartTime >= CURRENT_TIMESTAMP
+	AND EventTypeID = '%s' ORDER BY StartTime ASC",
+	mysql_real_escape_string($EventTypeID));
 	
 	$tmp = getDBResultsArray($dbQuery);
     $result = groupByStartDate($tmp);
