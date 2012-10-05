@@ -150,7 +150,7 @@ $(function() {
 	
 	
 	$("#RSVPbutton").click(function () {
-        $("this").html($("this").html() == 'RSVP' ? 'Un-RSVP' : 'RSVP');
+        $("this").text($("this").text() == 'RSVP' ? 'Un-RSVP' : 'RSVP');
 		//$(this).button("refresh");
     });
 	
