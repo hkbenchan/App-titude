@@ -89,6 +89,7 @@ $(function() {
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
 				var i = 0;
+				$('#no_rsvps').remove();
 				$('.rsvp_collapsible').remove();
 				$.each(data.date,function(key,val) {
 					$('#rsvps').append('<div data-role="collapsible" class="rsvp_collapsible" id="rsvp_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
@@ -99,6 +100,9 @@ $(function() {
 					});
 					i++;
 				});
+				if (i == 0) {
+					$('#rsvps').append('<h3 id="no_rsvps">You do not have any RSVPs.</h3>');
+				}
 	        },
 	        error: ajaxError
 		});
