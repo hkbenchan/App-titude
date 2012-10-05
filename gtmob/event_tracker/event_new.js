@@ -7,7 +7,7 @@ $(function() {
  // Handler for .ready() called.
 	console.log('ready');
 	
-	$('#not_logged_in_dialog').bind('pageload',function(event, ui) {
+	$('#not_logged_in_dialog').bind('pageinit',function(event, ui) {
 		$.ajax({
 			url: '/user',
 			dataType: "json",
