@@ -83,7 +83,7 @@ $(function() {
 		
 		//JQuery Events
 		$.ajax({
-			url: "api/rsvp",
+			url: "api/event/0/rsvp/",
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
