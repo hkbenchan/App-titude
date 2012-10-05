@@ -827,6 +827,24 @@ function deleteEventRSVP($event_id){
 ** event/admin
 **********************************************/
 
+function isEventAdmin() {
+	
+	global $_USER;
+	$acctName = $_USER['uid'];
+	
+	$dbQuery = sprintf("SELECT * from `AuthUser` WHERE AcctName = '%s'", mysql_real_escape_string($acctName));
+	$result = getDBResultNoHarm($dbQuery);
+	
+	if (count($result) > 0) {
+		header("Content-type: application/json");
+		echo json_encode(array('admin' => 'Yes'));
+	} else {
+		header("Content-type: application/json");
+		echo json_encode(array('admin' => 'No'));
+	}
+	
+}
+
 
 function listEventRSVP($event_id = 0) {
 	if (!is_numeric($event_id)) {
