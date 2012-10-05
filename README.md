@@ -1,1 +1,0 @@
-This repo is for the CS4261 Mobile apps course.
