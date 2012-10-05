@@ -87,12 +87,21 @@ $(function() {
 	        success: function(data, textStatus, jqXHR) {
 				console.log("Event is " + data.Title);
 				
-				var hour = data.StartTime.split(" ")[1];
+				var startHour = data.StartTime.split(" ")[1];
+				var startDate = data.StartTime.split(" ")[0];
+				
+				var endHour = data.EndTime.split(" ")[1];
+				var endDate = data.EndTime.split(" ")[0];
 				
 				//$('#actual_details').remove();
 				//$('#actual_event').append('<div data-role="content" data-theme="b" data-content-theme="c" id="actual_details"><p>Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description + '</p></div>');
-				$('#event_text').html('Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description);
-	        },
+				if (startDate == endDate) {
+					$('#event_text').html('Name: ' + data.Title + '</br></br>Location: ' + data.Name + '</br></br>Start Time: ' + startHour + '</br></br>End Time: ' + endHour + '</br></br>Contact: ' + data.Contact + '</br></br>Email: ' + data.Email_address + '</br></br>Phone Number: ' + data.Phone_number + '</br></br># of People Going: ' + data.People_Join + '</br></br>Description: ' + data.Description);
+	        	}
+				else {
+					$('#event_text').html('Name: ' + data.Title + '</br></br>Location: ' + data.Name + '</br></br>Start Time: ' + startHour + ' on ' + startDate + '</br></br>End Time: ' + endHour + ' on ' + endDate + '</br></br>Contact: ' + data.Contact + '</br></br>Email: ' + data.Email_address + '</br></br>Phone Number: ' + data.Phone_number + '</br></br># of People Going: ' + data.People_Join + '</br></br>Description: ' + data.Description);
+				}
+			},
 	        error: ajaxError
 		});
 		
