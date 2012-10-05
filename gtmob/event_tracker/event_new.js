@@ -152,7 +152,7 @@ $(function() {
 	$("#RSVPbutton").click(function(event) {
 		//event.preventDefault();
         $(this).text($(this).text() == 'RSVP' ? 'Un-RSVP' : 'RSVP');
-		//$(this).button("refresh");
+		$(this).button("refresh");
     });
 	
 	
