@@ -20,6 +20,7 @@ $(function() {
 				  $.mobile.changePage('#not_logged_in_dialog', 'pop', true, true);
 				}
 			}
+			error: ajaxError
 		});
 	});
 	
