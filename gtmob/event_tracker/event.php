@@ -692,7 +692,44 @@ function listUserRSVP() {
 	echo json_encode($result);
 }
 
-
+function listUserRSVPEvent($event_id) {
+	
+	global $_USER;
+	$acctName = $_USER['uid'];
+	
+	if (!is_numeric($_REST['event'])) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		die();
+	}
+	
+	$event_id = (int)$_REST['event'];
+	
+	// check if that event exists
+	
+	$dbQuery = sprintf("SELECT ID FROM `Event` WHERE ID = '%s'", mysql_real_escape_string($event_id));
+	$result = getDBResultNoHarm($dbQuery);
+	
+	if (count($result) == 0) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		header("Content-type: application/json");
+		echo json_encode(array('error_msg' => 'Event not found'));
+		die();
+	}
+	
+	$dbQuery = sprintf("SELECT ID FROM `RSVP` WHERE AcctName = '%s' AND EventID = '%s'",
+	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
+	
+	$result = getDBResultNoHarm($dbQuery);
+	if (count($result) == 0) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		header("Content-type: application/json");
+		echo json_encode(array('error_msg' => 'No RSVP record'));
+		die();
+	} else {
+		header("Content-type: application/json");
+		echo json_encode(array('RSVP' => 'Yes'));
+	}
+}
 
 function postEventRSVP() {
 	
@@ -706,6 +743,19 @@ function postEventRSVP() {
 	}
 	
 	$event_id = (int)$_REST['event'];
+	
+	// check if that event exists
+	
+	$dbQuery = sprintf("SELECT ID FROM `Event` WHERE ID = '%s'", mysql_real_escape_string($event_id));
+	$result = getDBResultNoHarm($dbQuery);
+	
+	if (count($result) == 0) {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		header("Content-type: application/json");
+		echo json_encode(array('error_msg' => 'Event not found'));
+		die();
+	}
+	
 	
 	$dbQuery = sprintf("INSERT INTO RSVP(AcctName, EventID) VALUES ('%s','%s'),",
 	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
