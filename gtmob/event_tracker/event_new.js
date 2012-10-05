@@ -100,10 +100,14 @@ $(function() {
 					});
 					i++;
 				});
-				if (i == 0) {
+	        },
+			statusCode: {
+				404: function() {
+					$('#no_rsvps').remove();
+					$('.rsvp_collapsible').remove();
 					$('#rsvps').append('<h3 id="no_rsvps">You do not have any RSVPs.</h3>');
 				}
-	        },
+			},
 	        error: ajaxError
 		});
 		$('.rsvp_list').listview();
