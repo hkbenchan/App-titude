@@ -12,11 +12,13 @@ $(function() {
 			url: '/user',
 			dataType: "json",
 			async: false,
-			success: function (data, text) {
+			success: function (data, textStatus, jqXHR) {
 				console.log("current user is "+data);
 			},
-			error: function (request, status, error) {
-				$.mobile.changePage('#not_logged_in_dialog', 'pop', true, true);
+			statusCode: {
+				404: function() {
+				  $.mobile.changePage('#not_logged_in_dialog', 'pop', true, true);
+				}
 			}
 		});
 	});
