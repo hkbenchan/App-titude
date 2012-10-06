@@ -16,7 +16,7 @@ $(function() {
 			},
 			statusCode: {
 				200: function() {
-				  $('#main_pages').append('<a href="#manage_events_page" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d">Manage Your Events</a>');
+				  $('#main_pages').append('<a href="#manage_events_page" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d">Manage Your Events</a>').(trigger('create');
 				}
 			},
 			error: ajaxError
