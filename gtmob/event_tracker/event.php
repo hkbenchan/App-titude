@@ -841,7 +841,6 @@ function isEventAdmin() {
 		header("Content-type: application/json");
 		echo json_encode(array('admin' => 'Yes'));
 	} else {
-		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 401 Unauthorized");
 		header("Content-type: application/json");
 		echo json_encode(array('admin' => 'No'));
 	}
