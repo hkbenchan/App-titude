@@ -7,6 +7,22 @@ $(function() {
  // Handler for .ready() called.
 	console.log('ready');
 	
+	$('#home_page').bind('pagebeforeshow',function(event, ui) {
+		$.ajax({
+			url: 'api/event/0/admin',
+			dataType: "json",
+			async: false,
+			success: function (data, textStatus, jqXHR) {
+			},
+			statusCode: {
+				200: function() {
+				  $('#main_pages').append(<a href="#manage_events_page" data-role='button' data-transition='slide' data-icon='arrow-r' data-iconpos='right' data-theme='d'>Manage Your Events</a>
+				}
+			},
+			error: ajaxError
+		});
+	});
+	
 	$('.page').bind('pagebeforeshow',function(event, ui) {
 		$.ajax({
 			url: '/user',
