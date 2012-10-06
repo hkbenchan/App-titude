@@ -7,9 +7,9 @@ $(function() {
  // Handler for .ready() called.
 	console.log('ready');
 	
-	$('#calendar').fullCalendar({
+	/*$('#calendar').fullCalendar({
         // put your options and callbacks here
-    })
+    })*/
 	
 	$('#home_page').bind('pagebeforeshow',function(event, ui) {
 		$.ajax({
