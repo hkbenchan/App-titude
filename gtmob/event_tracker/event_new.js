@@ -214,7 +214,8 @@ $(function() {
 	
 	
 	$("a[href=#view_event_page]").live("click", function(e) {
-	    if ($(this).data("event") != "undefined") {
+	    console.log("check undefined = " + $(this).data("event"));
+		if ($(this).data("event") != "undefined") {
 			event_ID = $(this).data("event");
 			console.log("event_ID = " + event_ID);
 		}
