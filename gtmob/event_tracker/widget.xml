@@ -10,12 +10,10 @@
 	<html file="event.html"/>
 	<html file="event_post.html"/>
 	<css file="event.css"/>
-	<css file="fullcalendar-1.5.4/fullcalendar/fullcalendar.css"/>
 	<!--
 	<javascript file="event.js"/>
 	-->
     <javascript file="event_new.js"/>
-	<javascript file="fullcalendar-1.5.4/fullcalendar/fullcalendar.js"/>
 	
     <library name="jquery.mobile"/> 
     <library name="gtmob"/>
