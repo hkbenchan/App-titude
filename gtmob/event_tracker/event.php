@@ -723,10 +723,10 @@ function listUserRSVPEvent($event_id) {
 	$result = getDBResultNoHarm($dbQuery);
 	if (count($result) == 0) {
 		header("Content-type: application/json");
-		echo json_encode(array('RSVP' => 'No'));
+		echo json_encode(array('RSVP' => 'No', 'event_ID' => $event_id));
 	} else {
 		header("Content-type: application/json");
-		echo json_encode(array('RSVP' => 'Yes'));
+		echo json_encode(array('RSVP' => 'Yes', 'event_ID' => $event_id));
 	}
 }
 
@@ -774,11 +774,11 @@ function postEventRSVP() {
 	$result = getDBResultInserted($dbQuery,'ID');
 	if (count($result) >0) {
 		header("Content-type: application/json");
-		echo json_encode(array('RSVP' => 'Yes'));
+		echo json_encode(array('RSVP' => 'Yes','event_ID' => $event_id));
 	} else {
 		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 500 Internal Server Error");
 		header("Content-type: application/json");
-		echo json_encode(array('RSVP' => 'No'));
+		echo json_encode(array('RSVP' => 'No','event_ID' => $event_id));
 	}
 	
 	
@@ -816,11 +816,11 @@ function deleteEventRSVP($event_id){
 	$result = getDBResultAffected($dbQuery);
 	if (count($result) >0) {
 		header("Content-type: application/json");
-		echo json_encode(array('RSVP' => 'No'));
+		echo json_encode(array('RSVP' => 'No','event_ID' => $event_id));
 	} else {
 		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 500 Internal Server Error");
 		header("Content-type: application/json");
-		echo json_encode(array('RSVP' => 'Yes'));
+		echo json_encode(array('RSVP' => 'Yes','event_ID' => $event_id));
 	}
 }
 
