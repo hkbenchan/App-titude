@@ -237,6 +237,37 @@ $(function() {
 		console.log($(".ui-page-active").attr("data-url"));
 	});
 	
+	
+	$('#manage_events_page').bind('pagebeforeshow',function(event, ui){
+		console.log('pagebeforeshow');
+		
+		//JQuery Events
+		$.ajax({
+			url: "api/event/0/admin/all",
+			dataType: "json",
+	        async: false,
+	        success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				var i = 0;
+				$('#hold_manage_events').remove();
+				$('#manageable_events').append('<div id="hold_manage_events"/>');
+				$.each(data.date,function(key,val) {
+					$('#hold_manage_events').append('<div data-role="collapsible" class="event_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">');
+					$.each(data[i],function(key,val) {
+						$('#event_manage_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						console.log(val.ID);
+					});
+					i++;
+				});
+	        },
+	        error: ajaxError
+		});
+		$('.event_manage_list').listview();
+		$('.event_manage_collapsible').collapsible();
+	});
+	
 	//Bind the add page button
 	/*
 	$('#add_button').bind('click', function() {
