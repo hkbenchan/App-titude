@@ -698,12 +698,12 @@ function listUserRSVPEvent($event_id) {
 	global $_USER;
 	$acctName = $_USER['uid'];
 	
-	if (!is_numeric($_REST['event'])) {
+	if (!is_numeric($event_id)) {
 		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
 		die();
 	}
 	
-	$event_id = (int)$_REST['event'];
+	$event_id = (int)$event_id;
 	
 	// check if that event exists
 	
