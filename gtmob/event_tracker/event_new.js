@@ -137,6 +137,28 @@ $(function() {
 		console.log("View Event Page");
 		console.log(ui);
 		
+		$.ajax({
+			//url: "api/event/"+event_id,
+			url: "api/event/0/rsvp/"+event_ID,
+			dataType: "json",
+	        async: false,
+			type: 'GET',
+	        success: function(data) {
+				console.log("RSVP data is " + data['RSVP']);
+				
+				if (data['RSVP'] == "No") {
+					$("#UNRSVPbutton").hide();
+					$("#RSVPbutton").show();
+				}
+				else {
+					$("#RSVPbutton").hide();
+					$("#UNRSVPbutton").show();
+				}
+					
+			},
+	        error: ajaxError
+		});
+		
 		//var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		//console.log("Event ID:" + event_id);
 		//JQuery Events
@@ -162,32 +184,6 @@ $(function() {
 				else {
 					$('#event_text').html('Name: ' + data.Title + '</br></br>Location: ' + data.Name + '</br></br>Start Time: ' + startHour + ' on ' + startDate + '</br></br>End Time: ' + endHour + ' on ' + endDate + '</br></br>Contact: ' + data.Contact + '</br></br>Email: ' + data.Email_address + '</br></br>Phone Number: ' + data.Phone_number + '</br></br># of People Going: ' + data.People_Join + '</br></br>Description: ' + data.Description);
 				}
-			},
-	        error: ajaxError
-		});
-		
-		
-		$('#RSVPbutton').attr('data-event', event_ID);
-		$('#UNRSVPbutton').attr('data-event', event_ID);
-		// checking for rsvp to see which button to display
-		$.ajax({
-			//url: "api/event/"+event_id,
-			url: "api/event/0/rsvp/"+event_ID,
-			dataType: "json",
-	        async: false,
-			type: 'GET',
-	        success: function(data) {
-				console.log("RSVP data is " + data['RSVP']);
-				
-				if (data['RSVP'] == "No") {
-					$("#UNRSVPbutton").hide();
-					$("#RSVPbutton").show();
-				}
-				else {
-					$("#RSVPbutton").hide();
-					$("#UNRSVPbutton").show();
-				}
-					
 			},
 	        error: ajaxError
 		});
