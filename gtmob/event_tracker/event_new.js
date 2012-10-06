@@ -18,11 +18,11 @@ $(function() {
 			async: false,
 			success: function (data, textStatus, jqXHR) {
 				if (data.admin == "Yes" && $('#manage_events_button').length == 0) {
-					$('#mainpages').append('<a href="#manage_events_page" id="manage_events_button" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d" style="display: none;">Manage Your Events</a>').trigger('create');
+					$('#main_pages').append('<a href="#manage_events_page" id="manage_events_button" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d" style="display: none;">Manage Your Events</a>').trigger('create');
 				} else {
 					$('#manage_events_button').remove();
 				}
-				$('#mainpages').controlgroup('refresh');
+				$('#main_pages').controlgroup('refresh');
 			},
 			error: ajaxError
 		});
