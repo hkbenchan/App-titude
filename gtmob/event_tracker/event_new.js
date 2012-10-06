@@ -167,8 +167,8 @@ $(function() {
 		});
 		
 		
-		$('#RSVPbutton').attr('data-event', event_ID);
-		$('#UNRSVPbutton').attr('data-event', event_ID);
+		//$('#RSVPbutton').attr('data-event', event_ID);
+		//$('#UNRSVPbutton').attr('data-event', event_ID);
 		// checking for rsvp to see which button to display
 		$.ajax({
 			//url: "api/event/"+event_id,
@@ -178,6 +178,7 @@ $(function() {
 			type: 'GET',
 	        success: function(data) {
 				console.log("RSVP data is " + data['RSVP']);
+				event_ID = data['event_ID'];
 				
 				if (data['RSVP'] == "No") {
 					$("#UNRSVPbutton").hide();
@@ -212,8 +213,13 @@ $(function() {
 	
 	
 	$("a[href=#view_event_page]").live("click", function(e) {
-	    event_ID = $(this).data("event");
-		console.log("event_ID = " + event_ID);
+	    if ($(this).data("event") != "undefined") {
+			event_ID = $(this).data("event");
+			console.log("event_ID = " + event_ID);
+		}
+		else {
+			console.log("Event ID not set bc undefined.")
+		}
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
 	    //$("#list").page();                     
