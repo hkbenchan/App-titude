@@ -682,9 +682,10 @@ function listUserRSVP() {
 	global $_USER;
 	$acctName = $_USER['uid'];
 	
-	$dbQuery = sprintf("SELECT ID, Title, StartTime from `Event`
+	$dbQuery = sprintf("SELECT ID, Title, StartTime, EndTime from `Event`
 	JOIN `RSVP` ON `Event`.ID = `RSVP`.EventID
-	WHERE `RSVP`.AcctName = '%s' ORDER BY StartTime ASC", mysql_real_escape_string($acctName));
+	WHERE `RSVP`.AcctName = '%s' AND `Event`.StartTime >= CURRENT_TIMESTAMP
+	ORDER BY StartTime ASC", mysql_real_escape_string($acctName));
 			
 	$tmp = getDBResultsArray($dbQuery);
     $result = groupByStartDate($tmp);
