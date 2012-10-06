@@ -141,7 +141,7 @@ $(function() {
 			url: "api/event/0/rsvp/"+event_ID,
 			dataType: "json",
 	        async: false,
-			type: 'POST',
+			type: 'GET',
 	        success: function(data) {
 				console.log("RSVP data is " + data['RSVP']);
 				
