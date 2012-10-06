@@ -119,9 +119,28 @@ $(function() {
 		event.preventDefault();
 		console.log("View Event Page");
 		console.log(ui);
-		$("#UNRSVPbutton").hide();
-		$("#RSVPbutton").show();
 		
+		$.ajax({
+			//url: "api/event/"+event_id,
+			url: "api/event/"+event_ID+"/rsvp/",
+			dataType: "json",
+	        async: false,
+			type: 'GET',
+	        success: function(data) {
+				console.log("RSVP data is " + data['RSVP']);
+				
+				if (data['RSVP'] == "No") {
+					$("#UNRSVPbutton").hide();
+					$("#RSVPbutton").show();
+				}
+				else {
+					$("#RSVPbutton").hide();
+					$("#UNRSVPbutton").show();
+				}
+					
+			},
+	        error: ajaxError
+		});
 		
 		//var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		//console.log("Event ID:" + event_id);
