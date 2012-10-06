@@ -162,6 +162,7 @@ $(function() {
 				});
 				console.log(events);
 				$('#calendar').fullCalendar('addEventSource',events);
+				$('#calendar').fullCalendar('rerenderEvents');
 	        },
 	        error: ajaxError
 		});
