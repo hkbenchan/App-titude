@@ -24,7 +24,7 @@ $(function() {
 				}
 				$('#mainpages').controlgroup('refresh');
 			},
-			error: ajaxerror
+			error: ajaxError
 		});
 	});
 	
