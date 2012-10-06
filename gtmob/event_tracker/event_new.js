@@ -188,10 +188,42 @@ $(function() {
 	});
 	
 	
+	$('#RSVPbutton').bind('click', function() 
+	{ console.log("RSVP Button");
+	      	$.ajax({
+		    	url: "api/event/"+event_ID"/rsvp/",
+			dataType: "json",
+			async: false, 
+			type: 'POST',
+			success: function(data) {
+				console.log("RSVPed");
+				$("#RSVPbutton").hide();
+				$("#UNRSVPbutton").show();
+			},
+			error: ajaxError
+	       	});
+	});
+	
+	$('#UNRSVPbutton').bind('click', function() 
+	{ console.log("UNRSVP Button");
+	      	$.ajax({
+		    	url: "api/event/"+event_ID+"/rsvp/",
+			dataType: "json",
+			async: false, 
+			type: 'DELETE',
+			success: function(data) {
+				console.log("RSVPed");
+				$("#UNRSVPbutton").hide();
+				$("#RSVPbutton").show();
+			},
+			error: ajaxError
+	       	});
+	});
+	/*
 	$("#RSVPbutton").click(function(event) {
 		$("#RSVPbutton").hide();
 		$("#UNRSVPbutton").show();
-		/*
+		
 		//event.preventDefault();
         if($(this).text() == 'RSVP'){
 			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="UnRSVPbutton"><h3>Un-RSVP</h3></a>');
@@ -201,14 +233,16 @@ $(function() {
 		}
 		
 		//$(this).button("refresh");
-		*/
+		
     });
-
+	*/
+	
+	/*
 	$("#UNRSVPbutton").click(function(event) {
 		$("#UNRSVPbutton").hide();
 		$("#RSVPbutton").show();
 	});
-	
+	*/
 	
 	
 	
