@@ -118,10 +118,10 @@ function getEvent($id) {
 			JOIN `Creator` ON `Event`.CreatorID = `Creator`.ID
 			JOIN `Location`ON `Event`.LocationID = `Location`.ID
 			JOIN `EventType` ON `Event`.EventTypeID = `EventType`.ID
-		    JOIN `RSVP` ON `Event`.ID = `RSVP`.EventID
-	        JOIN `CreatorOwn` ON `CreatorOwn`.CreatorID = `Event`.CreatorID
+		    JOIN `CreatorOwn` ON `CreatorOwn`.CreatorID = `Event`.CreatorID
 	        JOIN `AuthUser` ON `CreatorOwn`.AuthUserID = `AuthUser`.ID
 	        JOIN `Organization` ON `AuthUser`.OnBehalf = `Organization`.ID
+			LEFT JOIN `RSVP` ON `Event`.ID = `RSVP`.EventID
 			WHERE `Event`.ID = '%s'", mysql_real_escape_string($id));
 
 	$result=getDBResultRecord($dbQuery);
