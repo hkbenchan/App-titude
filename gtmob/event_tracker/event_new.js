@@ -153,7 +153,7 @@ $(function() {
 				$.each(data,function(key,val) {
 					var begin = val.StartTime.replace(/\s/g, "T").concat("-05:00");
 					var finish = val.EndTime.replace(/\s/g, "T").concat("-05:00");
-					events.push({title:val.Title,start=begin,end=finish,url='#view_event_page'});
+					events.push({title:val.Title,start:begin,end:finish,url:'#view_event_page'});
 				});
 				$('#calendar').fullCalendar('addEventSource',events);
 	        },
