@@ -757,7 +757,7 @@ function postEventRSVP() {
 	
 	// check if the user already RSVP the event
 	
-	$dbQuery = sprintf("SELECT ID FROM `RSVP` WHERE ID = '%s' and AcctName = '%s'",
+	$dbQuery = sprintf("SELECT EventID FROM `RSVP` WHERE EventID = '%s' and AcctName = '%s'",
 	mysql_real_escape_string($event_id), mysql_real_escape_string($acctName));
 	$result = getDBResultNoHarm($dbQuery);
 	
