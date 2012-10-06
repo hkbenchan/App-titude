@@ -122,7 +122,7 @@ $(function() {
 		
 		$.ajax({
 			//url: "api/event/"+event_id,
-			url: "api/event/"+event_ID+"/rsvp/",
+			url: "api/event/"+event_ID+"/rsvp",
 			dataType: "json",
 	        async: false,
 			type: 'GET',
@@ -210,7 +210,7 @@ $(function() {
 	$('#RSVPbutton').bind('click', function() 
 	{ console.log("RSVP Button");
 	      	$.ajax({
-		    	url: "api/event/"+event_ID+"/rsvp/",
+		    	url: "api/event/"+event_ID+"/rsvp",
 			dataType: "json",
 			async: false, 
 			type: 'POST',
@@ -226,7 +226,7 @@ $(function() {
 	$('#UNRSVPbutton').bind('click', function() 
 	{ console.log("UNRSVP Button");
 	      	$.ajax({
-		    	url: "api/event/"+event_ID+"/rsvp/",
+		    	url: "api/event/"+event_ID+"/rsvp",
 			dataType: "json",
 			async: false, 
 			type: 'DELETE',
