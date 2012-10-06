@@ -2,7 +2,7 @@ var current_page; // indicator for the page view
 var pageViewLimit = 20;
 var event_ID;
 var category_ID;
-var rsvped_events = [];
+var rsvped_events = {events:[]};
 
 $(function() {
  // Handler for .ready() called.
@@ -150,16 +150,17 @@ $(function() {
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
-				rsvped_events = [];
+				var eventArray = [];
 				$.each(data,function(key,val) {
 					$.each(val,function(key,val) {
 						if (val.StartTime != undefined) {
 							var begin = val.StartTime.replace(/\s/g, "T").concat("-05:00");
 							var finish = val.EndTime.replace(/\s/g, "T").concat("-05:00");
-							rsvped_events.push({title:val.Title,start:begin,end:finish,url:'#view_event_page',id:val.ID});
+							eventArray.push({title:val.Title,start:begin,end:finish,url:'#view_event_page',id:val.ID});
 						}
 					});
 				});
+				rsvped_events = {events:eventArray}
 				console.log(rsvped_events);
 				$('#calendar').fullCalendar('refetchEvents');
 	        },
