@@ -2,6 +2,7 @@ var current_page; // indicator for the page view
 var pageViewLimit = 20;
 var event_ID;
 var category_ID;
+var rsvped_events = [];
 
 $(function() {
  // Handler for .ready() called.
@@ -12,6 +13,7 @@ $(function() {
 			event_ID = calEvent.id;
 		}
 	});
+	$('#calendar').fullCalendar('addEventSource',rsvped_events);
 	
 	$('#home_page').bind('pagebeforeshow',function(event, ui) {
 		$.ajax({
@@ -148,20 +150,17 @@ $(function() {
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
-				$('#calendar').fullCalendar('removeEventSource',events);
-				var events = [];
+				rsvped_events = [];
 				$.each(data,function(key,val) {
 					$.each(val,function(key,val) {
 						if (val.StartTime != undefined) {
-							console.log(val);
 							var begin = val.StartTime.replace(/\s/g, "T").concat("-05:00");
 							var finish = val.EndTime.replace(/\s/g, "T").concat("-05:00");
-							events.push({title:val.Title,start:begin,end:finish,url:'#view_event_page'});
+							rsvped_events.push({title:val.Title,start:begin,end:finish,url:'#view_event_page',id=val.ID});
 						}
 					});
 				});
-				console.log(events);
-				$('#calendar').fullCalendar('addEventSource',events);
+				console.log(rsvped_events);
 	        },
 	        error: ajaxError
 		});
