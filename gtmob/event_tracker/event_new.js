@@ -16,11 +16,12 @@ $(function() {
 			},
 			statusCode: {
 				200: function() {
-				  $('#main_pages').append('<a href="#manage_events_page" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d">Manage Your Events</a>').trigger('create');
-				  $('#main_pages').controlgroup('refresh');
+					$('#manage_events_button').show();
 				}
 			},
-			error: ajaxError
+			error: function(data) {
+				$('#manage_events_button').hide();
+			}
 		});
 	});
 	
