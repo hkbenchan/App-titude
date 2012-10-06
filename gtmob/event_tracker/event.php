@@ -872,7 +872,7 @@ function listEventRSVP($event_id = 0) {
 	$dbQuery = sprintf("SELECT * FROM `RSVP`
 	WHERE EventID = '%s' ORDER BY AcctName ASC", mysql_real_escape_string($event_id));
 	
-	$result = getDBResultsArray($dbQuery);
+	$result = getDBResultNoHarm($dbQuery);
 	header("Content-type: application/json");
 	echo json_encode($result);
 	
