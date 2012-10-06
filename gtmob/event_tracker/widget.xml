@@ -10,6 +10,7 @@
 	<html file="event.html"/>
 	<html file="event_post.html"/>
 	<css file="event.css"/>
+	<css file="jquery-ui-1.8.24.custom.css"/>
 	<css file="fullcalendar-1.5.4/fullcalendar/fullcalendar.css"/>
 	<!--
 	<javascript file="event.js"/>
