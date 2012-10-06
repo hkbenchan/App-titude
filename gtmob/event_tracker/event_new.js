@@ -299,8 +299,20 @@ $(function() {
 	/*****************Admin*********************/
 	// get the event list that they can manage
 	/*
-	
-	
+	$.ajax({
+		url: 'api/event/0/admin/all',
+		dataType: 'JSON',
+		async: false,
+		success: function(data) {
+			console.log(data);
+			$.each(data,function(key,val) {
+			console.log(key);
+			});
+		},
+		error: function(data) {
+			console.log("Event " + data.statusText);
+		}
+	});
 	*/
 	
 	// get the user list for a specific event
