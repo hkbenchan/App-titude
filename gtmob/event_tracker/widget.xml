@@ -14,8 +14,8 @@
 	<!--
 	<javascript file="event.js"/>
 	-->
-    <javascript file="event_new.js"/>
 	<javascript file="fullcalendar-1.5.4/fullcalendar/fullcalendar.js"/>
+    <javascript file="event_new.js"/>
 	
     <library name="jquery.mobile"/> 
     <library name="gtmob"/>
