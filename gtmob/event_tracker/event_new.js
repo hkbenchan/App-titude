@@ -120,6 +120,7 @@ $(function() {
 		console.log("View Event Page");
 		console.log(ui);
 		$("#UNRSVPbutton").hide();
+		$("#RSVPbutton").show();
 		
 		
 		//var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
