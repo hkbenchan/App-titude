@@ -8,8 +8,10 @@ $(function() {
 	console.log('ready');
 	
 	$('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
+		eventClick: function(calEvent, jsEvent, view) {
+			event_ID = calEvent.id;
+		}
+	});
 	
 	$('#home_page').bind('pagebeforeshow',function(event, ui) {
 		$.ajax({
@@ -136,6 +138,28 @@ $(function() {
 		$('.rsvp_collapsible').collapsible();
 	});
 
+	$('#calendar_page').bind('pagebeforeshow',function(event, ui){
+		console.log('pagebeforeshow');
+		
+		//JQuery Events
+		$.ajax({
+			url: "api/event/0/rsvp/",
+			dataType: "json",
+	        async: false,
+	        success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				$('#calendar').fullCalendar('removeEventSource',events);
+				var events;
+				$.each(data,function(key,val) {
+					var begin = val.StartTime.replace(/\s/g, "T").concat("-05:00");
+					var finish = val.EndTime.replace(/\s/g, "T").concat("-05:00");
+					events.push({title:val.Title,start=begin,end=finish,url='#view_event_page'});
+				});
+				$('#calendar').fullCalendar('addEventSource',events);
+	        },
+	        error: ajaxError
+		});
+	});
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		event.preventDefault();
