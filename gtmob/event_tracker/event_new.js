@@ -7,10 +7,6 @@ $(function() {
  // Handler for .ready() called.
 	console.log('ready');
 	
-	$('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
-	
 	$('#home_page').bind('pagebeforeshow',function(event, ui) {
 		$.ajax({
 			url: 'api/event/0/admin',
