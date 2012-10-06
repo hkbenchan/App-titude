@@ -12,9 +12,11 @@
 	<css file="event.css"/>
 	<css file="jquery-ui-1.8.24.custom.css"/>
 	<css file="fullcalendar-1.5.4/fullcalendar/fullcalendar.css"/>
+	<css file="jquery.ui.timepicker.css"/>
 	<!--
 	<javascript file="event.js"/>
 	-->
+	<javascript file="jquery.ui.timepicker.js"/>
 	<javascript file="fullcalendar-1.5.4/fullcalendar/fullcalendar.js"/>
     <javascript file="event_new.js"/>
 	
