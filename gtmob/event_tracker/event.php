@@ -717,7 +717,7 @@ function listUserRSVPEvent($event_id) {
 		die();
 	}
 	
-	$dbQuery = sprintf("SELECT ID FROM `RSVP` WHERE AcctName = '%s' AND EventID = '%s'",
+	$dbQuery = sprintf("SELECT EventID FROM `RSVP` WHERE AcctName = '%s' AND EventID = '%s'",
 	mysql_real_escape_string($acctName), mysql_real_escape_string($event_id));
 	
 	$result = getDBResultNoHarm($dbQuery);
@@ -776,6 +776,7 @@ function postEventRSVP() {
 		header("Content-type: application/json");
 		echo json_encode(array('RSVP' => 'Yes'));
 	} else {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 500 Internal Server Error");
 		header("Content-type: application/json");
 		echo json_encode(array('RSVP' => 'No'));
 	}
@@ -817,6 +818,7 @@ function deleteEventRSVP($event_id){
 		header("Content-type: application/json");
 		echo json_encode(array('RSVP' => 'No'));
 	} else {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 500 Internal Server Error");
 		header("Content-type: application/json");
 		echo json_encode(array('RSVP' => 'Yes'));
 	}
@@ -839,6 +841,7 @@ function isEventAdmin() {
 		header("Content-type: application/json");
 		echo json_encode(array('admin' => 'Yes'));
 	} else {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 401 Unauthorized");
 		header("Content-type: application/json");
 		echo json_encode(array('admin' => 'No'));
 	}
