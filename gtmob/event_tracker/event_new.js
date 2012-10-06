@@ -161,10 +161,14 @@ $(function() {
 					});
 				});
 				console.log(events);
-				$('#calendar').fullCalendar('addEventSource',events).fullCalendar('rerenderEvents');
+				$('#calendar').fullCalendar('addEventSource',events);
 	        },
 	        error: ajaxError
 		});
+	});
+	
+	$('#calendar_page').bind('pageshow',function(event, ui){
+		$('#calendar').fullCalendar('rerenderEvents');
 	});
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
