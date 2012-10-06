@@ -161,8 +161,7 @@ $(function() {
 					});
 				});
 				console.log(events);
-				$('#calendar').fullCalendar('addEventSource',events);
-				$('#calendar').fullCalendar('rerenderEvents');
+				$('#calendar').fullCalendar('addEventSource',events).fullCalendar('rerenderEvents');
 	        },
 	        error: ajaxError
 		});
