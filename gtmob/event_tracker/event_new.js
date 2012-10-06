@@ -186,6 +186,7 @@ $(function() {
 	
 	
 	$("#RSVPbutton").click(function(event) {
+		/*
 		//event.preventDefault();
         if($(this).text() == 'RSVP'){
 			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="UnRSVPbutton"><h3>Un-RSVP</h3></a>');
@@ -195,6 +196,7 @@ $(function() {
 		}
 		
 		//$(this).button("refresh");
+		*/
     });
 	
 	
