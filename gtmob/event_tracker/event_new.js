@@ -19,14 +19,10 @@ $(function() {
 			success: function (data, textStatus, jqXHR) {
 				if (data.admin == "Yes") {
 					$('#manage_events_button').show();
+				} else {
+					$('#manage_events_button').hide();
 				}
 				$('#main_pages').controlgroup('refresh');
-			},
-			statusCode: {
-				401: function() {
-				  $('#manage_events_button').hide();
-				  $('#main_pages').controlgroup('refresh');
-				}
 			},
 			error: ajaxError
 		});
