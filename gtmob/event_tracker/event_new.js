@@ -149,12 +149,18 @@ $(function() {
 	        success: function(data, textStatus, jqXHR) {
 				console.log(data);
 				$('#calendar').fullCalendar('removeEventSource',events);
-				var events;
+				var events = [];
 				$.each(data,function(key,val) {
-					var begin = val.StartTime.replace(/\s/g, "T").concat("-05:00");
-					var finish = val.EndTime.replace(/\s/g, "T").concat("-05:00");
-					events.push({title:val.Title,start:begin,end:finish,url:'#view_event_page'});
+					$.each(val,function(key,val) {
+						if (val.StartTime != undefined) {
+							console.log(val);
+							var begin = val.StartTime.replace(/\s/g, "T").concat("-05:00");
+							var finish = val.EndTime.replace(/\s/g, "T").concat("-05:00");
+							events.push({title:val.Title,start:begin,end:finish,url:'#view_event_page'});
+						}
+					});
 				});
+				console.log(events);
 				$('#calendar').fullCalendar('addEventSource',events);
 	        },
 	        error: ajaxError
