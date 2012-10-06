@@ -21,12 +21,14 @@ $(function() {
 			statusCode: {
 				200: function() {
 					if ($('#manage_events_button').length == 0) {
-						$('mainpages').append('<a href="#manage_events_page" id="manage_events_button" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d" style="display: none;">Manage Your Events</a>').trigger('create');
+						$('#mainpages').append('<a href="#manage_events_page" id="manage_events_button" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d" style="display: none;">Manage Your Events</a>').trigger('create');
+						$('#mainpages').controlgroup('refresh');
 					}
 				}
 			},
 			error: function(data) {
 				$('#manage_events_button').remove();
+				$('#mainpages').controlgroup('refresh');
 			}
 		});
 	});
