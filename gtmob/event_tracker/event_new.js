@@ -162,10 +162,10 @@ $(function() {
 				//$('#actual_details').remove();
 				//$('#actual_event').append('<div data-role="content" data-theme="b" data-content-theme="c" id="actual_details"><p>Name: ' + data.Title + '</br></br>Contact: ' + data.Email_address + '</br></br>Location: ' + data.Name + '</br></br>Time: ' + hour + '</br></br>Description: ' + data.Description + '</p></div>');
 				if (startDate == endDate) {
-					$('#event_text').html('Name: ' + data.Title + '</br></br>Location: ' + data.Name + '</br></br>Start Time: ' + startHour + '</br></br>End Time: ' + endHour + '</br></br>Contact: ' + data.Contact + '</br></br>Email: ' + data.Email_address + '</br></br>Phone Number: ' + data.Phone_number + '</br></br># of People Going: ' + data.People_Join + '</br></br>Description: ' + data.Description);
+					$('#event_text').html('Name: ' + data.Title + '</br></br>Location: ' + data.LocationName + '</br></br>Start Time: ' + startHour + '</br></br>End Time: ' + endHour + '</br></br>Contact: ' + data.Contact + '</br></br>Email: ' + data.Email_address + '</br></br>Phone Number: ' + data.Phone_number + '</br></br># of People Going: ' + data.People_Join + '</br></br>Description: ' + data.Description);
 	        	}
 				else {
-					$('#event_text').html('Name: ' + data.Title + '</br></br>Location: ' + data.Name + '</br></br>Start Time: ' + startHour + ' on ' + startDate + '</br></br>End Time: ' + endHour + ' on ' + endDate + '</br></br>Contact: ' + data.Contact + '</br></br>Email: ' + data.Email_address + '</br></br>Phone Number: ' + data.Phone_number + '</br></br># of People Going: ' + data.People_Join + '</br></br>Description: ' + data.Description);
+					$('#event_text').html('Name: ' + data.Title + '</br></br>Location: ' + data.LocationName + '</br></br>Start Time: ' + startHour + ' on ' + startDate + '</br></br>End Time: ' + endHour + ' on ' + endDate + '</br></br>Contact: ' + data.Contact + '</br></br>Email: ' + data.Email_address + '</br></br>Phone Number: ' + data.Phone_number + '</br></br># of People Going: ' + data.People_Join + '</br></br>Description: ' + data.Description);
 				}
 			},
 	        error: ajaxError
