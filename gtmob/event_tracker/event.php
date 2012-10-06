@@ -191,7 +191,7 @@ function postEvent($event = null) {
 		preprocessDataCheck("EndTime","End Time cannot be empty");
 		preprocessDataCheck("EventTypeDesc","Event Type Name cannot be empty");
 		
-		// StartTime <= EndTime
+		// now<= StartTime <= EndTime
 		$date_s = strtotime($_POST['StartTime']);
 		$date_e = strtotime($_POST['EndTime']);
 		if ($date_s > $date_e)
@@ -849,7 +849,8 @@ function isEventAdmin() {
 
 
 function listEventRSVP($event_id = 0) {
-	if (!is_numeric($event_id)) {
+
+	if ((!is_numeric($event_id)) && ($event_id != 'all')) {
 		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
 		
 		die();
@@ -858,24 +859,60 @@ function listEventRSVP($event_id = 0) {
 	global $_USER;
 	$acctName = $_USER['uid'];
 	
-	// only that organization can get this, so check permission
+	if (is_numeric($event_id)) {
+		// only that organization can get this, so check permission
 	
-	if (!eventPermissionRight($event_id)) {
-		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
-		header("Content-type: application/json");
-        echo json_encode(array('error_msg'=> 'You do not have the permission.'));
-		die();
-	}
+		if (!eventPermissionRight($event_id)) {
+			$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+			header("Content-type: application/json");
+	        echo json_encode(array('error_msg'=> 'You do not have the permission.'));
+			die();
+		}
 
-	// it passes the permission test
+		// it passes the permission test
 	
-	$dbQuery = sprintf("SELECT * FROM `RSVP`
-	WHERE EventID = '%s' ORDER BY AcctName ASC", mysql_real_escape_string($event_id));
+		$dbQuery = sprintf("SELECT * FROM `RSVP`
+		WHERE EventID = '%s' ORDER BY AcctName ASC", mysql_real_escape_string($event_id));
 	
-	$result = getDBResultNoHarm($dbQuery);
-	header("Content-type: application/json");
-	echo json_encode($result);
+		$result = getDBResultNoHarm($dbQuery);
+		header("Content-type: application/json");
+		echo json_encode($result);
+	} else {
+		// only authuser can get this, so check permission
+		$dbQuery = sprintf("SELECT `Organization`.OrganizationName From `AuthUser`
+		JOIN `Organization` ON `AuthUser`.OnBehalf = `Organization`.ID
+		WHERE `AuthUser`.AcctName = '%s'", mysql_real_escape_string($acctName));
+		$result = getDBResultNoHarm($dbQuery);
+		
+		if (count($result)>0) {
+			// can get the list 
+			
+			$dbQuery = "SELECT `Event`.ID, `Event`.Title, `Event`.StartTime, `Event`.EndTime FROM `Event`
+			JOIN `CreatorOwn` ON `Event`.CreatorID = `CreatorOwn`.CreatorID
+			JOIN `AuthUser` ON `CreatorOwn`.AuthUserID = `AuthUser`.ID
+			JOIN `Organization` ON `AuthUser`.OnBehalf = `Organization`.ID
+			WHERE `Organization`.OrganizationName = '".mysql_real_escape_string($result[0]['OrganizationName'])."'";
+			
+			for (int i=1; i<count($result); i++) {
+				$dbQuery += " Or `Organization`.OrganizationName = '" .mysql_real_escape_string($result[1]['OrganizationName'])."'";
+			}
+			
+			$dbQuery += "ORDER BY `Event`.StartTime ASC";
+			
+			$tmp = getDBResultsArray($dbQuery);
+	        $result = groupByStartDate($tmp);
+
+	        header("Content-type: application/json");
+	        echo json_encode($result);
 	
+		} else {
+			$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+			header("Content-type: application/json");
+	        echo json_encode(array('error_msg'=> 'You do not have the permission.'));
+			die();
+		}
+		
+	}
 }
 
 

@@ -297,6 +297,12 @@ $(function() {
 	*/
 	
 	/*****************Admin*********************/
+	// get the event list that they can manage
+	/*
+	
+	
+	*/
+	
 	// get the user list for a specific event
 	/*
 	$.ajax({
