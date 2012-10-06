@@ -30,19 +30,36 @@
 		<command id='rsvp' security='protected'>
 			<description><![CDATA[This is how you can manage with RSVP record]]></description>
 			<index>
-				<description><![CDATA[This is how you can get events rsvp record for a specific event -- 
-					only creator can see this]]></description>
-				<action file='event.php'><![CDATA[listEventRSVP($_REST['event']);]]></action>
+				<description><![CDATA[This is how you can get events rsvp record list for a specific user]]></description>
+				<action file='event.php'><![CDATA[listUserRSVP();]]></action>
 			</index>
+			<get>
+				<description><![CDATA[This is how you can check an event rsvp record from a user]]></description>
+				<action file='event.php'><![CDATA[listUserRSVPEvent($_REST['event/rsvp']);]]></action>
+			</get>
 			<post>
 				<description><![CDATA[This is how you can send rsvp for a specific event]]></description>
 				<action file='event.php'><![CDATA[postEventRSVP();]]></action>
 			</post>
 			<delete>
 				<description><![CDATA[This is how you can delete a rsvp for a specific event]]></description>
-				<action file='event.php'><![CDATA[deleteEventRSVP($_DELETE['event']);]]></action>
+				<action file='event.php'><![CDATA[deleteEventRSVP($_REST['event']);]]></action>
 			</delete>
 		</command>
+		
+		<command id='admin' security='protected'>
+			<description><![CDATA[This is how creator can manage with their own events]]></description>
+			<index>
+				<description><![CDATA[This is how you can check if you are admin]]></description>
+				<action file='event.php'><![CDATA[isEventAdmin();]]></action>
+			</index>
+			<get>
+				<description><![CDATA[This is how you can get events rsvp record for a specific event -- 
+					only creator can see this]]></description>
+				<action file='event.php'><![CDATA[listEventRSVP($_REST['event']);]]></action>
+			</get>
+		</command>
+		
 		
 		<index>
 			<description><![CDATA[This is how you can get a listing of all events (filter all past events)]]></description>

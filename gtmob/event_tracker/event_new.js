@@ -7,17 +7,37 @@ $(function() {
  // Handler for .ready() called.
 	console.log('ready');
 	
+	$('#home_page').bind('pagebeforeshow',function(event, ui) {
+		$.ajax({
+			url: 'api/event/0/admin',
+			dataType: "json",
+			async: false,
+			success: function (data, textStatus, jqXHR) {
+			},
+			statusCode: {
+				200: function() {
+				  $('#main_pages').append('<a href="#manage_events_page" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d">Manage Your Events</a>').trigger('create');
+				  $('#main_pages').controlgroup('refresh');
+				}
+			},
+			error: ajaxError
+		});
+	});
+	
 	$('.page').bind('pagebeforeshow',function(event, ui) {
 		$.ajax({
 			url: '/user',
 			dataType: "json",
 			async: false,
-			success: function (data, text) {
+			success: function (data, textStatus, jqXHR) {
 				console.log("current user is "+data);
 			},
-			error: function (request, status, error) {
-				$.mobile.changePage('#not_logged_in_dialog', 'pop', true, true);
-			}
+			statusCode: {
+				404: function() {
+				  $.mobile.changePage('#not_logged_in_dialog', 'pop', true, true);
+				}
+			},
+			error: ajaxError
 		});
 	});
 	
@@ -75,11 +95,69 @@ $(function() {
 	});
 	
 	
+	$('#view_rsvps_page').bind('pagebeforeshow',function(event, ui){
+		console.log('pagebeforeshow');
+		
+		//JQuery Events
+		$.ajax({
+			url: "api/event/0/rsvp/",
+			dataType: "json",
+	        async: false,
+	        success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				var i = 0;
+				$('#no_rsvps').remove();
+				$('.rsvp_collapsible').remove();
+				$.each(data.date,function(key,val) {
+					$('#rsvps').append('<div data-role="collapsible" class="rsvp_collapsible" id="rsvp_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					$('#rsvp_collapsible' + i).append('<ul data-role="listview" class="rsvp_list" id="rsvp_list' + i + '" data-inset="true" data-theme="d">');
+					$.each(data[i],function(key,val) {
+						$('#rsvp_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						console.log(val.ID);
+					});
+					i++;
+				});
+	        },
+			statusCode: {
+				404: function() {
+					$('#no_rsvps').remove();
+					$('.rsvp_collapsible').remove();
+					$('#rsvps').append('<h3 id="no_rsvps">You do not have any RSVPs.</h3>');
+				}
+			},
+	        error: ajaxError
+		});
+		$('.rsvp_list').listview();
+		$('.rsvp_collapsible').collapsible();
+	});
+
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		event.preventDefault();
 		console.log("View Event Page");
 		console.log(ui);
+		
+		$.ajax({
+			//url: "api/event/"+event_id,
+			url: "api/event/0/rsvp/"+event_ID,
+			dataType: "json",
+	        async: false,
+			type: 'GET',
+	        success: function(data) {
+				console.log("RSVP data is " + data['RSVP']);
+				
+				if (data['RSVP'] == "No") {
+					$("#UNRSVPbutton").hide();
+					$("#RSVPbutton").show();
+				}
+				else {
+					$("#RSVPbutton").hide();
+					$("#UNRSVPbutton").show();
+				}
+					
+			},
+	        error: ajaxError
+		});
 		
 		//var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		//console.log("Event ID:" + event_id);
@@ -146,6 +224,61 @@ $(function() {
 	});
 	
 	
+	$('#RSVPbutton').bind('click', function() 
+	{ console.log("RSVP Button");
+	      	$.ajax({
+		    	url: "api/event/"+event_ID+"/rsvp",
+			dataType: "json",
+			async: false, 
+			type: 'POST',
+			success: function(data) {
+				console.log("RSVPed");
+				$("#RSVPbutton").hide();
+				$("#UNRSVPbutton").show();
+			},
+			error: ajaxError
+	       	});
+	});
+	
+	$('#UNRSVPbutton').bind('click', function() 
+	{ console.log("UNRSVP Button");
+	      	$.ajax({
+		    	url: "api/event/"+event_ID+"/rsvp",
+			dataType: "json",
+			async: false, 
+			type: 'DELETE',
+			success: function(data) {
+				console.log("RSVPed");
+				$("#UNRSVPbutton").hide();
+				$("#RSVPbutton").show();
+			},
+			error: ajaxError
+	       	});
+	});
+	/*
+	$("#RSVPbutton").click(function(event) {
+		$("#RSVPbutton").hide();
+		$("#UNRSVPbutton").show();
+		
+		//event.preventDefault();
+        if($(this).text() == 'RSVP'){
+			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="UnRSVPbutton"><h3>Un-RSVP</h3></a>');
+		}
+		else{
+			$('#thersvp').html('<a href="#view_event_page" data-role="button" data-icon="check" data-theme="a" data-transition="pop" id="RSVPbutton"><h3>RSVP</h3></a>');
+		}
+		
+		//$(this).button("refresh");
+		
+    });
+	*/
+	
+	/*
+	$("#UNRSVPbutton").click(function(event) {
+		$("#UNRSVPbutton").hide();
+		$("#RSVPbutton").show();
+	});
+	*/
 	
 	
 	
