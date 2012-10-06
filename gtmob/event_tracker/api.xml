@@ -56,7 +56,7 @@
 			<get>
 				<description><![CDATA[This is how you can get events rsvp record for a specific event -- 
 					only creator can see this]]></description>
-				<action file='event.php'><![CDATA[listEventRSVP($_REST['event']);]]></action>
+				<action file='event.php'><![CDATA[listEventRSVP($_REST['event/admin']);]]></action>
 			</get>
 		</command>
 		
