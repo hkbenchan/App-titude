@@ -185,7 +185,7 @@ function postEvent($event = null) {
 		// do all the necessary checking in here
 		// fields that cannot empty: Location, Title, StartTime, EndTime, EventTypeDesc
 		
-		preprocessDataCheck("Location","Location cannot be empty");
+		preprocessDataCheck("LocationName","Location cannot be empty");
 		preprocessDataCheck("Title","Title cannot be empty");
 		preprocessDataCheck("StartTime","Start Time cannot be empty");
 		preprocessDataCheck("EndTime","End Time cannot be empty");
@@ -231,10 +231,10 @@ function postEvent($event = null) {
 		$LocationCall = 0; // Avoid checking again if we need to insert it later
 		if ((is_float($_POST['LatCoord']) || is_numeric($_POST['LatCoord'])) && 
 		(is_float($_POST['LongCoord']) || is_numeric($_POST['LongCoord'])) && 
-		(!is_null($_POST['Location']))) {
+		(!is_null($_POST['LocationName']))) {
 			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name = '%s' AND
 			Location.LatCoord = '%s' AND Location.LongCoord = '%s'",
-			mysql_real_escape_string($_POST['Location']),
+			mysql_real_escape_string($_POST['LocationName']),
 			mysql_real_escape_string($_POST['LatCoord']),
 			mysql_real_escape_string($_POST['LongCoord']));
 			$LocationCall = 1;
@@ -245,10 +245,10 @@ function postEvent($event = null) {
 			mysql_real_escape_string($_POST['LatCoord']),
 			mysql_real_escape_string($_POST['LongCoord']));
 			$LocationCall = 2;
-		} elseif (!is_null($_POST['Location'])) {
+		} elseif (!is_null($_POST['LocationName'])) {
 			$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name = '%s' AND
 			Location.LatCoord is null AND Location.LongCoord is null",
-			mysql_real_escape_string($_POST['Location']));
+			mysql_real_escape_string($_POST['LocationName']));
 			$LocationCall = 3;
 		}
 		
@@ -268,14 +268,14 @@ function postEvent($event = null) {
 				case 1: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES ('%s','%s','%s')",mysql_real_escape_string($_POST['LatCoord']),
 				mysql_real_escape_string($_POST['LongCoord']),
-				mysql_real_escape_string($_POST['Location'])); break;
+				mysql_real_escape_string($_POST['LocationName'])); break;
 				
 				case 2: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES ('%s','%s',NULL)",mysql_real_escape_string($_POST['LatCoord']),
 				mysql_real_escape_string($_POST['LongCoord'])); break;
 				
 				case 3: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
-				VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['Location'])); break;
+				VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['LocationName'])); break;
 				
 				case 4: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 				VALUES (NULL,NULL,NULL)"); break;
@@ -434,7 +434,7 @@ function updateEvent($event_id) {
 	// do all the necessary checking in here
 	// fields that cannot empty: Location, Title, StartTime, EndTime, EventTypeDesc
 	
-	preprocessDataCheck("Location","Location cannot be empty");
+	preprocessDataCheck("LocationName","Location cannot be empty");
 	preprocessDataCheck("Title","Title cannot be empty");
 	preprocessDataCheck("StartTime","Start Time cannot be empty");
 	preprocessDataCheck("EndTime","End Time cannot be empty");
@@ -480,10 +480,10 @@ function updateEvent($event_id) {
 	$LocationCall = 0; // Avoid checking again if we need to insert it later
 	if ((is_float($_POST['LatCoord']) || is_numeric($_POST['LatCoord'])) && 
 	(is_float($_POST['LongCoord']) || is_numeric($_POST['LongCoord'])) && 
-	(!is_null($_POST['Location']))) {
+	(!is_null($_POST['LocationName']))) {
 		$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name = '%s' AND
 		Location.LatCoord = '%s' AND Location.LongCoord = '%s'",
-		mysql_real_escape_string($_POST['Location']),
+		mysql_real_escape_string($_POST['LocationName']),
 		mysql_real_escape_string($_POST['LatCoord']),
 		mysql_real_escape_string($_POST['LongCoord']));
 		$LocationCall = 1;
@@ -494,10 +494,10 @@ function updateEvent($event_id) {
 		mysql_real_escape_string($_POST['LatCoord']),
 		mysql_real_escape_string($_POST['LongCoord']));
 		$LocationCall = 2;
-	} elseif (!is_null($_POST['Location'])) {
+	} elseif (!is_null($_POST['LocationName'])) {
 		$dbQuery = sprintf("SELECT ID FROM Location WHERE Location.Name = '%s' AND
 		Location.LatCoord is null AND Location.LongCoord is null",
-		mysql_real_escape_string($_POST['Location']));
+		mysql_real_escape_string($_POST['LocationName']));
 		$LocationCall = 3;
 	}
 	
@@ -517,14 +517,14 @@ function updateEvent($event_id) {
 			case 1: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 			VALUES ('%s','%s','%s')",mysql_real_escape_string($_POST['LatCoord']),
 			mysql_real_escape_string($_POST['LongCoord']),
-			mysql_real_escape_string($_POST['Location'])); break;
+			mysql_real_escape_string($_POST['LocationName'])); break;
 			
 			case 2: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 			VALUES ('%s','%s',NULL)",mysql_real_escape_string($_POST['LatCoord']),
 			mysql_real_escape_string($_POST['LongCoord'])); break;
 			
 			case 3: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
-			VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['Location'])); break;
+			VALUES (NULL,NULL,'%s')",mysql_real_escape_string($_POST['LocationName'])); break;
 			
 			case 4: $dbQuery = sprintf("INSERT INTO Location(LatCoord,LongCoord,Name)
 			VALUES (NULL,NULL,NULL)"); break;
