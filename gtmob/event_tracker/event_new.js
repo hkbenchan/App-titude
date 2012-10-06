@@ -119,6 +119,8 @@ $(function() {
 		event.preventDefault();
 		console.log("View Event Page");
 		console.log(ui);
+		$("#UNRSVPbutton").hide();
+		
 		
 		//var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		//console.log("Event ID:" + event_id);
@@ -186,6 +188,8 @@ $(function() {
 	
 	
 	$("#RSVPbutton").click(function(event) {
+		$("#RSVPbutton").hide();
+		$("#UNRSVPbutton").show();
 		/*
 		//event.preventDefault();
         if($(this).text() == 'RSVP'){
@@ -198,6 +202,11 @@ $(function() {
 		//$(this).button("refresh");
 		*/
     });
+
+	$("#UNRSVPbutton").click(function(event) {
+		$("#UNRSVPbutton").hide();
+		$("#RSVPbutton").show();
+	});
 	
 	
 	
