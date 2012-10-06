@@ -210,7 +210,7 @@ $(function() {
 	$('#RSVPbutton').bind('click', function() 
 	{ console.log("RSVP Button");
 	      	$.ajax({
-		    	url: "api/event/"+event_ID"/rsvp/",
+		    	url: "api/event/"+event_ID+"/rsvp/",
 			dataType: "json",
 			async: false, 
 			type: 'POST',
