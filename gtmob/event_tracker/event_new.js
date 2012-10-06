@@ -296,7 +296,26 @@ $(function() {
 	});
 	*/
 	
-	
+	/*****************Admin*********************/
+	// get the user list for a specific event
+	/*
+	$.ajax({
+		url: 'api/event/0/admin/'+event_ID,
+		dataType: 'JSON',
+		async: false,
+		success: function(data) {
+			console.log(data);
+			for (var i=0; i<data.length; i++)
+			{
+			// add the AcctName for that
+			// 
+			}
+		},
+		error: function(data) {
+			console.log("Event " + data.statusText);
+		}
+	});
+	*/
 	
 	/*************** posting ********************/
 	$('#submitid').bind('click', function() 
