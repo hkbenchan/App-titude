@@ -138,10 +138,10 @@ $(function() {
 		
 		$.ajax({
 			//url: "api/event/"+event_id,
-			url: "api/event/"+event_ID+"/rsvp",
+			url: "api/event/0/rsvp/"+event_ID,
 			dataType: "json",
 	        async: false,
-			type: 'GET',
+			type: 'POST',
 	        success: function(data) {
 				console.log("RSVP data is " + data['RSVP']);
 				
