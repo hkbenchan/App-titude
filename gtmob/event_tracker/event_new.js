@@ -18,7 +18,7 @@ $(function() {
 			async: false,
 			success: function (data, textStatus, jqXHR) {
 				if (data.admin == "Yes") {
-					$('manage_events_button').show();
+					$('#manage_events_button').show();
 				} else {
 					$('#manage_events_button').hide();
 				}
