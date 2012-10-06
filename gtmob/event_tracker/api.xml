@@ -35,7 +35,7 @@
 			</index>
 			<get>
 				<description><![CDATA[This is how you can check an event rsvp record from a user]]></description>
-				<action file='event.php'><![CDATA[listUserRSVPEvent($_REST['event']);]]></action>
+				<action file='event.php'><![CDATA[listUserRSVPEvent($_REST['event/rsvp']);]]></action>
 			</get>
 			<post>
 				<description><![CDATA[This is how you can send rsvp for a specific event]]></description>
