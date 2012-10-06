@@ -897,7 +897,7 @@ function listEventRSVP($event_id = 0) {
 				$dbQuery .= " Or `Organization`.OrganizationName = '" .mysql_real_escape_string($result[$i]['OrganizationName'])."'";
 			}
 			
-			$dbQuery .= "ORDER BY `Event`.StartTime ASC";
+			$dbQuery .= "AND `Event`.StartTime >= CURRENT_TIMESTAMP ORDER BY `Event`.StartTime ASC";
 			
 			$tmp = getDBResultsArray($dbQuery);
 	        $result = groupByStartDate($tmp);
