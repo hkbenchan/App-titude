@@ -431,6 +431,12 @@ $(function() {
 		}
 	});
 	
+	/******** clear all fields for new post *********/
+	$('#saddid').bind('click', function() 
+	{ 
+		clearAll();
+	});
+	
 	/*************** posting ********************/
 	$('#submitid').bind('click', function() 
 	{ 
