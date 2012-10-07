@@ -768,16 +768,16 @@ function validateAll()
 {
 	var msg = "";
 	msg += validateInputText('#eorganizationid', "Please enter the event organization name.<br/>");
-	msg += validateInputText('#eemailid', ", Please enter the event contact person's email address.<br/>");
-	msg += validateInputText('#ephoneid', ", Please enter the event contact person's phone number.<br/>");
-	msg += validateInputText('#econtactid', ", Please enter the event contact person's name.<br/>");
-	msg += validateInputText('#etypeid', ", Please enter the event type.<br/>");
-	msg += validateInputText('#estartdateid', ", Please enter the event start date.<br/>");
-	msg += validateInputText('#estarttimeid', ", Please enter the event start time.<br/>");
-	msg += validateInputText('#eenddateid', ", Please enter the event end date.<br/>");
-	msg += validateInputText('#eendtimeid', ", Please enter the event end time.<br/>");
-	msg += validateInputText('#elocationid', " , Please enter the event location address.<br/>");
-	msg += validateInputText('#edescriptionid', ", Please enter the event description.<br/>");
+	msg += validateInputText('#eemailid', "Please enter the event contact person's email address.<br/>");
+	msg += validateInputText('#ephoneid', "Please enter the event contact person's phone number.<br/>");
+	msg += validateInputText('#econtactid', "Please enter the event contact person's name.<br/>");
+	msg += validateInputText('#etypeid', "Please enter the event type.<br/>");
+	msg += validateInputText('#estartdateid', "Please enter the event start date.<br/>");
+	msg += validateInputText('#estarttimeid', "Please enter the event start time.<br/>");
+	msg += validateInputText('#eenddateid', "Please enter the event end date.<br/>");
+	msg += validateInputText('#eendtimeid', "Please enter the event end time.<br/>");
+	msg += validateInputText('#elocationid', "Please enter the event location address.<br/>");
+	msg += validateInputText('#edescriptionid', "Please enter the event description.<br/>");
 
 	return msg;
 }
@@ -787,7 +787,14 @@ function showError(msg)
 	if(msg)
 	{
 		//$("<div />", {text: msg}).dialog({title: "ERROR"});
-		$('#message').html(msg);
+		if(msg)
+		{
+			$('#message').html("Error <br/>" + msg);	
+		}
+		else
+		{
+			$('#message').html("Event submitted successfully <br/>");
+		}
 		//$('#error').popup("open");
 	}
 }
