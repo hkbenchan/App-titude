@@ -8,10 +8,6 @@ $(function() {
  // Handler for .ready() called.
 	console.log('ready');
 	
-	$(document).bind('mobileinit', function(){
-		$.mobile.metaViewportContent = 'width=device-width';
-	});
-	
 	$('#calendar').fullCalendar({
 		eventClick: function(calEvent, jsEvent, view) {
 			event_ID = calEvent.id;

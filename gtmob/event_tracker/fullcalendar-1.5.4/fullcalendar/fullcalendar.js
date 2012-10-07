@@ -26,7 +26,7 @@ var defaults = {
 	header: {
 		left: 'title',
 		center: '',
-		right: 'today prev,next'
+		right: 'prev,next'
 	},
 	weekends: true,
 	
