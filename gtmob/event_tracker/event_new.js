@@ -283,8 +283,9 @@ $(function() {
 		$('.manage_buttons_list').listview();
 		$('.manage_buttons_collapsible').collapsible();
 		$('.manage_buttons_collapsible').collapsible();
-		$('.control_group').controlgroup();
 		$('.unique_button').button();
+		$('.control_group').controlgroup();
+		
 	});
 	
 	
