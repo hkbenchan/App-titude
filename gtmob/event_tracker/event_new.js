@@ -792,6 +792,7 @@ function showError(msg)
 	{
 		//$("<div />", {text: msg}).dialog({title: "ERROR"});
 		$('#message').html(msg);
+		$('#error').popup("open");
 	}
 }
 
