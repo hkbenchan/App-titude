@@ -24,9 +24,9 @@ var defaults = {
 	defaultView: 'month',
 	aspectRatio: 1.35,
 	header: {
-		left: 'title',
-		center: '',
-		right: 'prev,next'
+		left: 'prev,next today',
+		center: 'title',
+		right: 'month,agendaWeek,agendaDay'
 	},
 	weekends: true,
 	
