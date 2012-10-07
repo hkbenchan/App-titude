@@ -297,8 +297,8 @@ $(function() {
 	        error: ajaxError
 		});
 		$('.event_manage_list').listview();
-		$('.manage_buttons_list').listview();
 		$('.event_manage_collapsible').collapsible();
+		$('.manage_buttons_list').listview();
 		$('.manage_buttons_collapsible').collapsible();
 	});
 	
