@@ -257,6 +257,7 @@ $(function() {
 				$('#hold_manage_events').remove();
 				$('#manageable_events').append('<div id="hold_manage_events"/>');
 				$.each(data.date,function(key,val) {
+					/*
 					if(i != 0) {
 						$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
 					}
@@ -268,6 +269,26 @@ $(function() {
 						$('#manage_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
+					});
+					i++;
+					*/
+					
+					if(i != 0) {
+						$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					}
+					else {
+						$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c" data-collapsed="false"><h3>' + val + '</h3></div>');
+					}
+					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="event_manage_list" id="manage_list' + i + '" data-inset="true" data-theme="d">');
+					$.each(data[i],function(key,val) {
+						//$('#manage_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						$('#manage_list' + i).append('<li><div data-role="collapsible" class="manage_buttons_collapsible" id="manage_buttons_collapsible' + i + '" data-theme="b" data-content-theme="c" data-collapsed="false"><h3>' + val + '</h3></div>');
+						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						console.log(val.ID);
+						
+						$('#manage_buttons_collapsible' + i).append('<ul data-role="listview" class="manage_button_list" id="manage_list' + i + '" data-inset="true" data-theme="d">');
+						$('#manage_list'+i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>Edit</h3></a></li>');
+						$('#manage_list'+i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>View RSVPs</h3></a></li>');
 					});
 					i++;
 				});
