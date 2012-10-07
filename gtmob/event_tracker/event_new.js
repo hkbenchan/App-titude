@@ -287,7 +287,7 @@ $(function() {
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 						
-						$('#manage_buttons_collapsible' + i).append('<ul data-role="listview" class="manage_buttons_list" id="manage_buttons_list' + i + '" data-inset="true" data-theme="d">');
+						$('#manage_buttons_collapsible' + i).append('<ul data-role="listview" class="manage_buttons_list" id="manage_buttons_list' + i + '" data-inset="true" data-theme="c">');
 						$('#manage_buttons_list'+i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>Edit</h3></a></li>');
 						$('#manage_buttons_list'+i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>View RSVPs</h3></a></li>');
 					});
