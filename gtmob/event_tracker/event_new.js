@@ -266,7 +266,10 @@ $(function() {
 					}
 					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="event_manage_list" id="manage_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
-						$('#manage_list' + i).append('<li><a href="#form_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						//$('#manage_list' + i).append('<li><a href="#form_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						$('#manage_list' + i).append('<li><div data-role="controlgroup" data-type="horizontal"><a href="index.html" data-role="button" data-event="' + val.ID + '">' + val.Title + '</a><a href="#" data-role="button">View RSVPs</a><a href="form_page.html" data-role="button">Edit</a></div></li>');
+						
+					
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 					});
