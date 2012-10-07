@@ -414,45 +414,33 @@ $(function() {
 	/*************** posting ********************/
 	$('#submitid').bind('click', function() 
 	{ 
-		console.log("clicked submit button!!!!!!!!!!!!!!!!");
-		var msg = validateAll();
-		console.log("message: " + msg);
-		if(!msg)
-		{
-			console.log("form validation passed, ready to submit");
-		  	$.ajax
-		  	({
-				url: "api/event/",
-				dataType: "json",
-				async: false, 
-				data: 
-				{ 
-					"Title" : $('#enameid').val(), 
-					"OrganizationName" : $('#eorganizationid').val(),
-					"Email" : $('#eemailid').val(),
-					"Phone" : $('#ephoneid').val(),
-					"Contact" : $('#econtactid').val(),
-					"LocationName" : $('#elocationid').val(),
-					"LatCoord" : "",
-					"LongCoord" : "",
-					"EventTypeDesc" : $('#etypeid').val(),
-					"Description" : $('#edescriptionid').val(),
-					"StartTime" : $('#estartdateid').val() + " " + $('#estarttimeid').val(),
-				   	"EndTime" : $('#eenddateid').val() + " " + $('#eendtimeid').val()
-				 },
-				type: 'POST',
-				success: function(data) 
-				{
-					console.log("form submitted successful");
-				},
-				error: ajaxError
-			});
-		}
-		else
-		{
-			console.log("form validation failed, can't submit");
-			showError(msg);
-		}
+		$.ajax
+	  	({
+			url: "api/event/",
+			dataType: "json",
+			async: false, 
+			data: 
+			{ 
+				"Title" : $('#enameid').val(), 
+				"OrganizationName" : $('#eorganizationid').val(),
+				"Email" : $('#eemailid').val(),
+				"Phone" : $('#ephoneid').val(),
+				"Contact" : $('#econtactid').val(),
+				"LocationName" : $('#elocationid').val(),
+				"LatCoord" : "",
+				"LongCoord" : "",
+				"EventTypeDesc" : $('#etypeid').val(),
+				"Description" : $('#edescriptionid').val(),
+				"StartTime" : $('#estartdateid').val() + " " + $('#estarttimeid').val(),
+			   	"EndTime" : $('#eenddateid').val() + " " + $('#eendtimeid').val()
+			 },
+			type: 'POST',
+			success: function(data) 
+			{
+				console.log("form submitted successful");
+			},
+			error: ajaxError
+		});
 	});
 	
 	
