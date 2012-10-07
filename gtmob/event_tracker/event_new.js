@@ -497,33 +497,67 @@ $(function() {
 	/*************** posting ********************/
 	$('#submitid').bind('click', function() 
 	{ 
-		$.ajax
-	  	({
-			url: "api/event/",
-			dataType: "json",
-			async: false, 
-			data: 
-			{ 
-				"Title" : $('#enameid').val(), 
-				"OrganizationName" : $('#eorganizationid').val(),
-				"Email" : $('#eemailid').val(),
-				"Phone" : $('#ephoneid').val(),
-				"Contact" : $('#econtactid').val(),
-				"LocationName" : $('#elocationid').val(),
-				"LatCoord" : "",
-				"LongCoord" : "",
-				"EventTypeDesc" : $('#etypeid').val(),
-				"Description" : $('#edescriptionid').val(),
-				"StartTime" : $('#estartdateid').val() + " " + $('#estarttimeid').val(),
-			   	"EndTime" : $('#eenddateid').val() + " " + $('#eendtimeid').val()
-			 },
-			type: 'POST',
-			success: function(data) 
-			{
-				console.log("form submitted successful");
-			},
-			error: ajaxError
-		});
+		if(add_action)
+		{
+			$.ajax
+		  	({
+				url: "api/event/",
+				dataType: "json",
+				async: false, 
+				data: 
+				{ 
+					"Title" : $('#enameid').val(), 
+					"OrganizationName" : $('#eorganizationid').val(),
+					"Email" : $('#eemailid').val(),
+					"Phone" : $('#ephoneid').val(),
+					"Contact" : $('#econtactid').val(),
+					"LocationName" : $('#elocationid').val(),
+					"LatCoord" : "",
+					"LongCoord" : "",
+					"EventTypeDesc" : $('#etypeid').val(),
+					"Description" : $('#edescriptionid').val(),
+					"StartTime" : $('#estartdateid').val() + " " + $('#estarttimeid').val(),
+				   	"EndTime" : $('#eenddateid').val() + " " + $('#eendtimeid').val()
+				 },
+				type: 'POST',
+				success: function(data) 
+				{
+					console.log("form submitted successful");
+				},
+				error: ajaxError
+			});
+		}
+		else 
+		{
+			$.ajax
+		  	({
+				url: "api/event/",
+				dataType: "json",
+				async: false, 
+				data: 
+				{ 
+					"Title" : $('#enameid').val(), 
+					"OrganizationName" : $('#eorganizationid').val(),
+					"Email" : $('#eemailid').val(),
+					"Phone" : $('#ephoneid').val(),
+					"Contact" : $('#econtactid').val(),
+					"LocationName" : $('#elocationid').val(),
+					"LatCoord" : "",
+					"LongCoord" : "",
+					"EventTypeDesc" : $('#etypeid').val(),
+					"Description" : $('#edescriptionid').val(),
+					"StartTime" : $('#estartdateid').val() + " " + $('#estarttimeid').val(),
+				   	"EndTime" : $('#eenddateid').val() + " " + $('#eendtimeid').val()
+				 },
+				headers: {'X-HTTP-Method-Override': 'PUT'},
+				type: 'POST',
+				success: function(data) 
+				{
+					console.log("form submitted successful");
+				},
+				error: ajaxError
+			});
+		}
 	});
 	
 
