@@ -2,11 +2,7 @@
 	<div data-role='header' data-theme='d' data-id='form_page' data-position="fixed">
 		<h1>Form</h1>
 	</div>
-
-	<div data-role="popup" id="error">
-		<p id="message"></p>
-	</div>
-							
+					
 	<div data-role='content' id='form'>
 		<form id="formid">
 			<table>
@@ -112,7 +108,13 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="right">
-						<input type="button" name="submit" id="submitid" value="Submit"/>
+
+						<a href="#submit" id="submitid" data-rel="popup">Submit</a>
+						<div data-role="popup" id="submit">
+							<p id="message"></p>
+						</div>
+						
+						<!-- <input type="button" name="submit" id="submitid" value="Submit"/> -->
 					</td>
 				</tr>
 			</table>
