@@ -93,9 +93,9 @@ var defaults = {
 // right-to-left defaults
 var rtlDefaults = {
 	header: {
-		left: 'next,prev today',
+		left: 'title',
 		center: '',
-		right: 'title'
+		right: 'today prev,next'
 	},
 	buttonText: {
 		prev: '&nbsp;&#9658;&nbsp;',
