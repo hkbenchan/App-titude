@@ -163,7 +163,7 @@ $(function() {
 						if (val.StartTime != undefined) {
 							var begin = val.StartTime.replace(/\s/g, "T").concat("-05:00");
 							var finish = val.EndTime.replace(/\s/g, "T").concat("-05:00");
-							eventArray.push({title:val.Title,start:begin,end:finish,url:'#view_event_page',id:val.ID});
+							eventArray.push({title:val.Title,start:begin,end:finish,url:'#view_event_page',id:val.ID,allDay:false});
 						}
 					});
 				});
