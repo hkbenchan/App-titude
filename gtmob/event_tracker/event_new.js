@@ -364,6 +364,19 @@ $(function() {
 	    //$("#list").page();                     
 	});
 	
+	$("a[href=#admin_view_rsvps_page]").live("click", function(e) {
+		if ($(this).data("event") != undefined) {
+			event_ID = $(this).data("event");
+			console.log("event_ID = " + event_ID);
+		}
+		else {
+			console.log("Event ID not set bc undefined.")
+		}
+		//navIdentity = $(this).data("identity");
+	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
+	    //$("#list").page();                     
+	});
+	
 	
 	$('#RSVPbutton').bind('click', function() 
 	{ console.log("RSVP Button");
