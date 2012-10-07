@@ -257,8 +257,8 @@ $(function() {
 				$('#hold_manage_events').remove();
 				$('#manageable_events').append('<div id="hold_manage_events"/>');
 				$.each(data.date,function(key,val) {
-					$('#hold_manage_events').append('<div data-role="collapsible" class="manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
-					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="manage_list" id="manage_list' + i + '" data-inset="true" data-theme="d">');
+					$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="event_manage_list" id="manage_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
 						$('#event_manage_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
