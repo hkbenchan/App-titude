@@ -892,13 +892,13 @@ function listEventRSVP($event_id = 0) {
 			JOIN `CreatorOwn` ON `Event`.CreatorID = `CreatorOwn`.CreatorID
 			JOIN `AuthUser` ON `CreatorOwn`.AuthUserID = `AuthUser`.ID
 			JOIN `Organization` ON `AuthUser`.OnBehalf = `Organization`.ID
-			WHERE `Organization`.OrganizationName = '".mysql_real_escape_string($result[0]['OrganizationName'])."'";
+			WHERE (`Organization`.OrganizationName = '".mysql_real_escape_string($result[0]['OrganizationName'])."'";
 			
 			for ($i=1; $i<count($result); $i++) {
 				$dbQuery .= " Or `Organization`.OrganizationName = '" .mysql_real_escape_string($result[$i]['OrganizationName'])."'";
 			}
 			
-			$dbQuery .= " AND `Event`.StartTime >= CURRENT_TIMESTAMP ORDER BY `Event`.StartTime ASC";
+			$dbQuery .= ") AND `Event`.StartTime >= CURRENT_TIMESTAMP ORDER BY `Event`.StartTime ASC";
 			
 			echo print_r($dbQuery);
 			die();
