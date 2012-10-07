@@ -361,52 +361,6 @@ $(function() {
 		if ($(this).data("event") != undefined) {
 			event_ID = $(this).data("event");
 			console.log("event_ID = " + event_ID);
-			add_action = false;
-			console.log("editing an event post (id: " + event_ID + ")");
-			$.ajax
-			({
-				url: "api/event/"+event_ID,
-				dataType: "json",
-		       	 	async: false,
-				type: 'GET',
-			        success: function(data) 
-			        {
-
-						$('#enameid').val(data['Title']);
-						$('#eorganizationid').val(data['OrganizationName']);
-						$('#eemailid').val(data['Email_address']);
-						$('#ephoneid').val(data['Phone_number']);
-						$('#econtactid').val(data['Contact']);
-						$('#elocationid').val(data['LocationName']);
-						$('#etypeid').val(data['EventTypeDesc']);
-						$('#edescriptionid').val(data['Description']);
-
-						var stemp = data['StartTime'].split(" ");
-						$('#estartdateid').val(stemp[0]);
-						$('#estarttimeid').val(stemp[1]);
-
-					    var etemp = data['EndTime'].split(" ");
-				       	$('#eenddateid').val(etemp[0]);
-				       	$('#eendtimeid').val(etemp[1]);
-
-				       	console.log("JSON object received successfully: ");
-
-				       	console.log("org: " + data['OrganizationName']);
-				       	console.log("title: " + data['Title']);
-				       	console.log("email: " + data['Email_address']);
-				       	console.log("phone: " + data['Phone_number']);
-				       	console.log("contact: " + data['Contact']);
-				       	console.log("location: " + data['LocationName']);
-				       	console.log("type: " + data['EventTypeDesc']);
-				       	console.log("description: " + data['Description']);
-				       	console.log("start date: " + stemp[0]);
-				       	console.log("start time: " + stemp[1]);
-				       	console.log("end date: " + etemp[0]);
-				       	console.log("end time: " + etemp[1]);
-				    },
-			        error: ajaxError
-			});
-		});
 		}
 		else {
 			console.log("Event ID not set bc undefined.")
@@ -622,7 +576,7 @@ $(function() {
 		}
 	});
 	
-	/*
+	
 	//******************** editing event post *************************
 	//need a button to bind to
 	$('.editclass').bind('click',function()
@@ -673,8 +627,6 @@ $(function() {
 		        error: ajaxError
 		});
 	});
-	
-	*/
 });
 
 function formatList(ele_div,data) {
