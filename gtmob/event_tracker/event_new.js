@@ -760,6 +760,5 @@ function clearAll()
 
 function clearInputField(id)
 {
-	var element = $(id);
-	element.var("");
+	$(id).val("");
 }
