@@ -275,16 +275,19 @@ $(function() {
 					});
 					i++;
 				});
+				
+				$('.event_manage_list').listview();
+				$('.event_manage_collapsible').collapsible();
+				$('.manage_buttons_list').listview();
+				$('.manage_buttons_collapsible').collapsible();
+				$('.manage_buttons_collapsible').collapsible();
+				$('.unique_button').button();
+				$('.control_group').controlgroup();
+				
 	        },
 	        error: ajaxError
 		});
-		$('.event_manage_list').listview();
-		$('.event_manage_collapsible').collapsible();
-		$('.manage_buttons_list').listview();
-		$('.manage_buttons_collapsible').collapsible();
-		$('.manage_buttons_collapsible').collapsible();
-		$('.unique_button').button();
-		$('.control_group').controlgroup();
+		
 		
 	});
 	
