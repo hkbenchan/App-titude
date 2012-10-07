@@ -261,7 +261,7 @@ function postEvent($event = null) {
 		if (count($result) > 1) {
 			$LocationID = $result[0]['ID'];
 		} elseif (count($result) == 1) {
-			$LocationID = $result['ID'];
+			$LocationID = $result[0]['ID'];
 		} else {
 			// need to insert to the Location Table
 			switch ($LocationCall){
@@ -313,7 +313,7 @@ function postEvent($event = null) {
 			// something wrong with the DB, but we will just pick up the first entry
 			$EventTypeID = $result[0]['ID'];
 		} elseif (count($result) == 1) {
-			$EventTypeID = $result['ID'];
+			$EventTypeID = $result[0]['ID'];
 		} else {
 			// need to insert to the EventType Table
 			if (is_null($_POST['EventTypeDesc'])) {
@@ -510,7 +510,7 @@ function updateEvent($event_id) {
 	if (count($result) > 1) {
 		$LocationID = $result[0]['ID'];
 	} elseif (count($result) == 1) {
-		$LocationID = $result['ID'];
+		$LocationID = $result[0]['ID'];
 	} else {
 		// need to insert to the Location Table
 		switch ($LocationCall){
@@ -562,7 +562,7 @@ function updateEvent($event_id) {
 		// something wrong with the DB, but we will just pick up the first entry
 		$EventTypeID = $result[0]['ID'];
 	} elseif (count($result) == 1) {
-		$EventTypeID = $result['ID'];
+		$EventTypeID = $result[0]['ID'];
 	} else {
 		// need to insert to the EventType Table
 		if (is_null($_POST['EventTypeDesc'])) {
@@ -893,7 +893,7 @@ function listEventRSVP($event_id = 0) {
 			JOIN `Organization` ON `AuthUser`.OnBehalf = `Organization`.ID";
 			
 			if (count($result) == 1)
-				$dbQuery .= " WHERE (`Organization`.OrganizationName = '".mysql_real_escape_string($result['OrganizationName'])."'";
+				$dbQuery .= " WHERE (`Organization`.OrganizationName = '".mysql_real_escape_string($result[0]['OrganizationName'])."'";
 			else
 				$dbQuery .= " WHERE (`Organization`.OrganizationName = '".mysql_real_escape_string($result[0]['OrganizationName'])."'";
 				
