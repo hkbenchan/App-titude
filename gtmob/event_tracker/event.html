@@ -1,0 +1,283 @@
+<div data-role="page" class='page' id="home_page" data-theme='a'>
+	<div data-role='header' data-position='inline' data-theme='a' data-id="event_tracker_header" style="height:45px;">
+		
+		<h1 id="home_img_header" class="ui-title" aria-level="1" role="heading">
+			<img src="GITout_small.png">
+		</h1>
+		
+		<!--
+		<h1>Event Tracker</h1>
+		-->
+	</div>
+	
+	<div data-role="content">
+		<div data-role="controlgroup" id='main_pages'>
+			<a href="#browse_categories_page" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme='d'>Browse Events by Category</a>
+			<a href="#browse_events_page" data-category="" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme='d'>Browse All Events</a>
+			<a href="#view_rsvps_page" data-role='button' data-transition='slide' data-icon='arrow-r' data-iconpos='right' data-theme='d'>View RSVPs</a>
+			<a href="#calendar_page" data-role='button' data-transition='slide' data-icon='arrow-r' data-iconpos='right' data-theme='d'>Calendar</a>
+			<a href="#manage_events_page" id="manage_events_button" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme="d">Manage Your Events</a>
+		</div>
+	</div>
+	
+	<div id="standard-footer" data-role="footer" class="ui-bar">
+		<a href="" data-role="button" data-icon="plus">Add</a>
+		<a href="" data-role="button" data-icon="arrow-u">Up</a>
+		<a href="" data-role="button" data-icon="arrow-d">Down</a>
+	</div>
+	
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role='dialog' class='page' id='not_logged_in_dialog'>
+	<div data-role='content'>
+		<h3>Please log in before using this app.</h3>
+		<a href='http://m.gatech.edu' data-role='button' data-theme='d'>Home</a>
+	</div>
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role="page" class='page' id="browse_categories_page" data-theme='a'>
+    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_categories_header">
+	    <h1>Browse by Category</h1>
+	    <a href="#form_page" data-icon='add' class='ui-btn-right' data-transition="pop">Add</a>
+   	</div>
+	
+	<div data-role='content'>
+		<ul id='category_list' data-role='listview' data-inset='false' data-filter='true' data-theme='d'/>
+	</div>
+	
+	<div id="standard-footer" data-role="footer" class="ui-bar">
+		<a href="" data-role="button" data-icon="plus">Add</a>
+		<a href="" data-role="button" data-icon="arrow-u">Up</a>
+		<a href="" data-role="button" data-icon="arrow-d">Down</a>
+	</div>
+	
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role="page" class='page' id="browse_events_page" data-theme='a'>
+    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_events_header">
+	    <h1>Browse All Events</h1>
+	    <a href="#add_page" data-icon='add' class='ui-btn-right' data-transition="pop">Add</a>
+   	</div>
+	
+	<div id="post_events" data-role="content"> <!-- content -->
+	</div> <!-- content -->
+	
+	<div id="standard-footer" data-role="footer" class="ui-bar">
+		<a href="" data-role="button" data-icon="plus">Add</a>
+		<a href="" data-role="button" data-icon="arrow-u">Up</a>
+		<a href="" data-role="button" data-icon="arrow-d">Down</a>
+	</div>
+	
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role='page' class='page' id='view_rsvps_page' data-theme='a'>
+	<div data-role='header' data-position='inline' data-theme='d' data-id='view_rsvps_header'>
+		<h1>View RSVPs</h1>
+	</div>
+	
+	<div data-role='content' id='rsvps'>
+	</div>
+	
+	<div id="standard-footer" data-role="footer" class="ui-bar">
+		<a href="" data-role="button" data-icon="plus">Add</a>
+		<a href="" data-role="button" data-icon="arrow-u">Up</a>
+		<a href="" data-role="button" data-icon="arrow-d">Down</a>
+	</div>
+	
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role='page' class='page' id='calendar_page' data-theme='c'>
+	<div data-role='header' data-position='inline' data-theme='d' data-id='calendar_header'>
+		<h1>Calendar</h1>
+	</div>
+	
+	<div data-role='content' id='calendar'>
+	</div>
+	
+	<div id="standard-footer" data-role="footer" class="ui-bar">
+		<a href="" data-role="button" data-icon="plus">Add</a>
+		<a href="" data-role="button" data-icon="arrow-u">Up</a>
+		<a href="" data-role="button" data-icon="arrow-d">Down</a>
+	</div>
+	
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role="page" class='page' id="view_event_page" data-theme='a'>
+    <div data-role='header' data-position='inline' data-theme='d' data-id="view_event_header">
+	    <h1>Event Info</h1>
+   	</div>
+	
+	<div id="actual_event" data-role="content"> <!-- content -->
+		<div id="thersvp">
+			<a href="#view_event_page" data-role="button" data-theme="a" data-transition="pop" data-inline="false" id="RSVPbutton"><h3>RSVP</h3></a>
+			<a href="#view_event_page" data-role="button" data-theme="a" data-transition="pop" data-inline="false" id="UNRSVPbutton"><h3>UNRSVP</h3></a>
+		</div>
+		
+		<div>
+			<p id="event_text"></p>
+		</div>
+	</div> <!-- content -->
+	
+	<div id="standard-footer" data-role="footer" class="ui-bar">
+		<a href="" data-role="button" data-icon="plus">Add</a>
+		<a href="" data-role="button" data-icon="arrow-u">Up</a>
+		<a href="" data-role="button" data-icon="arrow-d">Down</a>
+	</div>
+	
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role="page" class='page' id="add_event_page" data-theme='a'>
+	<div data-role='header' data-position='inline' data-theme='d' id="add_event_header">
+		<h1>Add Event</h1>
+	</div>
+	
+	<div id='add_event_content' data-role='content'>
+		<label for='add_event_title'>Event Title:</label>
+		<input type='text' id='add_event_title' value="" placeholder='Title'/>
+		<label for='add_event_email'>Your Email:</label>
+		<input type='email' id='add_event_email' value="" placeholder='Email'/>
+		<a id="add_button" href="#" data-inline='true' data-rel='back' data-direction="reverse" data-theme="d" data-role='button'>Save</a>
+	</div>
+	
+	<div id="standard-footer" data-role="footer" class="ui-bar">
+		<a href="" data-role="button" data-icon="plus">Add</a>
+		<a href="" data-role="button" data-icon="arrow-u">Up</a>
+		<a href="" data-role="button" data-icon="arrow-d">Down</a>
+	</div>
+	
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role="page" class='page' id="manage_events_page" data-theme='a'>
+    <div data-role='header' data-position='inline' data-theme='d' data-id="manage_events_header">
+	    <h1>Manage Events</h1>
+	    <a href="#add_page" data-icon='add' class='ui-btn-right' data-transition="pop">Add</a>
+   	</div>
+	
+	<div id="manageable_events" data-role="content"> <!-- content -->
+	</div> <!-- content -->
+	
+	<div id="standard-footer" data-role="footer" class="ui-bar">
+		<a href="" data-role="button" data-icon="plus">Add</a>
+		<a href="" data-role="button" data-icon="arrow-u">Up</a>
+		<a href="" data-role="button" data-icon="arrow-d">Down</a>
+	</div>
+	
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role="page" class='page' id="browse_all_events_page_old">
+    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_all_old_header">
+	    <a href="#" data-icon='alert' data-transition="pop" data-id="gtlogin_button">GTLogin</a>
+	    <h1>Browse All Events</h1>
+	    <a href="#" data-icon='add' data-transition="pop">Other</a>
+   	</div>
+	
+	<div id="content" data-role="content">
+		<script id="menuiconTemplate" type="text/x-jquery-tmpl">
+			<div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" 
+			data-icon="null" data-iconpos="null" data-theme="c" data-inline="false" data-mini="false" 
+			class="ui-btn ui-shadow ui-btn-corner-all ui-fullsize ui-btn-block ui-btn-up-c" aria-disabled="false">
+				<span class="ui-btn-inner ui-btn-corner-all">
+					<span class="ui-btn-text">${Title} ${StartTime}</span>
+				</span>
+				<input type="button" name="event" value="${Title} ${StartTime}" onclick="eventGet(${ID})" class="ui-btn-hidden" aria-disabled="false">
+			</div>
+		</script>
+		<script id="dateHeaderTemplate" type="text/x-jquery-tmpl">
+			<div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" 
+			data-icon="null" data-iconpos="null" data-theme="c" data-inline="false" data-mini="false" 
+			class="ui-btn ui-shadow ui-btn-corner-all ui-fullsize ui-btn-block ui-btn-up-c" aria-disabled="false">
+				<span class="ui-btn-inner ui-btn-corner-all">
+					<span class="ui-btn-text">${date}</span>
+				</span>
+				<input type="button" name="event" value="${date}" onclick="return false;" class="ui-btn-hidden" aria-disabled="false">
+			</div>
+		</script>
+		<form name="go" id="IndexResult">
+		</form>
+		<div id='GetResult'></div>
+		<div id='PostResult'></div>
+		<div id='PutResult'></div>
+		<div id='DeleteResult'></div>
+		
+		<br>
+		<p></p>
+		<form name="go">
+			<input type="button" name="event" value="Click me to display 2 results with 0 offset" onclick="eventPagination(2,0)">
+			<input type="button" name="event" value="Click me to display 3 results with 2 offset" onclick="eventPagination(3,2)">
+			<input type="button" name="event" value="Click me to use default setting" onclick="eventPagination(pageViewLimit,0)">
+			<input type="button" name="event" value="Click me to display all (filter past event)" onclick="eventIndex()">
+			<input type="button" name="event" value="I will display 5th event - which is passed!" onclick="eventGet(5)">
+			<input type="button" name="test" value="Simple Index" onclick="eventIndex()">
+			<input type="button" name="test" value="Simple Get" onclick="eventGet()">
+			<input type="button" name="test" value="Simple Post" onclick="return false;">
+			<input type="button" name="test" value="Simple Put" onclick="return false;">
+			<input type="button" name="test" value="Simple Delete" onclick="return false;">
+		</form>
+	</div>
+</div>
+<!--******************************************************************************************************************************-->
+<div data-role="page" class='page' id="add_page" data-theme='a'>
+	<form id="formid" data-theme='d'>
+		<table>
+			<tr>
+				<td><label for="eorganizationid">Organization Name </label></td>
+				<td><input type="text" id="eorganizationid" name="eorganization" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="enameid">Event Name </label></td>
+				<td><input type="text" id="enameid" name="ename" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="eemailid">Email </label></td>
+				<td><input type="text" id="eemailid" name="eemail" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="ephoneid">Phone </label></td>
+				<td><input type="text" id="ephoneid" name="ephone" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><label for="econtactid">Contact </label></td>
+				<td><input type="text" id="econtactid" name="econtact" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td><label for="etypeid">Event Type </label></td>
+				<td><input type="text" id="etypeid" name="etype" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td>Event Start Time </td>
+				<td>
+					<input type="text" id="eshourid" name="eshour" maxlength="20" size="2"/>:
+					<input type="text" id="esminid" name="esmin" maxlength="20" size="2"/>:
+					<input type="text" id="essecid" name="essec" maxlength="20" size="2"/>
+					<input type="text" id="esmonthid" name="esmonth" maxlength="20" size="2"/>/
+					<input type="text" id="esdayid" name="esday" maxlength="20" size="2"/>/
+					<input type="text" id="esyearid" name="esyear" maxlength="20" size="4"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Event End Time </td>
+				<td>
+					<input type="text" id="eehourid" name="eehour" maxlength="20" size="2"/>:
+					<input type="text" id="eeminid" name="eemin" maxlength="20" size="2"/>:
+					<input type="text" id="eesecid" name="eesec" maxlength="20" size="2"/>
+					<input type="text" id="eemonthid" name="eemonth" maxlength="20" size="2"/>/
+					<input type="text" id="eedayid" name="eeday" maxlength="20" size="2"/>/
+					<input type="text" id="eeyearid" name="eeyear" maxlength="20" size="4"/>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="elocationid">Event Location </label></td>
+				<td><textarea id="elocationid" name="elocation" rows="2" cols="60"></textarea></td>
+			</tr>
+			<tr>
+				<td><label for="edescriptionid">Event Description </label></td>
+				<td><textarea id="edescriptionid" name="edescription" rows="10" cols="60"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<input type="button" name="submit" id="submitid" value="Submit"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
