@@ -1,5 +1,5 @@
 <div data-role="page" class='page' id="home_page" data-theme='a'>
-	<div data-role='header' data-position='inline' data-theme='a' data-id="event_tracker_header" style="height:45px;">
+	<div data-role='header' data-position='inline' data-theme='a' data-id="event_tracker_header" style="height:45px;" data-position="fixed">
 		
 		<h1 id="home_img_header" class="ui-title" aria-level="1" role="heading">
 			<img src="GITout_small.png">
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	
-	<div data-id="standard-footer" data-role="footer" class="ui-bar">
+	<div data-id="standard-footer" data-role="footer" class="ui-bar" data-position="fixed">
 		<a href="" data-role="button" data-icon="plus">Add</a>
 		<a href="" data-role="button" data-icon="arrow-u">Up</a>
 		<a href="" data-role="button" data-icon="arrow-d">Down</a>
@@ -36,7 +36,7 @@
 </div>
 <!--******************************************************************************************************************************-->
 <div data-role="page" class='page' id="browse_categories_page" data-theme='a'>
-    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_categories_header">
+    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_categories_header" data-position="fixed">
 	    <h1>Browse by Category</h1>
 	    <a href="#form_page" data-icon='add' class='ui-btn-right' data-transition="pop">Add</a>
    	</div>
@@ -45,7 +45,7 @@
 		<ul id='category_list' data-role='listview' data-inset='false' data-filter='true' data-theme='d'/>
 	</div>
 	
-	<div data-id="standard-footer" data-role="footer" class="ui-bar">
+	<div data-id="standard-footer" data-role="footer" class="ui-bar" data-position="fixed">
 		<a href="" data-role="button" data-icon="plus">Add</a>
 		<a href="" data-role="button" data-icon="arrow-u">Up</a>
 		<a href="" data-role="button" data-icon="arrow-d">Down</a>
@@ -54,7 +54,7 @@
 </div>
 <!--******************************************************************************************************************************-->
 <div data-role="page" class='page' id="browse_events_page" data-theme='a'>
-    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_events_header">
+    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_events_header" data-position="fixed">
 	    <h1>Browse All Events</h1>
 	    <a href="#add_page" data-icon='add' class='ui-btn-right' data-transition="pop">Add</a>
    	</div>
@@ -62,7 +62,7 @@
 	<div id="post_events" data-role="content"> <!-- content -->
 	</div> <!-- content -->
 	
-	<div data-id="standard-footer" data-role="footer" class="ui-bar">
+	<div data-id="standard-footer" data-role="footer" class="ui-bar" data-position="fixed">
 		<a href="" data-role="button" data-icon="plus">Add</a>
 		<a href="" data-role="button" data-icon="arrow-u">Up</a>
 		<a href="" data-role="button" data-icon="arrow-d">Down</a>
@@ -71,14 +71,14 @@
 </div>
 <!--******************************************************************************************************************************-->
 <div data-role='page' class='page' id='view_rsvps_page' data-theme='a'>
-	<div data-role='header' data-position='inline' data-theme='d' data-id='view_rsvps_header'>
+	<div data-role='header' data-position='inline' data-theme='d' data-id='view_rsvps_header' data-position="fixed">
 		<h1>View RSVPs</h1>
 	</div>
 	
 	<div data-role='content' id='rsvps'>
 	</div>
 	
-	<div data-id="standard-footer" data-role="footer" class="ui-bar">
+	<div data-id="standard-footer" data-role="footer" class="ui-bar" data-position="fixed">
 		<a href="" data-role="button" data-icon="plus">Add</a>
 		<a href="" data-role="button" data-icon="arrow-u">Up</a>
 		<a href="" data-role="button" data-icon="arrow-d">Down</a>
@@ -87,7 +87,7 @@
 </div>
 <!--******************************************************************************************************************************-->
 <div data-role='page' class='page' id='calendar_page' data-theme='c'>
-	<div data-role='header' data-position='inline' data-theme='d' data-id='calendar_header'>
+	<div data-role='header' data-position='inline' data-theme='d' data-id='calendar_header' data-position="fixed">
 		<h1>Calendar</h1>
 	</div>
 	
@@ -103,7 +103,7 @@
 </div>
 <!--******************************************************************************************************************************-->
 <div data-role="page" class='page' id="view_event_page" data-theme='a'>
-    <div data-role='header' data-position='inline' data-theme='d' data-id="view_event_header">
+    <div data-role='header' data-position='inline' data-theme='d' data-id="view_event_header" data-position="fixed">
 	    <h1>Event Info</h1>
    	</div>
 	
@@ -127,7 +127,7 @@
 </div>
 <!--******************************************************************************************************************************-->
 <div data-role="page" class='page' id="add_event_page" data-theme='a'>
-	<div data-role='header' data-position='inline' data-theme='d' id="add_event_header">
+	<div data-role='header' data-position='inline' data-theme='d' id="add_event_header" data-position="fixed">
 		<h1>Add Event</h1>
 	</div>
 	
@@ -148,7 +148,7 @@
 </div>
 <!--******************************************************************************************************************************-->
 <div data-role="page" class='page' id="manage_events_page" data-theme='a'>
-    <div data-role='header' data-position='inline' data-theme='d' data-id="manage_events_header">
+    <div data-role='header' data-position='inline' data-theme='d' data-id="manage_events_header" data-position="fixed">
 	    <h1>Manage Events</h1>
 	    <a href="#add_page" data-icon='add' class='ui-btn-right' data-transition="pop">Add</a>
    	</div>
@@ -165,7 +165,7 @@
 </div>
 <!--******************************************************************************************************************************-->
 <div data-role="page" class='page' id="browse_all_events_page_old">
-    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_all_old_header">
+    <div data-role='header' data-position='inline' data-theme='d' data-id="browse_all_old_header" data-position="fixed">
 	    <a href="#" data-icon='alert' data-transition="pop" data-id="gtlogin_button">GTLogin</a>
 	    <h1>Browse All Events</h1>
 	    <a href="#" data-icon='add' data-transition="pop">Other</a>
