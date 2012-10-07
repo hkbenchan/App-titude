@@ -3,11 +3,6 @@
 		<h1>Form</h1>
 	</div>
 	
-	<a href="#error" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-	<div data-role="popup" id="error">
-		<p id="message"></p>
-	</div>
-	
 	<div data-role='content' id='form'>
 
 		<form id="formid">
@@ -114,7 +109,11 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="right">
-						<input type="button" name="submit" id="submitid" value="Submit"/>
+						<a href="#submitid" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+						<div data-role="popup" id="error">
+							<p id="message"></p>
+							<input type="button" name="submit" id="submitid" value="Submit"/>
+						</div>
 					</td>
 				</tr>
 			</table>
