@@ -778,11 +778,7 @@ function validateAll()
 	msg += validateInputText('#eendtimeid', ", Please enter the event end time.<br/>");
 	msg += validateInputText('#elocationid', " , Please enter the event location address.<br/>");
 	msg += validateInputText('#edescriptionid', ", Please enter the event description.<br/>");
-	
-	if(msg)
-	{
-		msg += "."
-	}
+
 	return msg;
 }
 
