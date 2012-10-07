@@ -409,6 +409,7 @@ $(function() {
 	/*************** posting ********************/
 	$('#submitid').bind('click', function() 
 	{ 
+		console.log("clicked submit button!!!!!!!!!!!!!!!!");
 		var msg = validateAll();
 		console.log("message: " + msg);
 		if(!msg)
