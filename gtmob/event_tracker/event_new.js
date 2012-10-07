@@ -410,6 +410,7 @@ $(function() {
 	$('#submitid').bind('click', function() 
 	{ 
 		var msg = validateAll();
+		console.log("message: " + msg);
 		if(!msg)
 		{
 			console.log("form validation passed, ready to submit");
@@ -638,7 +639,7 @@ function validateInputText(id, msg)
 	return "";
 }
 
-function validateAll(err)
+function validateAll()
 {
 	var msg = "Missing ";
 	msg += validateInputText('#eorganizationid', "organization name\n");
