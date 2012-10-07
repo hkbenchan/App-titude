@@ -85,7 +85,11 @@ $(function() {
 				var i = 0;
 				$('.event_collapsible').remove();
 				$.each(data.date,function(key,val) {
-					$('#post_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>').trigger('create');
+					if (i==0) {
+						$('#post_events').append('<div data-role="collapsible" data-collapsed="false" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>').trigger('create');
+					} else {
+						$('#post_events').append('<div data-role="collapsible" class="event_collapsible" id="event_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>').trigger('create');
+					}
 					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">').trigger('create');
 					$.each(data[i],function(key,val) {
 						$('#event_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>').trigger('create');
@@ -114,7 +118,11 @@ $(function() {
 				$('#no_rsvps').remove();
 				$('.rsvp_collapsible').remove();
 				$.each(data.date,function(key,val) {
-					$('#rsvps').append('<div data-role="collapsible" class="rsvp_collapsible" id="rsvp_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					if (i==0) {
+						$('#rsvps').append('<div data-role="collapsible" data-collapsed="false" class="rsvp_collapsible" id="rsvp_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					} else {
+						$('#rsvps').append('<div data-role="collapsible" class="rsvp_collapsible" id="rsvp_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
+					}
 					$('#rsvp_collapsible' + i).append('<ul data-role="listview" class="rsvp_list" id="rsvp_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
 						$('#rsvp_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
