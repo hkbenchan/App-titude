@@ -285,6 +285,34 @@ $(function() {
 		$('.control_group').controlgroup();
 	});
 	
+	
+	$('#admin_view_rsvps_page').bind('pagebeforeshow',function(event, ui){
+		console.log('pagebeforeshow');
+		
+		//JQuery Events
+		$.ajax({
+			url: 'api/event/0/admin/'+event_ID,
+			dataType: 'JSON',
+			async: false,
+			success: function(data) {
+				console.log(data);
+				$('#hold_rsvp_names').remove();
+				$('#admin_rsvps').append('<div id="hold_rsvp_names"/>');
+				
+				
+				for (var i=0; i<data.length; i++)
+				{
+				// add the AcctName for that
+				// 
+					$('#hold_manage_events').append(data[i]+'</br></br>');
+				}
+			},
+			error: function(data) {
+				console.log("Event " + data.statusText);
+			}
+		});
+		
+	});
 	//Bind the add page button
 	/*
 	$('#add_button').bind('click', function() {
