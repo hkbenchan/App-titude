@@ -172,6 +172,7 @@ $(function() {
 	});
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
+		console.log("testing");
 		event.preventDefault();
 		console.log("View Event Page");
 		console.log(ui);
