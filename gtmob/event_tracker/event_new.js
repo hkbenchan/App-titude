@@ -534,7 +534,7 @@ $(function() {
 		{
 			$.ajax
 		  	({
-				url: "api/event/",
+				url: "api/event/" + event_ID,
 				dataType: "json",
 				async: false, 
 				data: 
