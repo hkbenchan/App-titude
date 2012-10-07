@@ -24,9 +24,9 @@ var defaults = {
 	defaultView: 'month',
 	aspectRatio: 1.35,
 	header: {
-		left: 'prev,next today',
-		center: 'title',
-		right: 'month,agendaWeek,agendaDay'
+		left: 'title',
+		center: '',
+		right: 'today prev,next'
 	},
 	weekends: true,
 	
@@ -93,9 +93,9 @@ var defaults = {
 // right-to-left defaults
 var rtlDefaults = {
 	header: {
-		left: 'title',
+		left: 'next,prev today',
 		center: '',
-		right: 'today prev,next'
+		right: 'title'
 	},
 	buttonText: {
 		prev: '&nbsp;&#9658;&nbsp;',
