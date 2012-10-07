@@ -476,6 +476,7 @@ $(function() {
 	/******** clear all fields for new post *********/
 	$('#addid').bind('click', function() 
 	{ 
+		add_action = true;
 		console.log("clearing all fields");
 		clearAll();
 		
@@ -530,6 +531,7 @@ $(function() {
 	//need a button to bind to
 	$('#editid').bind('click',function()
 	{
+		add_action = false;
 		console.log("editing an event post (id: " + event_ID + ")");
 		$.ajax
 		({
