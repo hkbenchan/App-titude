@@ -274,16 +274,16 @@ $(function() {
 					*/
 					
 					if(i != 0) {
-						$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="e" data-content-theme="c"><h3>' + val + '</h3></div>');
+						$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c"><h3>' + val + '</h3></div>');
 					}
 					else {
-						$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="e" data-content-theme="c" data-collapsed="false"><h3>' + val + '</h3></div>');
+						$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c" data-collapsed="false"><h3>' + val + '</h3></div>');
 					}
 					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="event_manage_list" id="manage_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
 						//$('#manage_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val);
-						$('#manage_list' + i).append('<li><div data-role="collapsible" class="manage_buttons_collapsible" id="manage_buttons_collapsible' + i + '" data-theme="c" data-content-theme="c" data-collapsed="false"><h3>' + val.Title + '</h3></div>');
+						$('#manage_list' + i).append('<li><div data-role="collapsible" class="manage_buttons_collapsible" id="manage_buttons_collapsible' + i + '" data-theme="b" data-content-theme="c" data-collapsed="false"><h3>' + val.Title + '</h3></div>');
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 						
@@ -467,19 +467,21 @@ $(function() {
 		});
 	});
 	
+	
+	/*
 	//******************** editing event post *************************
 	//need a button to bind to
-	$('#editid').bind('click',function()
+	$('#').bind('click',function()
 	{
 		console.log("editing an event post (id: " + event_ID + ")");
 		$.ajax
 		({
 			url: "api/event/"+event_ID,
 			dataType: "json",
-	       	 	async: false,
+	        async: false,
 			type: 'GET',
-		        success: function(data) 
-		        {
+	        success: function(data) 
+	        {
 	            
 				$('#enameid').val(data['Title']);
 				$('#eorganizationid').val(data['OrganizationName']);
@@ -494,28 +496,29 @@ $(function() {
 				$('#estartdateid').val(stemp[0]);
 				$('#estarttimeid').val(stemp[1]);
 				
-				   var etemp = data['EndTime'].split(" ");
-			       	$('#eenddateid').val(etemp[0]);
-			       	$('#eendtimeid').val(etemp[1]);
-			       	
-			       	console.log("JSON object received successfully: ");
-			   
-			       	console.log("org: " + data['OrganizationName']);
-			       	console.log("title: " + data['Title']);
-			       	console.log("email: " + data['Email_address']);
-			       	console.log("phone: " + data['Phone_number']);
-			       	console.log("contact: " + data['Contact']);
-			       	console.log("location: " + data['LocationName']);
-			       	console.log("type: " + data['EventTypeDesc']);
-			       	console.log("description: " + data['Description']);
-			       	console.log("start date: " + stemp[0]);
-			       	console.log("start time: " + stemp[1]);
-			       	console.log("end date: " + etemp[0]);
-			       	console.log("end time: " + etemp[1]);
-		    	},
-		        error: ajaxError
+			    var etemp = data['EndTime'].split(" ");
+		       	$('#eenddateid').val(etemp[0]);
+		       	$('#eendtimeid').val(etemp[1]);
+		       	
+		       	console.log("JSON object received successfully: ");
+		   
+		       	console.log("org: " + data['OrganizationName']);
+		       	console.log("title: " + data['Title']);
+		       	console.log("email: " + data['Email_address']);
+		       	console.log("phone: " + data['Phone_number']);
+		       	console.log("contact: " + data['Contact']);
+		       	console.log("location: " + data['LocationName']);
+		       	console.log("type: " + data['EventTypeDesc']);
+		       	console.log("description: " + data['Description']);
+		       	console.log("start date: " + stemp[0]);
+		       	console.log("start time: " + stemp[1]);
+		       	console.log("end date: " + etemp[0]);
+		       	console.log("end time: " + etemp[1]);
+		    },
+	        error: ajaxError
 		});
 	});
+	*/
 });
 
 function formatList(ele_div,data) {
