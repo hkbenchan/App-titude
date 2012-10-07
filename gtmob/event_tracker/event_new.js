@@ -431,7 +431,7 @@ $(function() {
 					"Email" : $('#eemailid').val(),
 					"Phone" : $('#ephoneid').val(),
 					"Contact" : $('#econtactid').val(),
-					"Location" : $('#elocationid').val(),
+					"LocationName" : $('#elocationid').val(),
 					"LatCoord" : "",
 					"LongCoord" : "",
 					"EventTypeDesc" : $('#etypeid').val(),
