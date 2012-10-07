@@ -265,7 +265,7 @@ $(function() {
 					else {
 						$('#hold_manage_events').append('<div data-role="collapsible" class="event_manage_collapsible" id="event_manage_collapsible' + i + '" data-theme="b" data-content-theme="c" data-collapsed="false"><h3>' + val + '</h3></div>');
 					}
-					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="event_manage_list" id="manage_list' + i + '" data-inset="true" data-theme="d">');
+					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="event_manage_list" id="manage_list' + i + '" data-inset="true" data-theme="d"></ul>');
 					$.each(data[i],function(key,val) {
 						//$('#manage_list' + i).append('<li><a href="#form_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						$('#manage_list' + i).append('<li><div data-role="controlgroup" data-type="horizontal" class="control_group" id="control_group_' + i + '"><a href="#view_event_page" data-role="button" class="unique_button" data-event="' + val.ID + '">' + val.Title + '</a><a href="#admin_view_rsvps_page" data-role="button" class="unique_button" data-event="' + val.ID + '">View RSVPs</a><a href="#form_page" data-role="button" class="unique_button" data-event="' + val.ID + '">Edit</a></div></li>');
