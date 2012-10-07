@@ -162,16 +162,14 @@ $(function() {
 				});
 				rsvped_events.events = eventArray;
 				console.log(rsvped_events);
-				$('#calendar').fullCalendar('refetchEvents');
 	        },
 	        error: ajaxError
 		});
 	});
 	
-	/*
 	$('#calendar_page').bind('pageshow',function(event, ui){
-		$('#calendar').fullCalendar('rerenderEvents');
-	});*/
+		$('#calendar').fullCalendar('refetchEvents');
+	});
 	
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		event.preventDefault();
