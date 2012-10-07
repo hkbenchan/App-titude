@@ -299,7 +299,7 @@ $(function() {
 				$('#hold_rsvp_names').remove();
 				$('#admin_rsvps').append('<div id="hold_rsvp_names"/>');
 				
-				
+				$('#hold_rsvp_names').append('<h2>People Going:</h2></br></br></br>');
 				for (var i=0; i<data.length; i++)
 				{
 				// add the AcctName for that
