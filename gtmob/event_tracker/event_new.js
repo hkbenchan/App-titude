@@ -396,35 +396,101 @@ $(function() {
 			console.log("Event " + data.statusText);
 		}
 	});
-	*/
 	
 	/*************** posting ********************/
 	$('#submitid').bind('click', function() 
-	{ console.log("Add Button");
-	      	$.ajax({
-		    	url: "api/event/",
-			dataType: "json",
-			async: false, 
-			data: { "Title" : $('#enameid').val(), 
-				"OrganizationName" : $('#eorganizationid').val(),
-				"Email" : $('#eemailid').val(),
-				"Phone" : $('#ephoneid').val(),
-				"Contact" : $('#econtactid').val(),
-				"Location" : $('#elocationid').val(),
-				"LatCoord" : "",
-				"LongCoord" : "",
-				"EventTypeDesc" : $('#etypeid').val(),
-				"Description" : $('#edescriptionid').val(),
-				"StartTime" : $('#esyearid').val() + "-" +  $('#esmonthid').val() + "-" + $('#esdayid').val() + " " +  $('#eshourid').val() + ":" +  $('#esminid').val() + ":" +  $('#essecid').val(),
-		       		"EndTime" : $('#eeyearid').val() + "-" +  $('#eemonthid').val() + "-" + $('#eedayid').val() + " " +  $('#eehourid').val() + ":" +  $('#eeminid').val() + ":" +  $('#eesecid').val()},
-			type: 'POST',
-			success: function(data) {
-			console.log("I am success");
-			},
-			error: ajaxError
-	       	});
+	{ 
+		var msg = validateAll();
+		if(!msg)
+		{
+			console.log("form validation passed, ready to submit");
+		  	$.ajax
+		  	({
+				url: "api/event/",
+				dataType: "json",
+				async: false, 
+				data: 
+				{ 
+					"Title" : $('#enameid').val(), 
+					"OrganizationName" : $('#eorganizationid').val(),
+					"Email" : $('#eemailid').val(),
+					"Phone" : $('#ephoneid').val(),
+					"Contact" : $('#econtactid').val(),
+					"Location" : $('#elocationid').val(),
+					"LatCoord" : "",
+					"LongCoord" : "",
+					"EventTypeDesc" : $('#etypeid').val(),
+					"Description" : $('#edescriptionid').val(),
+					"StartTime" : $('#estartdateid').val() + " " + $('#estarttimeid').val(),
+				   	"EndTime" : $('#eenddateid').val() + " " + $('#eendtimeid').val()
+				 },
+				type: 'POST',
+				success: function(data) 
+				{
+					console.log("form submitted successful");
+				},
+				error: ajaxError
+			});
+		}
+		else
+		{
+			console.log("form validation failed, can't submit");
+			showError(msg);
+		}
 	});
 	
+	
+	/*
+	//******************** editing event post *************************
+	//need a button to bind to
+	$('#').bind('click',function()
+	{
+		console.log("editing an event post (id: " + event_ID + ")");
+		$.ajax
+		({
+			url: "api/event/"+event_ID,
+			dataType: "json",
+	        async: false,
+			type: 'GET',
+	        success: function(data) 
+	        {
+	            
+				$('#enameid').val(data['Title']);
+				$('#eorganizationid').val(data['OrganizationName']);
+				$('#eemailid').val(data['Email_address']);
+				$('#ephoneid').val(data['Phone_number']);
+				$('#econtactid').val(data['Contact']);
+				$('#elocationid').val(data['Location']);
+				$('#etypeid').val(data['EventTypeDesc']);
+				$('#edescriptionid').val(data['Description']);
+				
+				var stemp = data['StartTime'].split(" ");
+				$('#estartdateid').val(stemp[0]);
+				$('#estarttimeid').val(stemp[1]);
+				
+			    var etemp = data['EndTime'].split(" ");
+		       	$('#eenddateid').val(etemp[0]);
+		       	$('#eendtimeid').val(etemp[1]);
+		       	
+		       	console.log("JSON object received successfully: ");
+		   
+		       	console.log("org: " + data['OrganizationName']);
+		       	console.log("title: " + data['Title']);
+		       	console.log("email: " + data['Email_address']);
+		       	console.log("phone: " + data['Phone_number']);
+		       	console.log("contact: " + data['Contact']);
+		       	console.log("location: " + data['LocationName']);
+		       	console.log("type: " + data['EventTypeDesc']);
+		       	console.log("description: " + data['Description']);
+		       	console.log("start date: " + stemp[0]);
+		       	console.log("start time: " + stemp[1]);
+		       	console.log("end date: " + etemp[0]);
+		       	console.log("end time: " + etemp[1]);
+		    },
+	        error: ajaxError
+		});
+	});
+	*/
 });
 
 function formatList(ele_div,data) {
@@ -547,4 +613,48 @@ function ajaxError(jqXHR, textStatus, errorThrown){
 		reverse: false,
 		changeHash: false
 	});*/
+}
+
+//*********** form validation **********************
+function validateInputText(id, msg)
+{	
+	console.log("validating element: " + id);
+	var element = $(id);
+	
+	if(!element.val())
+	{
+		console.log(id + "  ---> empty");
+		return msg;
+	}
+	return "";
+}
+
+function validateAll(err)
+{
+	var msg = "Missing ";
+	msg += validateInputText('#eorganizationid', "organization name\n");
+	msg += validateInputText('#eemailid', ", email address\n");
+	msg += validateInputText('#ephoneid', ", phone number\n");
+	msg += validateInputText('#econtactid', ", contact name\n");
+	msg += validateInputText('#etypeid', ", event type\n");
+	msg += validateInputText('#estartdateid', ", event start date\n");
+	msg += validateInputText('#estarttimeid', ", event start time\n");
+	msg += validateInputText('#eenddateid', ", event end date\n");
+	msg += validateInputText('#eendtimeid', ", event end time\n");
+	msg += validateInputText('#elocationid', " , event location address\n");
+	msg += validateInputText('#edescriptionid', ", event description name\n");
+	
+	if(msg)
+	{
+		msg += "."
+	}
+	return msg;
+}
+
+function showError(msg)
+{
+	if(msg)
+	{
+		$("<div />", {text: msg}).dialog({title: "ERROR"});
+	}
 }
