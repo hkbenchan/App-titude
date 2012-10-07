@@ -503,6 +503,7 @@ $(function() {
 	$('#submitid').bind('click', function() 
 	{ 
 		var msg = validateAll();
+		console.log("message: " + msg);
 		if(!msg)
 		{
 			if(add_action)
