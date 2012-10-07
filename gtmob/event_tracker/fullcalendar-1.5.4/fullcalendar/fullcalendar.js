@@ -77,7 +77,7 @@ var defaults = {
 	},
 	
 	// jquery-ui theming
-	theme: true,
+	theme: false,
 	buttonIcons: {
 		prev: 'circle-triangle-w',
 		next: 'circle-triangle-e'
