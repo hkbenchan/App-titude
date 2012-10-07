@@ -532,6 +532,7 @@ $(function() {
 					success: function(data) 
 					{
 						console.log("event added successful");
+						window.location.replace("http://m.cip.gatech.edu/d/apptitude/w/event_tracker/content/");
 					},
 					error: ajaxError
 				});
@@ -563,6 +564,7 @@ $(function() {
 					success: function(data) 
 					{
 						console.log("event updated successful");
+						window.location.replace("http://m.cip.gatech.edu/d/apptitude/w/event_tracker/content/");
 					},
 					error: ajaxError
 				});
