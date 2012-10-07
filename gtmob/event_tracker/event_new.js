@@ -597,7 +597,7 @@ $(function() {
 					$('#eemailid').val(data['Email_address']);
 					$('#ephoneid').val(data['Phone_number']);
 					$('#econtactid').val(data['Contact']);
-					$('#elocationid').val(data['Location']);
+					$('#elocationid').val(data['LocationName']);
 					$('#etypeid').val(data['EventTypeDesc']);
 					$('#edescriptionid').val(data['Description']);
 					
