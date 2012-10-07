@@ -787,15 +787,11 @@ function showError(msg)
 	if(msg)
 	{
 		//$("<div />", {text: msg}).dialog({title: "ERROR"});
-		if(msg)
-		{
-			$('#message').html("Error <br/>" + msg);	
-		}
-		else
-		{
-			$('#message').html("Event submitted successfully <br/>");
-		}
-		//$('#error').popup("open");
+		$('#message').html("<h3><b>Error </b></h3><br/>" + msg);
+	}
+	else
+	{
+		$('#message').html("");
 	}
 }
 
