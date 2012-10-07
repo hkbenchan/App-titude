@@ -766,18 +766,18 @@ function validateInputText(id, msg)
 
 function validateAll()
 {
-	var msg = "Missing ";
-	msg += validateInputText('#eorganizationid', "organization name<br/>");
-	msg += validateInputText('#eemailid', ", email address\n");
-	msg += validateInputText('#ephoneid', ", phone number\n");
-	msg += validateInputText('#econtactid', ", contact name\n");
-	msg += validateInputText('#etypeid', ", event type\n");
-	msg += validateInputText('#estartdateid', ", event start date\n");
-	msg += validateInputText('#estarttimeid', ", event start time\n");
-	msg += validateInputText('#eenddateid', ", event end date\n");
-	msg += validateInputText('#eendtimeid', ", event end time\n");
-	msg += validateInputText('#elocationid', " , event location address\n");
-	msg += validateInputText('#edescriptionid', ", event description name\n");
+	var msg = "";
+	msg += validateInputText('#eorganizationid', "Please enter the event organization name.<br/>");
+	msg += validateInputText('#eemailid', ", Please enter the event contact person's email address.<br/>");
+	msg += validateInputText('#ephoneid', ", Please enter the event contact person's phone number.<br/>");
+	msg += validateInputText('#econtactid', ", Please enter the event contact person's name.<br/>");
+	msg += validateInputText('#etypeid', ", Please enter the event type.<br/>");
+	msg += validateInputText('#estartdateid', ", Please enter the event start date.<br/>");
+	msg += validateInputText('#estarttimeid', ", Please enter the event start time.<br/>");
+	msg += validateInputText('#eenddateid', ", Please enter the event end date.<br/>");
+	msg += validateInputText('#eendtimeid', ", Please enter the event end time.<br/>");
+	msg += validateInputText('#elocationid', " , Please enter the event location address.<br/>");
+	msg += validateInputText('#edescriptionid', ", Please enter the event description.<br/>");
 	
 	if(msg)
 	{
