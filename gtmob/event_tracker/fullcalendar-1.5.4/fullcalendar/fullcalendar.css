@@ -22,7 +22,7 @@
 	
 html .fc,
 .fc table {
-	font-size: .9em;
+	font-size: 1em;
 	}
 	
 .fc td,
@@ -261,7 +261,7 @@ html .fc,
 .fc-event {
 	border-style: solid;
 	border-width: 0;
-	font-size: .85em;
+	font-size: .8em;
 	cursor: default;
 	}
 	
