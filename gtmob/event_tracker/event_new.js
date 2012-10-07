@@ -266,7 +266,7 @@ $(function() {
 					}
 					$('#event_manage_collapsible' + i).append('<ul data-role="listview" class="event_manage_list" id="manage_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
-						$('#manage_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
+						$('#manage_list' + i).append('<li><a href="#form_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 					});
@@ -314,6 +314,19 @@ $(function() {
 	$("a[href=#browse_events_page]").live("click", function(e) {
 	    category_ID = $(this).data("category");
 		console.log("category_ID = " + category_ID);
+		//navIdentity = $(this).data("identity");
+	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
+	    //$("#list").page();                     
+	});
+	
+	$("a[href=#form_page]").live("click", function(e) {
+		if ($(this).data("event") != undefined) {
+			event_ID = $(this).data("event");
+			console.log("event_ID = " + event_ID);
+		}
+		else {
+			console.log("Event ID not set bc undefined.")
+		}
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
 	    //$("#list").page();                     
