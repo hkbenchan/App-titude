@@ -13,7 +13,6 @@ $(function() {
 			event_ID = calEvent.id;
 		}
 	});
-	$('#calendar').fullCalendar(rsvped_events);
 	$('#calendar').fullCalendar('addEventSource',rsvped_events);
 	
 	$('#home_page').bind('pagebeforeshow',function(event, ui) {
@@ -161,7 +160,7 @@ $(function() {
 						}
 					});
 				});
-				rsvped_events = {events:eventArray};
+				rsvped_events.events = eventArray;
 				console.log(rsvped_events);
 				$('#calendar').fullCalendar('refetchEvents');
 	        },
