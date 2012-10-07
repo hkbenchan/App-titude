@@ -24,9 +24,9 @@ var defaults = {
 	defaultView: 'month',
 	aspectRatio: 1.35,
 	header: {
-		left: 'title',
-		center: '',
-		right: 'today prev,next'
+		left: 'prev,next today',
+		center: 'title',
+		right: 'month,agendaWeek,agendaDay'
 	},
 	weekends: true,
 	
@@ -77,7 +77,7 @@ var defaults = {
 	},
 	
 	// jquery-ui theming
-	theme: false,
+	theme: true,
 	buttonIcons: {
 		prev: 'circle-triangle-w',
 		next: 'circle-triangle-e'
