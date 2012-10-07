@@ -2,9 +2,12 @@
 	<div data-role='header' data-theme='d' data-id='form_page' data-position="fixed">
 		<h1>Form</h1>
 	</div>
-	
-	<div data-role='content' id='form'>
 
+	<div data-role="popup" id="error">
+		<p id="message"></p>
+	</div>
+							
+	<div data-role='content' id='form'>
 		<form id="formid">
 			<table>
 				<tr>
@@ -109,11 +112,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="right">
-						<a href="#submitid" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-						<div data-role="popup" id="error">
-							<p id="message"></p>
-							<input type="button" name="submit" id="submitid" value="Submit"/>
-						</div>
+						<input type="button" name="submit" id="submitid" value="Submit"/>
 					</td>
 				</tr>
 			</table>
