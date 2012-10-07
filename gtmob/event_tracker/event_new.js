@@ -523,7 +523,7 @@ $(function() {
 				type: 'POST',
 				success: function(data) 
 				{
-					console.log("form submitted successful");
+					console.log("event added successful");
 				},
 				error: ajaxError
 			});
@@ -554,7 +554,7 @@ $(function() {
 				type: 'POST',
 				success: function(data) 
 				{
-					console.log("form submitted successful");
+					console.log("event updated successful");
 				},
 				error: ajaxError
 			});
