@@ -801,6 +801,7 @@ function clearAll()
 {
 	$('#message').html("");
 	clearInputField('#eorganizationid');
+	clearInputField('#enameid');
 	clearInputField('#eemailid');
 	clearInputField('#ephoneid');
 	clearInputField('#econtactid');
