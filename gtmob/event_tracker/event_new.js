@@ -434,7 +434,21 @@ $(function() {
 	/******** clear all fields for new post *********/
 	$('#saddid').bind('click', function() 
 	{ 
+		console.log("clearing all fields");
 		clearAll();
+		
+		console.log("title: " +  $('#enameid').val());
+		console.log("OrganizationName: " +  $('#eorganizationid').val());
+		console.log("Email: " + $('#eemailid').val());
+		console.log("Phone: " +  $('#ephoneid').val());
+		console.log("Contact: " +  $('#econtactid').val());
+		console.log("LocationName: " + $('#elocationid').val());
+		console.log("EventTypeDesc: " +  $('#etypeid').val());
+		console.log("Description: " +  $('#edescriptionid').val());
+		console.log("Start date: " + $('#estartdateid').val());
+		console.log("Start time: " +  $('#estarttimeid').val());
+		console.log("End date: " +  $('#eenddateid').val());
+		console.log("End time: " + $('#eendtimeid').val());
 	});
 	
 	/*************** posting ********************/
