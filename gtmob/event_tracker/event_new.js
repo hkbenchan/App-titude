@@ -800,6 +800,7 @@ function showError(msg)
 //************ clear the form for new event post *************
 function clearAll()
 {
+	$('#message').html("");
 	clearInputField('#eorganizationid');
 	clearInputField('#eemailid');
 	clearInputField('#ephoneid');
