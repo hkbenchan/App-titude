@@ -304,7 +304,7 @@ $(function() {
 				{
 				// add the AcctName for that
 				// 
-					$('#hold_manage_events').append(data[i].AcctName + '</br></br>');
+					$('#hold_rsvp_names').append(data[i].AcctName + '</br></br>');
 				}
 			},
 			error: function(data) {
