@@ -579,7 +579,7 @@ $(function() {
 	
 	//******************** editing event post *************************
 	//need a button to bind to
-	$('.editclass').bind('click',function()
+	$('#editid').bind('click',function()
 	{
 		add_action = false;
 		console.log("editing an event post (id: " + event_ID + ")");
