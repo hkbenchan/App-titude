@@ -767,7 +767,7 @@ function validateInputText(id, msg)
 function validateAll()
 {
 	var msg = "Missing ";
-	msg += validateInputText('#eorganizationid', "organization name\n");
+	msg += validateInputText('#eorganizationid', "organization name<br/>");
 	msg += validateInputText('#eemailid', ", email address\n");
 	msg += validateInputText('#ephoneid', ", phone number\n");
 	msg += validateInputText('#econtactid', ", contact name\n");
