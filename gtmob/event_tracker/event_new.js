@@ -288,8 +288,8 @@ $(function() {
 						console.log(val.ID);
 						
 						$('#manage_buttons_collapsible' + i).append('<ul data-role="listview" class="manage_buttons_list" id="manage_buttons_list' + i + '" data-inset="true" data-theme="d">');
-						$('#manage_buttons_list'+i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>Edit</h3></a></li>');
-						$('#manage_buttons_list'+i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>View RSVPs</h3></a></li>');
+						$('#manage_buttons_list'+i).append('<a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>Edit</h3></a>');
+						$('#manage_buttons_list'+i).append('<a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>View RSVPs</h3></a>');
 					});
 					i++;
 				});
