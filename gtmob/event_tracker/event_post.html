@@ -1,113 +1,129 @@
 <div data-role="page" id="form_page" align="left" data-theme="a">
-	<form id="formid">
-		<table>
-			<tr>
-				<td><label for="eorganizationid">Organization Name </label></td>
-				<td><input type="text" id="eorganizationid" name="eorganization" maxlength="20"/></td>
-			</tr>
-			<tr>
-				<td><label for="eemailid">Email </label></td>
-				<td><input type="text" id="eemailid" name="eemail" maxlength="20"/></td>
-			</tr>
-			<tr>
-				<td><label for="ephoneid">Phone </label></td>
-				<td><input type="text" id="ephoneid" name="ephone" maxlength="10"/></td>
-			</tr>
-			<tr>
-				<td><label for="econtactid">Contact </label></td>
-				<td><input type="text" id="econtactid" name="econtact" maxlength="50"/></td>
-			</tr>
-			<tr>
-				<td><label for="enameid">Event Name </label></td>
-				<td><input type="text" id="enameid" name="ename" maxlength="20"/></td>
-			</tr>
-			<tr>
-				<td><label for="etypeid">Event Type </label></td>
-				<td><input type="text" id="etypeid" name="etype" maxlength="20"/></td>
-			</tr>
-			<tr>
-				<td>Event Start </td>
-				<td>
-					<input type="text" id="estartdateid" name="estartdate"/>
-					<input type="text" id="estarttimeid" name="estarttime"/>
-					<script>
-						var element = $('#estartdateid');
-						element.datepicker
-						({
-						    onSelect: function(dateText, inst) 
+	<div data-role='header' data-theme='d' data-id='form_page' data-position="fixed">
+		<h1>Form</h1>
+	</div>
+	
+	<div data-role='content' id='form'>
+
+		<form id="formid">
+			<table>
+				<tr>
+					<td><label for="eorganizationid">Organization Name </label></td>
+					<td><input type="text" id="eorganizationid" name="eorganization" maxlength="20"/></td>
+				</tr>
+				<tr>
+					<td><label for="eemailid">Email </label></td>
+					<td><input type="text" id="eemailid" name="eemail" maxlength="20"/></td>
+				</tr>
+				<tr>
+					<td><label for="ephoneid">Phone </label></td>
+					<td><input type="text" id="ephoneid" name="ephone" maxlength="10"/></td>
+				</tr>
+				<tr>
+					<td><label for="econtactid">Contact </label></td>
+					<td><input type="text" id="econtactid" name="econtact" maxlength="50"/></td>
+				</tr>
+				<tr>
+					<td><label for="enameid">Event Name </label></td>
+					<td><input type="text" id="enameid" name="ename" maxlength="20"/></td>
+				</tr>
+				<tr>
+					<td><label for="etypeid">Event Type </label></td>
+					<td><input type="text" id="etypeid" name="etype" maxlength="20"/></td>
+				</tr>
+				<tr>
+					<td>Event Start </td>
+					<td>
+						<input type="text" id="estartdateid" name="estartdate"/>
+						<input type="text" id="estarttimeid" name="estarttime"/>
+						<script>
+							var element = $('#estartdateid');
+							element.datepicker
+							({
+							    onSelect: function(dateText, inst) 
+								{
+									console.log("\tstart date (before): " + dateText);
+									var temp = dateText.split('/');
+									var result = temp[2] + "-" + temp[1] + "-" + temp[0];
+									element.val(result);
+									console.log("\tstart date (after): " + element.val());
+								}
+							});
+	
+							element = $('#estarttimeid');
+							element.timepicker
+							({
+								onSelect: onSelectCallback
+							});
+	
+							function onSelectCallback(hour)
 							{
-								console.log("\tstart date (before): " + dateText);
-								var temp = dateText.split('/');
-								var result = temp[2] + "-" + temp[1] + "-" + temp[0];
-								element.val(result);
-								console.log("\tstart date (after): " + element.val());
+								console.log("\tstart time (before): " + hour);
+								element.val(hour + ":00");
+								console.log("\tstart time (after): " + element.val());
 							}
-						});
-
-						element = $('#estarttimeid');
-						element.timepicker
-						({
-							onSelect: onSelectCallback
-						});
-
-						function onSelectCallback(hour)
-						{
-							console.log("\tstart time (before): " + hour);
-							element.val(hour + ":00");
-							console.log("\tstart time (after): " + element.val());
-						}
-					</script>
-				</td>
-			</tr>
-			<tr>
-				<td>Event End </td>
-				<td>
-					<input type="text" id="eenddateid" name="eenddate"/>
-					<input type="text" id="eendtimeid" name="eendtime"/>
-					<script>
-						var element = $('#eenddateid');
-						element.datepicker
-						({
-						    onSelect: function(dateText, inst) 
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td>Event End </td>
+					<td>
+						<input type="text" id="eenddateid" name="eenddate"/>
+						<input type="text" id="eendtimeid" name="eendtime"/>
+						<script>
+							var element = $('#eenddateid');
+							element.datepicker
+							({
+							    onSelect: function(dateText, inst) 
+								{
+									console.log("\tend date (before): " + dateText);
+									var temp = dateText.split('/');
+									var result = temp[2] + "-" + temp[1] + "-" + temp[0];
+									element.val(result);
+									console.log("\tend date (after): " + element.val());
+								}
+							});
+	
+							element = $('#eendtimeid');
+							element.timepicker
+							({
+								onSelect: onSelectCallback
+							});
+	
+							function onSelectCallback(hour)
 							{
-								console.log("\tend date (before): " + dateText);
-								var temp = dateText.split('/');
-								var result = temp[2] + "-" + temp[1] + "-" + temp[0];
-								element.val(result);
-								console.log("\tend date (after): " + element.val());
+								console.log("\tend time (before): " + hour);
+								element.val(hour + ":00");
+								console.log("\tend time (after): " + element.val());
 							}
-						});
-
-						element = $('#eendtimeid');
-						element.timepicker
-						({
-							onSelect: onSelectCallback
-						});
-
-						function onSelectCallback(hour)
-						{
-							console.log("\tend time (before): " + hour);
-							element.val(hour + ":00");
-							console.log("\tend time (after): " + element.val());
-						}
-					</script>
-				</td>
-			</tr>
-			<tr>
-				<td><label for="elocationid">Event Location </label></td>
-				<td><textarea id="elocationid" name="elocation" rows="2" cols="60"></textarea></td>
-			</tr>
-			<tr>
-				<td><label for="edescriptionid">Event Description </label></td>
-				<td><textarea id="edescriptionid" name="edescription" rows="10" cols="60"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right">
-					<input type="button" name="submit" id="submitid" value="Submit"/>
-				</td>
-			</tr>
-		</table>
-	</form>
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="elocationid">Event Location </label></td>
+					<td><textarea id="elocationid" name="elocation" rows="2" cols="60"></textarea></td>
+				</tr>
+				<tr>
+					<td><label for="edescriptionid">Event Description </label></td>
+					<td><textarea id="edescriptionid" name="edescription" rows="10" cols="60"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right">
+						<input type="button" name="submit" id="submitid" value="Submit"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<div data-role="footer" class="ui-bar" data-id="standard-footer" data-position="fixed">
+		<h1 id="footer_img_header" class="ui-title" aria-level="1">
+		<a href="#home_page"><img src="GITout_small.png"></a>
+		<a href="#browse_categories_page" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme='d'>Category</a>
+		<a href="#browse_events_page" data-category="" data-role="button" data-transition="slide" data-icon="arrow-r" data-iconpos="right" data-theme='d'>All Events</a>
+		<a href="#calendar_page" data-role='button' data-transition='slide' data-icon='arrow-r' data-iconpos='right' data-theme='d'>Calendar</a>
+		</h1>
+	</div>
 </div>
 
 
