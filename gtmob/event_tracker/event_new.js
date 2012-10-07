@@ -3,6 +3,7 @@ var pageViewLimit = 20;
 var event_ID;
 var category_ID;
 var rsvped_events = {events:[]};
+var add_action = true;
 
 $(function() {
  // Handler for .ready() called.
