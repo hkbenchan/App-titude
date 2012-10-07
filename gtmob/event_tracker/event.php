@@ -900,7 +900,7 @@ function listEventRSVP($event_id = 0) {
 			
 			$dbQuery .= ") AND `Event`.StartTime >= CURRENT_TIMESTAMP ORDER BY `Event`.StartTime ASC";
 			
-			echo print_r($dbQuery);
+			echo $dbQuery;
 			die();
 			$tmp = getDBResultsArray($dbQuery);
 	        $result = groupByStartDate($tmp);
