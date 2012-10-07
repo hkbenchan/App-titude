@@ -893,18 +893,16 @@ function listEventRSVP($event_id = 0) {
 			JOIN `Organization` ON `AuthUser`.OnBehalf = `Organization`.ID";
 			
 			if (count($result) == 1)
-				$dbQuery .= "WHERE (`Organization`.OrganizationName = '".mysql_real_escape_string($result['OrganizationName'])."'";
+				$dbQuery .= " WHERE (`Organization`.OrganizationName = '".mysql_real_escape_string($result['OrganizationName'])."'";
 			else
-				$dbQuery .= "WHERE (`Organization`.OrganizationName = '".mysql_real_escape_string($result[0]['OrganizationName'])."'";
+				$dbQuery .= " WHERE (`Organization`.OrganizationName = '".mysql_real_escape_string($result[0]['OrganizationName'])."'";
 				
 			for ($i=1; $i<count($result); $i++) {
 				$dbQuery .= " Or `Organization`.OrganizationName = '" .mysql_real_escape_string($result[$i]['OrganizationName'])."'";
 			}
 			
 			$dbQuery .= ") AND `Event`.StartTime >= CURRENT_TIMESTAMP ORDER BY `Event`.StartTime ASC";
-			
-			echo $dbQuery;
-			die();
+
 			$tmp = getDBResultsArray($dbQuery);
 	        $result = groupByStartDate($tmp);
 
