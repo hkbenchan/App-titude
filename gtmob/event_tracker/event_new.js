@@ -460,7 +460,7 @@ $(function() {
 	});
 	
 	/******** clear all fields for new post *********/
-	$('#saddid').bind('click', function() 
+	$('#addid').bind('click', function() 
 	{ 
 		console.log("clearing all fields");
 		clearAll();
