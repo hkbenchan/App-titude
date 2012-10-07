@@ -301,6 +301,7 @@ $(function() {
 				$('#admin_rsvps').append('<div id="hold_rsvp_names"/>');
 				
 				$('#hold_rsvp_names').append('<h2>People Going:</h2></br>');
+				console.log(data.length + ' = length')
 				for (var i=0; i<data.length; i++)
 				{
 				// add the AcctName for that
