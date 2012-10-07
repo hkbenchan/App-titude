@@ -478,7 +478,7 @@ $(function() {
 		console.log("clearing all fields");
 		clearAll();
 		
-		console.log("title: " +  $('#enameid').val());
+		console.log("Title: " +  $('#enameid').val());
 		console.log("OrganizationName: " +  $('#eorganizationid').val());
 		console.log("Email: " + $('#eemailid').val());
 		console.log("Phone: " +  $('#ephoneid').val());
