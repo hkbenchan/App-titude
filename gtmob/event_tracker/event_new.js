@@ -680,3 +680,25 @@ function showError(msg)
 		$("<div />", {text: msg}).dialog({title: "ERROR"});
 	}
 }
+
+//************ clear the form for new event post *************
+function clearAll()
+{
+	clearInputField('#eorganizationid');
+	clearInputField('#eemailid');
+	clearInputField('#ephoneid');
+	clearInputField('#econtactid');
+	clearInputField('#etypeid');
+	clearInputField('#estartdateid');
+	clearInputField('#estarttimeid');
+	clearInputField('#eenddateid');
+	clearInputField('#eendtimeid');
+	clearInputField('#elocationid');
+	clearInputField('#edescriptionid');
+}
+
+function clearInputField(id)
+{
+	var element = $(id);
+	element.var("");
+}
