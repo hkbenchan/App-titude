@@ -887,7 +887,8 @@ function listEventRSVP($event_id = 0) {
 		
 		if (count($result)>0) {
 			// can get the list 
-			
+			echo '<pre>'.print_r($result,true).'</pre>';
+			echo $result[0];
 			$dbQuery = "SELECT `Event`.ID, `Event`.Title, `Event`.StartTime, `Event`.EndTime FROM `Event`
 			JOIN `CreatorOwn` ON `Event`.CreatorID = `CreatorOwn`.CreatorID
 			JOIN `AuthUser` ON `CreatorOwn`.AuthUserID = `AuthUser`.ID
