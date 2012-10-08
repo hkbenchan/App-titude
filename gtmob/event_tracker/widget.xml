@@ -17,10 +17,10 @@
 	<javascript file="event.js"/>
 	-->
 	<javascript file="jquery-1.8.2.min.js"/>
+	<javascript file="jquery-ui-1.8.24.custom.min.js"/>
 	<javascript file="jquery.ui.timepicker.js"/>
 	<javascript file="fullcalendar-1.5.4/fullcalendar/fullcalendar.js"/>
 	<javascript file="event_new.js"/>
-	<javascript file="jquery-ui-1.8.24.custom.min.js"/>
 	
     <library name="jquery.mobile"/> 
     <library name="gtmob"/>
