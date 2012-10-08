@@ -550,7 +550,8 @@ $(function() {
 					{
 						console.log("event added successful");
 						console.log(data);
-						event_ID = data.Event_ID;
+						event_ID = data{EventID};
+						console.log(event_ID);
 					},
 					error: ajaxError
 				});
@@ -583,7 +584,6 @@ $(function() {
 					{
 						console.log("event updated successful");
 						console.log(data);
-						event_ID = data.Event_ID;
 					},
 					error: ajaxError
 				});
