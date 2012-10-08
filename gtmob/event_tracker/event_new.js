@@ -269,7 +269,7 @@ $(function() {
 					$.each(data[i],function(key,val) {
 						//$('#manage_list' + i).append('<li><a href="#form_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						//$('#manage_list' + i).append('<li><div data-role="controlgroup" data-type="horizontal" class="control_group" id="control_group_' + i + '"><a href="#view_event_page" data-role="button" class="unique_button" data-event="' + val.ID + '">' + val.Title + '</a><a href="#admin_view_rsvps_page" data-role="button" class="unique_button" data-event="' + val.ID + '">View RSVPs</a><a href="#form_page" data-role="button" class="unique_button" data-event="' + val.ID + '">Edit</a></div></li>');
-						$('#manage_list' + i).append('<li><div>' + val.Title + '</br><a href="#admin_view_rsvps_page" data-role="button" class="unique_button" data-inline="true" data-event="' + val.ID + '">View RSVPs</a><a href="#form_page" data-role="button" data-inline="true" class="unique_button editclass" data-event="' + val.ID + '">Edit</a></div></li>');
+						$('#manage_list' + i).append('<li><div>' + val.Title + '</br><a href="#admin_view_rsvps_page" data-role="button" class="unique_button" data-inline="true" data-event="' + val.ID + '">View RSVPs</a><a href="#form_page" data-role="button" data-inline="true" class="unique_button editclass" data-event="' + val.ID + '">Edit</a><a href="#manage_events_page" data-role="button" data-inline="true" class="delete_button" data-event="' + val.ID + '">Delete</a></div></li>');
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
 						console.log(val.ID);
 					});
@@ -400,6 +400,28 @@ $(function() {
 	    //$("#list").page();                     
 	});
 	
+	$(".delete_button").live("click", function(e) {
+		if ($(this).data("event") != undefined) {
+			event_ID = $(this).data("event");
+			console.log("event_ID = " + event_ID);
+			$.ajax({
+			url: 'api/event/'+event_ID,
+			dataType: 'JSON',
+			async: false,
+			type: 'DELETE',
+			success: function() {
+				console.log('Event ' + event_ID + ' deleted.');
+			},
+			error: ajaxError
+		});
+		}
+		else {
+			console.log("Event ID not set bc undefined.")
+		}
+		//navIdentity = $(this).data("identity");
+	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
+	    //$("#list").page();                     
+	});
 	
 	$('#RSVPbutton').bind('click', function() 
 	{ console.log("RSVP Button");
