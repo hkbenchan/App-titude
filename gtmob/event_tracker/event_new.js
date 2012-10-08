@@ -415,9 +415,7 @@ $(function() {
 				error: ajaxError
 			});
 			$('#manage_events_page').page('refresh');
-		});
-		}
-		else {
+		} else {
 			console.log("Event ID not set bc undefined.")
 		}
 		//navIdentity = $(this).data("identity");
