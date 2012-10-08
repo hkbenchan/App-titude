@@ -671,7 +671,7 @@ $(function() {
 		}
 	});
 });
-
+/*
 function formatList(ele_div,data) {
 	var l = data['date'].length;
 
@@ -716,7 +716,6 @@ function eventPagination(limit,offset){
 	});
 }
 
-/*
 function simplePost(){
 	$.ajax({
 		url: "api/simple",
@@ -750,7 +749,6 @@ function simpleDelete(){
 		}
 	});
 }
-*/
 
 function prevPageView(){
 	if (current_page > 1) {
@@ -762,7 +760,7 @@ function nextPageView(){
 	
 }
 
-/* Do it once the page finish loading */
+Do it once the page finish loading
 
 $(document).ready(function(){
 	// start with first pageViewLimit most recent events
@@ -779,7 +777,7 @@ $(document).ready(function(){
 	
 
 });
-
+*/
 /******************************************************************************/
 
 function ajaxError(jqXHR, textStatus, errorThrown){
