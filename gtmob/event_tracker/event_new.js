@@ -414,7 +414,7 @@ $(function() {
 				},
 				error: ajaxError
 			});
-			$('#manage_events_page').page('refresh');
+			$('.event_manage_list').listview('refresh');
 		} else {
 			console.log("Event ID not set bc undefined.")
 		}
