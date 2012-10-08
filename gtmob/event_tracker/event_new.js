@@ -405,14 +405,16 @@ $(function() {
 			event_ID = $(this).data("event");
 			console.log("event_ID = " + event_ID);
 			$.ajax({
-			url: 'api/event/'+event_ID,
-			dataType: 'JSON',
-			async: false,
-			type: 'DELETE',
-			success: function() {
-				console.log('Event ' + event_ID + ' deleted.');
-			},
-			error: ajaxError
+				url: 'api/event/'+event_ID,
+				dataType: 'JSON',
+				async: false,
+				type: 'DELETE',
+				success: function() {
+					console.log('Event ' + event_ID + ' deleted.');
+				},
+				error: ajaxError
+			});
+			$('#manage_events_page').page('refresh');
 		});
 		}
 		else {
