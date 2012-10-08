@@ -361,10 +361,11 @@ $(function() {
 		if ($(this).data("event") != undefined) {
 			event_ID = $(this).data("event");
 			console.log("event_ID = " + event_ID);
+			add_action = false;
 		}
 		else {
 			console.log("Event ID not set bc undefined.")
-			add_action = false;
+			add_action = true;
 		}
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
