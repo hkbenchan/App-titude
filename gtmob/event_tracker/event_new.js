@@ -627,8 +627,8 @@ $(function() {
 					},
 					error: ajaxError
 			});
-		});
-	}
+		}
+	});
 });
 
 function formatList(ele_div,data) {
