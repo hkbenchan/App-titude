@@ -550,7 +550,7 @@ $(function() {
 					{
 						console.log("event added successful");
 						console.log(data);
-						event_ID = data{EventID};
+						event_ID = data[EventID];
 						console.log(event_ID);
 					},
 					error: ajaxError
