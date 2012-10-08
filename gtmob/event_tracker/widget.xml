@@ -7,10 +7,13 @@
 	<html file="event.html"/>
 	<html file="event_post.html"/>
 	
-	<css file="event.css"/>
 	<css file="fullcalendar-1.5.4/fullcalendar/fullcalendar.css"/>
+	<css file="css/themename/jquery-ui-1.8.24.custom.css"/>
+	<css file="event.css"/>
 
 	<javascript file="fullcalendar-1.5.4/fullcalendar/fullcalendar.js"/>
+	<javascript file="js/jquery-1.8.2.min.js"/>
+	<javascript file="js/jquery-ui-1.8.24.custom.min.js"/>
 	<javascript file="event_new.js"/>
 	
     <library name="jquery.mobile"/> 
