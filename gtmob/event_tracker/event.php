@@ -583,6 +583,8 @@ function updateEvent($event_id) {
 	
 	s_echo("EventType ID: ".$EventTypeID);
 	
+	$current_date = new DateTime();
+	
 	// Finally, we can update the Event Table
 	// Parameters: Title, Description, StartTime, EndTime, LocationID, CreatorID, EventTypeID, ID
 	if (is_null($_POST['Description'])) {
@@ -596,12 +598,12 @@ function updateEvent($event_id) {
 		mysql_real_escape_string($LocationID),
 		mysql_real_escape_string($CreatorID),
 		mysql_real_escape_string($EventTypeID),
-		mysql_real_escape_string(new DateTime()),
+		mysql_real_escape_string($current_date->format('Y-m-d H:i:s')),
 		mysql_real_escape_string($event_id)
 		);
 		
 	} else {
-
+		
 		$dbQuery = sprintf("UPDATE `Event` Set 
 		Title = '%s', Description = '%s', StartTime = '%s' , EndTime = '%s',
 		LocationID = '%s', CreatorID = '%s', EventTypeID = '%s', LastModified = '%s'
@@ -613,7 +615,7 @@ function updateEvent($event_id) {
 		mysql_real_escape_string($LocationID),
 		mysql_real_escape_string($CreatorID),
 		mysql_real_escape_string($EventTypeID),
-		mysql_real_escape_string(new DateTime()),
+		mysql_real_escape_string($current_date->format('Y-m-d H:i:s')),
 		mysql_real_escape_string($event_id)
 		);
 	}
