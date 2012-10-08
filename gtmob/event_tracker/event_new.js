@@ -364,8 +364,8 @@ $(function() {
 		}
 		else {
 			console.log("Event ID not set bc undefined.")
+			add_action = false;
 		}
-		add_action = false;
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
 	    //$("#list").page();                     
