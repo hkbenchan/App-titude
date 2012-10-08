@@ -8,7 +8,7 @@
 	<html file="event_post.html"/>
 	
 	<css file="fullcalendar-1.5.4/fullcalendar/fullcalendar.css"/>
-	<css file="css/ui-lightness/jquery-ui-1.8.24.custom.css"/>
+	<css file="css/themename/jquery-ui-1.8.24.custom.css"/>
 	<css file="event.css"/>
 
 	<javascript file="fullcalendar-1.5.4/fullcalendar/fullcalendar.js"/>
