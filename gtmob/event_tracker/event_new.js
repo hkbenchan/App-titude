@@ -584,7 +584,7 @@ $(function() {
 					error: ajaxError
 				});
 			}
-			window.location.replace("http://m.cip.gatech.edu/d/apptitude/w/event_tracker/content/#view_event_page");
+			$.mobile.changePage('#view_event_page', 'pop', true, true);
 		}
 		else
 		{
