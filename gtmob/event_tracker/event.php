@@ -652,7 +652,7 @@ function deleteEvent($id) {
 
 	if (count($result) >0) {
 		// event exists, delete the RSVP record
-		$dbQuery = sprinf("DELETE FROM RSVP WHERE EventID = '%s'", mysql_real_escape_string($id));
+		$dbQuery = sprintf("DELETE FROM RSVP WHERE EventID = '%s'", mysql_real_escape_string($id));
 		$result = getDBResultNoHarm($dbQuery);
 		$dbQuery = sprintf("DELETE FROM Event WHERE ID = '%s' AND StartTime >= CURRENT_TIMESTAMP",
 		mysql_real_escape_string($id));                                                                                         
