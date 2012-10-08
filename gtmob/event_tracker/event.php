@@ -639,12 +639,36 @@ function deleteEvent($id) {
 		die();
 	}
 	
-	if (!is_numeric($id)) { $id = 0; }
-        $dbQuery = sprintf("DELETE FROM Event WHERE id = '%s' AND StartTime >= CURRENT_TIMESTAMP",
-                mysql_real_escape_string($id));                                                                                         
-        $result = getDBResultAffected($dbQuery);
-        header("Content-type: application/json");
-        echo json_encode($result);
+	if (!is_numeric($id)) { 
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		header("Content-type: application/json");
+        echo json_encode(array('error_msg'=> 'Event ID should be a number.'));
+		die(); 
+	}
+   
+
+   $dbQuery = sprintf("SELECT * FROM Event WHERE ID = '%s' AND StartTime >= CURRENT_TIMESTAMP",mysql_real_escape_string($id));
+   $result = getDBResultNoHarm($dbQuery);
+
+	if (count($result) >0) {
+		// event exists, delete the RSVP record
+		$dbQuery = sprinf("DELETE FROM RSVP WHERE EventID = '%s'", mysql_real_escape_string($id));
+		$result = getDBResultNoHarm($dbQuery);
+		$dbQuery = sprintf("DELETE FROM Event WHERE ID = '%s' AND StartTime >= CURRENT_TIMESTAMP",
+		mysql_real_escape_string($id));                                                                                         
+		   
+		$result = getDBResultAffected($dbQuery);
+		header("Content-type: application/json");   
+		echo json_encode($result);
+		
+	} else {
+		$GLOBALS["_PLATFORM"]->sandboxHeader("HTTP/1.1 404 Not Found");
+		header("Content-type: application/json");
+        echo json_encode(array('error_msg'=> 'You cannot delete this event.'));
+		die();
+	}
+
+   
 }
 
 
