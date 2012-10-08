@@ -7,7 +7,7 @@ var add_action = true;
 
 $(function() {
  // Handler for .ready() called.
-	console.log('ready');
+	//console.log('ready');
 	
 	$('#calendar').fullCalendar({
 		eventClick: function(calEvent, jsEvent, view) {
@@ -39,7 +39,7 @@ $(function() {
 			dataType: "json",
 			async: false,
 			success: function (data, textStatus, jqXHR) {
-				console.log("current user is "+data);
+				//console.log("current user is "+data);
 			},
 			statusCode: {
 				404: function() {
@@ -60,7 +60,6 @@ $(function() {
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
-				console.log(data);
 				$('.category_list_row').remove();
 				$.each(data,function(key,val) {
 				$('#category_list').append('<li class="category_list_row" id="category_' + val.ID + '"><a href="#browse_events_page" data-category="0/type/' + val.ID + '/" data-transition="slide"><h3>' + val.EventTypeDesc + '</h3></a></li>');				});
@@ -82,7 +81,6 @@ $(function() {
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
-				console.log(data);
 				var i = 0;
 				$('.event_collapsible').remove();
 				$.each(data.date,function(key,val) {
@@ -94,7 +92,6 @@ $(function() {
 					$('#event_collapsible' + i).append('<ul data-role="listview" class="event_list" id="event_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
 						$('#event_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
-						console.log(val.ID);
 					});
 					i++;
 				});
@@ -115,7 +112,6 @@ $(function() {
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
-				console.log(data);
 				var i = 0;
 				$('#no_rsvps').remove();
 				$('.rsvp_collapsible').remove();
@@ -128,7 +124,6 @@ $(function() {
 					$('#rsvp_collapsible' + i).append('<ul data-role="listview" class="rsvp_list" id="rsvp_list' + i + '" data-inset="true" data-theme="d">');
 					$.each(data[i],function(key,val) {
 						$('#rsvp_list' + i).append('<li><a href="#view_event_page" data-event="' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
-						console.log(val.ID);
 					});
 					i++;
 				});
@@ -156,7 +151,6 @@ $(function() {
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
-				console.log(data);
 				var eventArray = [];
 				$.each(data,function(key,val) {
 					$.each(val,function(key,val) {
@@ -168,7 +162,6 @@ $(function() {
 					});
 				});
 				rsvped_events.events = eventArray;
-				console.log(rsvped_events);
 	        },
 	        error: ajaxError
 		});
@@ -181,8 +174,6 @@ $(function() {
 	$('#view_event_page').bind('pagebeforeshow',function(event, ui){
 		console.log("pagebeforeshow");
 		event.preventDefault();
-		console.log("View Event Page");
-		console.log(ui);
 		
 		//var event_id = $.url().fparam("event_id");//$.mobile.activePage.data('url').split("=")[1];//ui.url().fparam("event_id");//$('a').attr("id"); //$.url().fparam("event_id"); //$.mobile.activePage.data('url').split("=")[1];
 		//console.log("Event ID:" + event_id);
@@ -193,7 +184,6 @@ $(function() {
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
-				console.log("Event is " + data.Title);
 				
 				var startHour = data.StartTime.split(" ")[1];
 				var startDate = data.StartTime.split(" ")[0];
@@ -224,7 +214,6 @@ $(function() {
 	        async: false,
 			type: 'GET',
 	        success: function(data) {
-				console.log("RSVP data is " + data['RSVP']);
 				event_ID = data['event_ID'];
 				
 				if (data['RSVP'] == "No") {
@@ -240,7 +229,6 @@ $(function() {
 	        error: ajaxError
 		});
 		
-		console.log($(".ui-page-active").attr("data-url"));
 	});
 	
 	
@@ -253,7 +241,6 @@ $(function() {
 			dataType: "json",
 	        async: false,
 	        success: function(data, textStatus, jqXHR) {
-				console.log(data);
 				var i = 0;
 				$('#hold_manage_events').remove();
 				$('#manageable_events').append('<div id="hold_manage_events"/>');
@@ -271,7 +258,6 @@ $(function() {
 						//$('#manage_list' + i).append('<li><div data-role="controlgroup" data-type="horizontal" class="control_group" id="control_group_' + i + '"><a href="#view_event_page" data-role="button" class="unique_button" data-event="' + val.ID + '">' + val.Title + '</a><a href="#admin_view_rsvps_page" data-role="button" class="unique_button" data-event="' + val.ID + '">View RSVPs</a><a href="#form_page" data-role="button" class="unique_button" data-event="' + val.ID + '">Edit</a></div></li>');
 						$('#manage_list' + i).append('<li><div>' + val.Title + '</br><a href="#admin_view_rsvps_page" data-role="button" class="unique_button" data-inline="true" data-event="' + val.ID + '">View RSVPs</a><a href="#form_page" data-role="button" data-inline="true" class="unique_button editclass" data-event="' + val.ID + '">Edit</a><a href="#home_page" data-role="button" data-inline="true" class="delete_button unique_button" data-event="' + val.ID + '">Delete</a></div></li>');
 						//$('#event_list' + i).append('<li><a href="#view_event_page&event_id=' + val.ID + '" data-transition="slide"><h3>' + val.Title + '</h3></a></li>');
-						console.log(val.ID);
 					});
 					i++;
 				});
@@ -300,12 +286,10 @@ $(function() {
 			dataType: 'JSON',
 			async: false,
 			success: function(data) {
-				console.log(data);
 				$('#hold_rsvp_names').remove();
 				$('#admin_rsvps').append('<div id="hold_rsvp_names"/>');
 				
 				$('#hold_rsvp_names').append('<h2>People Going:</h2></br>');
-				console.log(data.length + ' = length')
 				for (var i=0; i<data.length; i++)
 				{
 				// add the AcctName for that
@@ -313,9 +297,7 @@ $(function() {
 					$('#hold_rsvp_names').append(data[i].AcctName + '</br></br>');
 				}
 			},
-			error: function(data) {
-				console.log("Event " + data.statusText);
-			}
+			error: ajaxError
 		});
 		
 	});
@@ -336,13 +318,13 @@ $(function() {
 	
 	
 	$("a[href=#view_event_page]").live("click", function(e) {
-	    console.log("check undefined = " + $(this).data("event"));
+	    //console.log("check undefined = " + $(this).data("event"));
 		if ($(this).data("event") != undefined) {
 			event_ID = $(this).data("event");
-			console.log("event_ID = " + event_ID);
+			//console.log("event_ID = " + event_ID);
 		}
 		else {
-			console.log("Event ID not set bc undefined.")
+			//console.log("Event ID not set bc undefined.")
 		}
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
@@ -351,7 +333,7 @@ $(function() {
 	
 	$("a[href=#browse_events_page]").live("click", function(e) {
 	    category_ID = $(this).data("category");
-		console.log("category_ID = " + category_ID);
+		//console.log("category_ID = " + category_ID);
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
 	    //$("#list").page();                     
@@ -360,15 +342,15 @@ $(function() {
 	$("a[href=#form_page]").live("click", function(e) {
 		if ($(this).data("event") != undefined) {
 			event_ID = $(this).data("event");
-			console.log("event_ID = " + event_ID);
+			//console.log("event_ID = " + event_ID);
 			add_action = false;
 		}
 		else {
-			console.log("Event ID not set bc undefined.")
+			//console.log("Event ID not set bc undefined.")
 			add_action = true;
-			console.log("clearing all fields");
+			//console.log("clearing all fields");
 			clearAll();
-			
+			/*
 			console.log("Title: " +  $('#enameid').val());
 			console.log("OrganizationName: " +  $('#eorganizationid').val());
 			console.log("Email: " + $('#eemailid').val());
@@ -381,6 +363,7 @@ $(function() {
 			console.log("Start time: " +  $('#estarttimeid').val());
 			console.log("End date: " +  $('#eenddateid').val());
 			console.log("End time: " + $('#eendtimeid').val());
+			*/
 		}
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
@@ -390,10 +373,10 @@ $(function() {
 	$("a[href=#admin_view_rsvps_page]").live("click", function(e) {
 		if ($(this).data("event") != undefined) {
 			event_ID = $(this).data("event");
-			console.log("event_ID = " + event_ID);
+			//console.log("event_ID = " + event_ID);
 		}
 		else {
-			console.log("Event ID not set bc undefined.")
+			//console.log("Event ID not set bc undefined.")
 		}
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
@@ -403,19 +386,19 @@ $(function() {
 	$(".delete_button").live("click", function(e) {
 		if ($(this).data("event") != undefined) {
 			event_ID = $(this).data("event");
-			console.log("event_ID = " + event_ID);
+			//console.log("event_ID = " + event_ID);
 			$.ajax({
 				url: 'api/event/'+event_ID,
 				dataType: 'JSON',
 				async: false,
 				type: 'DELETE',
 				success: function() {
-					console.log('Event ' + event_ID + ' deleted.');
+					//console.log('Event ' + event_ID + ' deleted.');
 				},
 				error: ajaxError
 			});
 		} else {
-			console.log("Event ID not set bc undefined.")
+			//console.log("Event ID not set bc undefined.")
 		}
 		//navIdentity = $(this).data("identity");
 	    //$("#listbody").html( "<div>" + navIdentity + "</div>" );
@@ -423,14 +406,14 @@ $(function() {
 	});
 	
 	$('#RSVPbutton').bind('click', function() 
-	{ console.log("RSVP Button");
+	{ //console.log("RSVP Button");
 	      	$.ajax({
 		    	url: "api/event/"+event_ID+"/rsvp",
 			dataType: "json",
 			async: false, 
 			type: 'POST',
 			success: function(data) {
-				console.log("RSVPed");
+				//console.log("RSVPed");
 				$("#RSVPbutton").hide();
 				$("#UNRSVPbutton").show();
 			},
@@ -439,14 +422,14 @@ $(function() {
 	});
 	
 	$('#UNRSVPbutton').bind('click', function() 
-	{ console.log("UNRSVP Button");
+	{ //console.log("UNRSVP Button");
 	      	$.ajax({
 		    	url: "api/event/"+event_ID+"/rsvp",
 			dataType: "json",
 			async: false, 
 			type: 'DELETE',
 			success: function(data) {
-				console.log("RSVPed");
+				//console.log("RSVPed");
 				$("#UNRSVPbutton").hide();
 				$("#RSVPbutton").show();
 			},
@@ -520,9 +503,10 @@ $(function() {
 	$('#addid').bind('click', function() 
 	{ 
 		add_action = true;
-		console.log("clearing all fields");
+		//console.log("clearing all fields");
 		clearAll();
 		
+		/*
 		console.log("Title: " +  $('#enameid').val());
 		console.log("OrganizationName: " +  $('#eorganizationid').val());
 		console.log("Email: " + $('#eemailid').val());
@@ -535,13 +519,14 @@ $(function() {
 		console.log("Start time: " +  $('#estarttimeid').val());
 		console.log("End date: " +  $('#eenddateid').val());
 		console.log("End time: " + $('#eendtimeid').val());
+		*/
 	});
 	
 	/*************** posting ********************/
 	$('#submitid').bind('click', function() 
 	{ 
 		var msg = validateAll();
-		console.log("message: " + msg);
+		//console.log("message: " + msg);
 		if(!msg)
 		{
 			if(add_action)
@@ -569,10 +554,10 @@ $(function() {
 					type: 'POST',
 					success: function(data) 
 					{
-						console.log("event added successful");
-						console.log(data);
+						//console.log("event added successful");
+						//console.log(data);
 						event_ID = data["EventID"];
-						console.log(event_ID);
+						//console.log(event_ID);
 					},
 					error: ajaxError
 				});
@@ -603,8 +588,8 @@ $(function() {
 					type: 'POST',
 					success: function(data) 
 					{
-						console.log("event updated successful");
-						console.log(data);
+						//console.log("event updated successful");
+						//console.log(data);
 					},
 					error: ajaxError
 				});
@@ -613,7 +598,7 @@ $(function() {
 		}
 		else
 		{
-			console.log("form validatio failed, cannot proceed");
+			//console.log("form validatio failed, cannot proceed");
 			showError(msg);
 		}
 	});
@@ -624,7 +609,7 @@ $(function() {
 	$('#form_page').bind('pagebeforeshow',function()
 	{
 		if (!add_action) {
-			console.log("editing an event post (id: " + event_ID + ")");
+			//console.log("editing an event post (id: " + event_ID + ")");
 			$.ajax
 			({
 				url: "api/event/"+event_ID,
@@ -651,6 +636,7 @@ $(function() {
 						$('#eenddateid').val(etemp[0]);
 						$('#eendtimeid').val(etemp[1]);
 						
+						/*
 						console.log("JSON object received successfully: ");
 				   
 						console.log("org: " + data['OrganizationName']);
@@ -665,6 +651,7 @@ $(function() {
 						console.log("start time: " + stemp[1]);
 						console.log("end date: " + etemp[0]);
 						console.log("end time: " + etemp[1]);
+						*/
 					},
 					error: ajaxError
 			});
@@ -781,7 +768,7 @@ $(document).ready(function(){
 /******************************************************************************/
 
 function ajaxError(jqXHR, textStatus, errorThrown){
-	console.log('ajaxError '+textStatus+' '+errorThrown);
+	//console.log('ajaxError '+textStatus+' '+errorThrown);
 	/*
 	$('#error_message').remove();
 	$("#error_message_template").tmpl( {errorName: textStatus, errorDescription: errorThrown} ).appendTo( "#error_dialog_content" );
@@ -795,12 +782,12 @@ function ajaxError(jqXHR, textStatus, errorThrown){
 //*********** form validation **********************
 function validateInputText(id, msg)
 {	
-	console.log("validating element: " + id);
+	//console.log("validating element: " + id);
 	var element = $(id);
 	
 	if(!element.val())
 	{
-		console.log(id + "  ---> empty");
+		//console.log(id + "  ---> empty");
 		return msg;
 	}
 	return "";
